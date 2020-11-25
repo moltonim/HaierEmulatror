@@ -61,6 +61,10 @@ extern unsigned char Answ_71_WH[50];
 extern unsigned char Answ_71_WM[50];
 extern unsigned char Answ_71_HVAC[50];
 extern unsigned char Answ_71_FR01[50];
+
+extern unsigned char Answ_71_HO_ken1[50];
+extern unsigned char Answ_71_HO_1[50];
+
 extern unsigned char ACK_5[11];
 
 #define Answ_73_LEN     (14+1)

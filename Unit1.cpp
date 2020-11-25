@@ -306,7 +306,7 @@ void __fastcall TForm1::FormCloseQuery(TObject *Sender, bool &CanClose)
 void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
 {
     int n = DeviceComboBox->ItemIndex;
-    if (n <0 || n >=5)
+    if (n <0 )
     {
         ;//Handle errors!
         return;
@@ -344,6 +344,19 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
             Answ71S = " -FR01-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Fridge RU 60cm";
         break;
+
+        case 5:
+            answ71 = Answ_71_HO_1;
+            Answ71S = " -HO-01-";
+            Form1->StatusBar1->Panels->Items[2]->Text = "Hood Haier";
+        break;
+
+        case 6:
+            answ71 = Answ_71_HO_ken1;
+            Answ71S = " -HO-Ark-";
+            Form1->StatusBar1->Panels->Items[2]->Text = "Hood Arcair";
+        break;
+
     }
     // Write something?
 }

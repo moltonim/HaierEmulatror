@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 225
-  Top = 110
+  Left = 270
+  Top = 93
   Width = 682
   Height = 577
   Caption = 'Emulor machine 0.61'
@@ -169,7 +169,9 @@ object Form1: TForm1
         'WH'
         'HVAC'
         'WM'
-        'FR-RU60cm')
+        'FR-RU60cm'
+        'Hood Haier'
+        'Hood Arcair')
     end
     object Button1: TButton
       Left = 6
