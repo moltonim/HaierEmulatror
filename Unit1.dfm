@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 270
-  Top = 93
+  Left = 193
+  Top = 126
   Width = 682
   Height = 577
-  Caption = 'Emulor machine 0.61'
+  Caption = 'Emulor machine 0.62'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -170,8 +170,8 @@ object Form1: TForm1
         'HVAC'
         'WM'
         'FR-RU60cm'
-        'Hood Haier'
-        'Hood Arcair')
+        'Hood Arcair'
+        'Hood Haier')
     end
     object Button1: TButton
       Left = 6
@@ -237,8 +237,6 @@ object Form1: TForm1
         Width = 60
         Height = 17
         Caption = 'Enable'
-        Checked = True
-        State = cbChecked
         TabOrder = 1
       end
     end

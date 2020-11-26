@@ -39,6 +39,10 @@ int ThreadHandle = 0;
 #define WINDOW_LARGE        675
 #define WINDOW_TALL         560
 
+//////////////////
+#define ARCAIR_ONLY
+
+
 /*
 typedef struct _serform
 {
@@ -244,7 +248,14 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         Edit1->Visible        = DebugFlag;
     }
 
+    #ifdef ARCAIR_ONLY
+    DeviceComboBox->ItemIndex = 5;
+    #endif
     DeviceComboBoxChange(NULL);
+
+    #ifdef ARCAIR_ONLY
+    DeviceComboBox->Enabled = false;
+    #endif
 
     delete ini;
 }
@@ -346,15 +357,15 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
         break;
 
         case 5:
-            answ71 = Answ_71_HO_1;
-            Answ71S = " -HO-01-";
-            Form1->StatusBar1->Panels->Items[2]->Text = "Hood Haier";
-        break;
-
-        case 6:
             answ71 = Answ_71_HO_ken1;
             Answ71S = " -HO-Ark-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Hood Arcair";
+        break;
+
+        case 6:
+            answ71 = Answ_71_HO_1;
+            Answ71S = " -HO-01-";
+            Form1->StatusBar1->Panels->Items[2]->Text = "Hood Haier";
         break;
 
     }

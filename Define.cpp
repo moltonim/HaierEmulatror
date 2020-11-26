@@ -271,7 +271,7 @@ void StringInit(void)
     *p++ = 0x71;
     memcpy(p, TYPEID_HO_ken1, 32);
     p += 32;
-    *p++ = CalcCKS(TYPEID_HO_ken1);
+    *p++ = CalcCKS(Answ_71_HO_ken1);
 
     p = Answ_71_HO_1;
     *p++ = 0xFF;
@@ -286,7 +286,7 @@ void StringInit(void)
     *p++ = 0x71;
     memcpy(p, TYPEID_HO_1, 32);
     p += 32;
-    *p++ = CalcCKS(TYPEID_HO_1);
+    *p++ = CalcCKS(Answ_71_HO_1);
 
     /////////
     p = Answ_71_HVAC;
@@ -400,7 +400,7 @@ static int StateMsgdim(int val)
         case 2:     return 32;   //HVAC
         case 3:     return 23*2;   //WM ???
         case 4:     return 16+12;   //FR01 RU 60cm ?
-        case 5:     return 10;       // Hood Arcair
+        case 5:     return 18;       // Hood Arcair
         case 6:     return 15;       // Hood Haier
     }
     return 0;
@@ -579,12 +579,16 @@ int UpdateStateMsg(int val, char mode)
         break;
 
         case 5:     // Hood Arcair
-        case 6:     // Hood Haier
+            p += 12;    //Point to Byte index1: OnOff Status etc.
+            p += 4;     //Point to Byte index1:
+            Temperature[0] %= 99;       //0 means -38
+            *p = Temperature[0]++;
             p = Answ_014D01 + len;
             *p++ = CalcCKS(Answ_014D01);
             len++;
         break;
 
+        case 6:     // Hood Haier
         default:
             len = 0;
         break;
