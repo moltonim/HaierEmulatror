@@ -8,6 +8,18 @@ USEFORM("SendCustomMsgForm.cpp", Form2);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
+    HWND hwnd = FindWindow("TForm1", NULL);
+    HANDLE hMutex = CreateMutex(NULL, false, "HaierEmu");
+    if (hMutex == NULL)
+        ShowMessage(GetLastError());
+    else
+        if (GetLastError() == ERROR_ALREADY_EXISTS)
+        {
+            ShowMessage("Application already running!");
+            SetForegroundWindow(hwnd);
+            return -1;
+        }                             
+
     try
     {
          Application->Initialize();
