@@ -40,7 +40,7 @@ int ThreadHandle = 0;
 #define WINDOW_TALL         560
 
 //////////////////
-#define ARCAIR_ONLY
+#define ARCAIR_ONLY_
 
 
 /*
@@ -238,7 +238,6 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
     SerialSelectCBChange(NULL);
     WriteLogPopMnu->Checked = ini->ReadBool("Setting", "Write LogFile", false);
     DeviceComboBox->ItemIndex = ini->ReadInteger("Setting", "Type", 0);
-    DeviceComboBoxChange(NULL);
     DebugFlag = ini->ReadBool("Setting", "Debug", false);
 
     //if (DebugFlag)
@@ -359,7 +358,11 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
         case 5:
             answ71 = Answ_71_HO_ken1;
             Answ71S = " -HO-Ark-";
-            Form1->StatusBar1->Panels->Items[2]->Text = "Hood Arcair";
+            #ifdef ARCAIR_ONLY
+                Form1->StatusBar1->Panels->Items[2]->Text = ">> ARCAIR ONLY!";
+            #else
+                Form1->StatusBar1->Panels->Items[2]->Text = "Hood Arcair";
+            #endif
         break;
 
         case 6:
