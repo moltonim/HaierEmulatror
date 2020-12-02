@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 193
-  Top = 126
-  Width = 682
+  Left = 219
+  Top = 120
+  Width = 698
   Height = 577
   Caption = 'Emulor machine 0.62'
   Color = clBtnFace
@@ -105,24 +105,16 @@ object Form1: TForm1
   object Panel2: TPanel
     Left = 561
     Top = 40
-    Width = 96
+    Width = 116
     Height = 473
     TabOrder = 4
-    object ExitBitBttn: TBitBtn
-      Left = 11
-      Top = 435
-      Width = 75
-      Height = 25
-      TabOrder = 0
-      Kind = bkClose
-    end
     object Panel1: TPanel
-      Left = 3
+      Left = 13
       Top = 4
       Width = 89
       Height = 105
       Enabled = False
-      TabOrder = 1
+      TabOrder = 0
       object ConfigRequestBttn: TBitBtn
         Left = 7
         Top = 11
@@ -158,10 +150,10 @@ object Form1: TForm1
     object DeviceComboBox: TComboBox
       Left = 3
       Top = 124
-      Width = 89
+      Width = 109
       Height = 21
       ItemHeight = 13
-      TabOrder = 2
+      TabOrder = 1
       Text = 'WC'
       OnChange = DeviceComboBoxChange
       Items.Strings = (
@@ -171,15 +163,16 @@ object Form1: TForm1
         'WM'
         'FR-RU60cm'
         'Hood Arcair'
-        'Hood Haier')
+        'Hood Haier'
+        'FR-MultiD 982k')
     end
     object Button1: TButton
-      Left = 6
+      Left = 15
       Top = 156
-      Width = 78
+      Width = 86
       Height = 25
       Caption = 'Custom MSG'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = Button1Click
     end
     object WriteLogPopMnu: TCheckBox
@@ -188,7 +181,7 @@ object Form1: TForm1
       Width = 71
       Height = 17
       Caption = 'Write Log'
-      TabOrder = 4
+      TabOrder = 3
     end
     object SendAnswerPopMnu: TCheckBox
       Left = 5
@@ -198,23 +191,23 @@ object Form1: TForm1
       Caption = 'Send Answer'
       Checked = True
       State = cbChecked
-      TabOrder = 5
+      TabOrder = 4
     end
     object Edit1: TEdit
-      Left = 8
+      Left = 13
       Top = 241
-      Width = 81
+      Width = 89
       Height = 21
-      TabOrder = 6
+      TabOrder = 5
       Text = 'Edit1'
       Visible = False
     end
     object Panel3: TPanel
-      Left = 3
+      Left = 13
       Top = 288
       Width = 90
       Height = 105
-      TabOrder = 7
+      TabOrder = 6
       object Label1: TLabel
         Left = 37
         Top = 80
@@ -240,11 +233,20 @@ object Form1: TForm1
         TabOrder = 1
       end
     end
+    object Button3: TButton
+      Left = 16
+      Top = 431
+      Width = 87
+      Height = 25
+      Caption = '&Quit'
+      TabOrder = 7
+      OnClick = Button3Click
+    end
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 519
-    Width = 666
+    Width = 682
     Height = 19
     Panels = <
       item

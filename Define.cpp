@@ -119,6 +119,20 @@ static unsigned char TYPEID_FR01[32] = {   //Fridge: RU 60cm
     0x03, 0x12, 0x55, 0x00, 0x00, 0x00, 0x00, 0x40,
     };
 
+static unsigned char TYPEID_FRA3FE744[32] = {
+    0x20, 0x08, 0x61, 0x05, 0x1c, 0x40, 0x85, 0x04, 
+    0x01, 0x21, 0x00, 0x61, 0x80, 0x09, 0x82, 0x4b,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x61, 0x80,
+    0x03, 0x51, 0x52, 0x00, 0x00, 0x00, 0x00, 0x40,
+    };
+
+static unsigned char TYPEID_HB20[32] = {
+    0x20, 0x08, 0x61, 0x05, 0x1c, 0x40, 0x85, 0x04, 
+    0x01, 0x21, 0x00, 0x61, 0x80, 0x09, 0x82, 0x4a,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x61, 0x80,
+    0x03, 0x51, 0x51, 0x00, 0x00, 0x00, 0x00, 0x40,
+    };
+
 /*   //esempio risposta sniffata dalla WM
 ff ff 28 00 00 00 00 00 00 71 20 1c 51 89 0c 31
 c3 08 05 01 00 21 80 00 67 4b 00 00 00 00 00 00
@@ -145,8 +159,9 @@ unsigned char Answ_71_WC[50];
 unsigned char Answ_71_WH[50];
 unsigned char Answ_71_HVAC[50];
 unsigned char Answ_71_WM[50];
+
 unsigned char Answ_71_FR01[50];
-unsigned char Answ_71_HO[50];
+unsigned char Answ_71_FRA3FE744[50];
 
 unsigned char Answ_71_HO_ken1[50];
 unsigned char Answ_71_HO_1[50];
@@ -243,6 +258,22 @@ void StringInit(void)
     p += 32;
     *p++ = CalcCKS(Answ_71_FR01);
     /////////
+    p = Answ_71_FRA3FE744;
+    *p++ = 0xFF;
+    *p++ = 0xFF;
+    *p++ = 0x28;    // FRAME LENGTH
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;   //6th
+    *p++ = 0x71;
+    memcpy(p, TYPEID_FRA3FE744, 32);
+    p += 32;
+    *p++ = CalcCKS(Answ_71_FRA3FE744);
+    /////////
+
     p = Answ_71_WM;
     *p++ = 0xFF;
     *p++ = 0xFF;
@@ -400,8 +431,9 @@ static int StateMsgdim(int val)
         case 2:     return 32;   //HVAC
         case 3:     return 23*2;   //WM ???
         case 4:     return 16+12;   //FR01 RU 60cm ?
-        case 5:     return 18;       // Hood Arcair
-        case 6:     return 15;       // Hood Haier
+        case 5:     return 18;      // Hood Arcair
+        case 6:     return 15;      // Hood Haier
+        case 7:     return 28;      // FR FRA3FE744 & HB20 !
     }
     return 0;
 }
@@ -591,6 +623,16 @@ int UpdateStateMsg(int val, char mode)
         case 6:     // Hood Haier
         default:
             len = 0;
+        break;
+
+        case 7:     //FR A3FE744
+            p += 12;    //Point to Byte index1: OnOff Status etc.
+            Temperature[0] %= 58;       //0 means -38
+            *p = Temperature[0]++;
+            
+            p = Answ_014D01 + len;
+            *p++ = CalcCKS(Answ_014D01);
+            len++;
         break;
 
     }

@@ -30,7 +30,6 @@ __published:	// IDE-managed Components
     TPopupMenu *PopupMenu1;
     TMenuItem *Clean1;
     TPanel *Panel2;
-    TBitBtn *ExitBitBttn;
     TPanel *Panel1;
     TBitBtn *ConfigRequestBttn;
     TDBCheckBox *F2_SentCKB;
@@ -48,6 +47,7 @@ __published:	// IDE-managed Components
     TLabel *Label1;
     TButton *Button2;
     TCheckBox *StatusCKB;
+    TButton *Button3;
     void __fastcall SWDateTimePicker1Change(TObject *Sender);
     void __fastcall SerialSelectCBChange(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -66,6 +66,7 @@ __published:	// IDE-managed Components
     void __fastcall CB_ConnectClick(TObject *Sender);
     void __fastcall StatusBar1DblClick(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
+    void __fastcall Button3Click(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;

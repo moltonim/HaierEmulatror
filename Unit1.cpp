@@ -371,6 +371,12 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
             Form1->StatusBar1->Panels->Items[2]->Text = "Hood Haier";
         break;
 
+        case 7:
+            answ71 = Answ_71_HO_1;
+            Answ71S = " FR MD 982K";
+            Form1->StatusBar1->Panels->Items[2]->Text = "Multidoor 982k A3FE";
+        break;
+
     }
     // Write something?
 }
@@ -488,6 +494,12 @@ void __fastcall TForm1::StatusBar1DblClick(TObject *Sender)
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
     Cmd6Req = true;    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+    Close();    
 }
 //---------------------------------------------------------------------------
 
