@@ -422,18 +422,23 @@ unsigned char CalcCKS(const unsigned char* buf)
     return val;
 }
 
-static int StateMsgdim(int val)
+static int StateMsgdim(DEV_TYPE val)
 {
     switch (val)
     {
-        case 0:     return 28;   //WC
-        case 1:     return 50;   //WH
-        case 2:     return 32;   //HVAC
-        case 3:     return 23*2;   //WM ???
-        case 4:     return 16+12;   //FR01 RU 60cm ?
-        case 5:     return 18;      // Hood Arcair
-        case 6:     return 15;      // Hood Haier
-        case 7:     return 28;      // FR FRA3FE744 & HB20 !
+        case DEV_TYPE_WC:           return 28;      //WC
+        case DEV_TYPE_WH:           return 50;      //WH
+        case DEV_TYPE_HVAC:         return 32;      //HVAC
+        case DEV_TYPE_WM:           return 23*2;    //WM ???
+        case DEV_TYPE_FR_RU60cm:    return 28;      //FR01 RU 60cm ?
+        case DEV_TYPE_HO_Arcair:    return 18;      // Hood Arcair
+        case DEV_TYPE_HO_Haier:     return 15;      // Hood Haier
+
+        case DEV_TYPE_FR_MultiD_HB20:
+        case DEV_TYPE_FR_MultiD_A3FE744:
+                                    return 28;      // FR FRA3FE744 & HB20 !
+
+        default:                    break;
     }
     return 0;
 }
@@ -454,7 +459,7 @@ int UpdateStateMsg(int val, char mode)
     static unsigned short Temperature[10];
     static unsigned char flagByte;
     static int oldval = -1;
-    int len = StateMsgdim(val);
+    int len = StateMsgdim((DEV_TYPE)val);
 
     if (val != oldval)
     {
@@ -481,12 +486,12 @@ int UpdateStateMsg(int val, char mode)
     //*p++ = CalcCKS(Answ_014D01);
 
     len = p - Answ_014D01;     //debug purp also!
-    Answ_014D01[2] = StateMsgdim(val)+10;
+    Answ_014D01[2] = StateMsgdim((DEV_TYPE)val)+10;
     p = Answ_014D01;           //restart!!
 
     switch (val)
     {
-        case 0:     // WC = Wine cooler, cantinetta
+        case DEV_TYPE_WC:     // WC = Wine cooler, cantinetta
             p += 12;    //Point to Byte index1: Upper temperature zone
             Temperature[0] %= 0xA0;
             *p = Temperature[0]++;
@@ -516,7 +521,7 @@ int UpdateStateMsg(int val, char mode)
             len++;
         break;
 
-        case 1:     // WH = water heater, scaldabagno
+        case DEV_TYPE_WH:     // WH = water heater, scaldabagno
             p += 12;    //Point to Byte index1: Upper temperature zone
             Temperature[0] %= 0x6E;
             *p = Temperature[0]++;
@@ -544,7 +549,7 @@ int UpdateStateMsg(int val, char mode)
             len++;
         break;
 
-        case 2:     // HVAC
+        case DEV_TYPE_HVAC:     // HVAC
             p += 12;    //Point to Byte index1: Upper temperature zone
             p += st;
             p = Answ_014D01 + 12;           //restart!!
@@ -570,7 +575,7 @@ int UpdateStateMsg(int val, char mode)
             len++;            
         break;
 
-        case 3:     // WM  lavatrice
+        case DEV_TYPE_WM:     // WM  lavatrice
 
             p += 12;    //Point to Byte index1: Upper temperature zone
             Temperature[0] %= 13;
@@ -594,7 +599,7 @@ int UpdateStateMsg(int val, char mode)
             len++;
         break;
 
-        case 4:     // FR01: Fridge, RU60cm
+        case DEV_TYPE_FR_RU60cm:     // FR01: Fridge, RU60cm
             p += 12;    //Point to Byte index1: Upper temperature zone
             Temperature[0] %= 85;       //0 means -38
             *p = Temperature[0]++;
@@ -610,7 +615,7 @@ int UpdateStateMsg(int val, char mode)
             len++;
         break;
 
-        case 5:     // Hood Arcair
+        case DEV_TYPE_HO_Arcair:     // Hood Arcair
             p += 12;    //Point to Byte index1: OnOff Status etc.
             p += 4;     //Point to Byte index1:
             Temperature[0] %= 99;       //0 means -38
@@ -620,12 +625,13 @@ int UpdateStateMsg(int val, char mode)
             len++;
         break;
 
-        case 6:     // Hood Haier
+        case DEV_TYPE_HO_Haier:     // Hood Haier
         default:
             len = 0;
         break;
 
-        case 7:     //FR A3FE744
+        case DEV_TYPE_FR_MultiD_A3FE744:
+        case DEV_TYPE_FR_MultiD_HB20:
             p += 12;    //Point to Byte index1: OnOff Status etc.
             Temperature[0] %= 58;       //0 means -38
             *p = Temperature[0]++;
@@ -633,8 +639,7 @@ int UpdateStateMsg(int val, char mode)
             p = Answ_014D01 + len;
             *p++ = CalcCKS(Answ_014D01);
             len++;
-        break;
-
+        break;           
     }
 
     return len;

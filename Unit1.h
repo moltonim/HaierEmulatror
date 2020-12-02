@@ -47,7 +47,7 @@ __published:	// IDE-managed Components
     TLabel *Label1;
     TButton *Button2;
     TCheckBox *StatusCKB;
-    TButton *Button3;
+    TButton *ExitBttn;
     void __fastcall SWDateTimePicker1Change(TObject *Sender);
     void __fastcall SerialSelectCBChange(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -66,7 +66,7 @@ __published:	// IDE-managed Components
     void __fastcall CB_ConnectClick(TObject *Sender);
     void __fastcall StatusBar1DblClick(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
-    void __fastcall Button3Click(TObject *Sender);
+    void __fastcall ExitBttnClick(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;
@@ -77,6 +77,7 @@ public:		// User declarations
     void __fastcall MessageReceived(void);
     String __fastcall SendString(unsigned char* buf, int len);
     void __fastcall SendCustomStr(int len);
+    void __fastcall DeviceListInit();
 
     void __fastcall ThreadDone(TObject *Sender);
 

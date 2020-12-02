@@ -7,6 +7,23 @@ typedef struct _sercmd
     char* cmd;
     } SERIAL_CMD;
 
+typedef enum _devtype
+{
+    DEV_TYPE_WC,                 //0 wine cooler
+    DEV_TYPE_WH,                 //1 water heater
+    DEV_TYPE_HVAC,               //2 condizionatore
+    DEV_TYPE_WM,                 //3 washing machine (dram?)
+    DEV_TYPE_FR_RU60cm,          //4 Fridge russo 1
+    DEV_TYPE_HO_Arcair,          //5 Hood Arcair (custom)
+    DEV_TYPE_HO_Haier,           //6 Hood Haier
+    DEV_TYPE_FR_MultiD_A3FE744,  //7 Fridge multidor 1
+    DEV_TYPE_FR_MultiD_HB20,     //8 Fridge multidor 2
+                                     
+    DEV_TYPE_LAST
+
+} DEV_TYPE;
+
+
 
 //Functions
 void StringInit(void);
@@ -14,7 +31,6 @@ unsigned char CalcCKS(const unsigned char* buf);
 void UpdateLog(unsigned char *buf, int read, String note, int opt);
 int FindCmdIdx(int val);
 int UpdateStateMsg(int val, char mode);
-//int StateMsgdim(int val);
 
 //variables...
 extern unsigned char DeviceProtocolVersion[8];

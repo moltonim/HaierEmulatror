@@ -325,37 +325,37 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
     switch (n)
     {
         default:
-        case 0:
+        case DEV_TYPE_WC:
             answ71 = Answ_71_WC;
             Answ71S = " -WC-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Wine Cooler";
         break;
 
-        case 1:
+        case DEV_TYPE_WH:
             answ71 = Answ_71_WH;
             Answ71S = " -WH-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Water Heater";
         break;
 
-        case 2:
+        case DEV_TYPE_HVAC:
             answ71 = Answ_71_HVAC;
             Answ71S = " -HVAC-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Air Conditioning HVAC";
         break;
 
-        case 3:
+        case DEV_TYPE_WM:
             answ71 = Answ_71_WM;
             Answ71S = " -WM-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Drum Washing Machine";
         break;
 
-        case 4:
+        case DEV_TYPE_FR_RU60cm:
             answ71 = Answ_71_FR01;
             Answ71S = " -FR01-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Fridge RU 60cm";
         break;
 
-        case 5:
+        case DEV_TYPE_HO_Arcair:
             answ71 = Answ_71_HO_ken1;
             Answ71S = " -HO-Ark-";
             #ifdef ARCAIR_ONLY
@@ -365,16 +365,22 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
             #endif
         break;
 
-        case 6:
+        case DEV_TYPE_HO_Haier:
             answ71 = Answ_71_HO_1;
             Answ71S = " -HO-01-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Hood Haier";
         break;
 
-        case 7:
+        case DEV_TYPE_FR_MultiD_A3FE744:
             answ71 = Answ_71_HO_1;
-            Answ71S = " FR MD 982K";
-            Form1->StatusBar1->Panels->Items[2]->Text = "Multidoor 982k A3FE";
+            Answ71S = " FR MD 982K A3FE";
+            Form1->StatusBar1->Panels->Items[2]->Text = "Multidoor 982k A3FE744";
+        break;
+
+        case DEV_TYPE_FR_MultiD_HB20:
+            answ71 = Answ_71_HO_1;
+            Answ71S = " FR MD 982J HB20";
+            Form1->StatusBar1->Panels->Items[2]->Text = "Multidoor 982J HB20";
         break;
 
     }
@@ -497,9 +503,13 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button3Click(TObject *Sender)
+void __fastcall TForm1::ExitBttnClick(TObject *Sender)
 {
-    Close();    
+    Close();
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::DeviceListInit()
+{
+    
+}

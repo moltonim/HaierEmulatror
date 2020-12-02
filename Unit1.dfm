@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 219
-  Top = 120
+  Left = 220
+  Top = 122
   Width = 698
   Height = 577
   Caption = 'Emulor machine 0.62'
@@ -233,14 +233,14 @@ object Form1: TForm1
         TabOrder = 1
       end
     end
-    object Button3: TButton
+    object ExitBttn: TButton
       Left = 16
       Top = 431
       Width = 87
       Height = 25
       Caption = '&Quit'
       TabOrder = 7
-      OnClick = Button3Click
+      OnClick = ExitBttnClick
     end
   end
   object StatusBar1: TStatusBar
