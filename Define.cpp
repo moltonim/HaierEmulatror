@@ -451,10 +451,10 @@ char arcBuf[14] = {
     1,   //windSpeed            1
 
     2,   //delaytime            2
-    1,                          3
+    1,   //                     3
 
     4,  //machMode              4
-    5,                          5
+    5,  //                      5
 
     6,  //rgbLightStatus        6
     7,  //rgbLightColor         7
@@ -465,8 +465,8 @@ char arcBuf[14] = {
     10, //lastWorkTime          10
     11, //lastWorkTime          11
 
-    12,                         12
-    13,                         13
+    12, //                      12
+    13, //                      13
     };
 //
 //  mode: se 0 = risposta al comando tipo 1, 9° carattere = 2
