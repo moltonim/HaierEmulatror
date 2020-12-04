@@ -513,3 +513,11 @@ void __fastcall TForm1::DeviceListInit()
 {
     
 }
+void __fastcall TForm1::SpeedButton3Click(TObject *Sender)
+{
+    static int n;
+
+    n++;
+}
+//---------------------------------------------------------------------------
+

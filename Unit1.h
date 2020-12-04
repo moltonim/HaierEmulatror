@@ -67,6 +67,7 @@ __published:	// IDE-managed Components
     void __fastcall StatusBar1DblClick(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
     void __fastcall ExitBttnClick(TObject *Sender);
+    void __fastcall SpeedButton3Click(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;

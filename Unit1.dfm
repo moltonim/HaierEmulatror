@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 122
   Width = 698
   Height = 577
-  Caption = 'Emulor machine 0.62'
+  Caption = 'Emulor machine 0.70'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -38,6 +38,7 @@ object Form1: TForm1
     Width = 23
     Height = 22
     Caption = 'R'
+    OnClick = SpeedButton3Click
   end
   object ConnectLabel: TLabel
     Left = 429
@@ -164,7 +165,8 @@ object Form1: TForm1
         'FR-RU60cm'
         'Hood Arcair'
         'Hood Haier'
-        'FR-MultiD 982k')
+        'FR-MultiD k A3FE'
+        'FR-MultiD j HB20')
     end
     object Button1: TButton
       Left = 15

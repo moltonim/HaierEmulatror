@@ -422,6 +422,7 @@ unsigned char CalcCKS(const unsigned char* buf)
     return val;
 }
 
+static int arcLen = 12;
 static int StateMsgdim(DEV_TYPE val)
 {
     switch (val)
@@ -431,7 +432,7 @@ static int StateMsgdim(DEV_TYPE val)
         case DEV_TYPE_HVAC:         return 32;      //HVAC
         case DEV_TYPE_WM:           return 23*2;    //WM ???
         case DEV_TYPE_FR_RU60cm:    return 28;      //FR01 RU 60cm ?
-        case DEV_TYPE_HO_Arcair:    return 18;      // Hood Arcair
+        case DEV_TYPE_HO_Arcair:    return arcLen;  // Hood Arcair
         case DEV_TYPE_HO_Haier:     return 15;      // Hood Haier
 
         case DEV_TYPE_FR_MultiD_HB20:
@@ -444,6 +445,29 @@ static int StateMsgdim(DEV_TYPE val)
 }
 
 
+
+char arcBuf[14] = {
+    0,   //bit                  0
+    1,   //windSpeed            1
+
+    2,   //delaytime            2
+    1,                          3
+
+    4,  //machMode              4
+    5,                          5
+
+    6,  //rgbLightStatus        6
+    7,  //rgbLightColor         7
+
+    8,  //lastWorkTime          8
+    9,  //lastWorkTime          9
+
+    10, //lastWorkTime          10
+    11, //lastWorkTime          11
+
+    12,                         12
+    13,                         13
+    };
 //
 //  mode: se 0 = risposta al comando tipo 1, 9° carattere = 2
 //           1 = invio spontaneo           , 9° carattere = 6
@@ -455,6 +479,7 @@ int UpdateStateMsg(int val, char mode)
 
     static int st = 1;
 
+    int n;
     unsigned char *p = Answ_014D01;
     static unsigned short Temperature[10];
     static unsigned char flagByte;
@@ -572,7 +597,7 @@ int UpdateStateMsg(int val, char mode)
 
             p = Answ_014D01 + len;
             *p++ = CalcCKS(Answ_014D01);
-            len++;            
+            len++;
         break;
 
         case DEV_TYPE_WM:     // WM  lavatrice
@@ -617,9 +642,13 @@ int UpdateStateMsg(int val, char mode)
 
         case DEV_TYPE_HO_Arcair:     // Hood Arcair
             p += 12;    //Point to Byte index1: OnOff Status etc.
-            p += 4;     //Point to Byte index1:
-            Temperature[0] %= 99;       //0 means -38
+            //p += 4;     //Point to Byte index1:
+            for(n = 0; n < len; n++)
+                *p++ = arcBuf[n];
+            p = Answ_014D01 + 12 + 2;
+            Temperature[0] %= 100;
             *p = Temperature[0]++;
+
             p = Answ_014D01 + len;
             *p++ = CalcCKS(Answ_014D01);
             len++;
