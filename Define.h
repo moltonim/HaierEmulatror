@@ -28,6 +28,7 @@ typedef enum _devtype
 //Functions
 void StringInit(void);
 unsigned char CalcCKS(const unsigned char* buf);
+unsigned char CalcCKS_FULL(unsigned char* buf, int* len);
 void UpdateLog(unsigned char *buf, int read, String note, int opt);
 int FindCmdIdx(int val);
 int UpdateStateMsg(int val, char mode);

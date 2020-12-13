@@ -286,7 +286,12 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
 
         case 0x01:      //Query attribute status
             Form1->RichEdit1->SelAttributes->Color = DebugFlag? clYellow:clAqua;
+            //^^ aggiustare qui: o yellow o aqua!
             n = Form1->DeviceComboBox->ItemIndex;
+
+            // Aggiungere qui il parser oppure il comando ricevuto etc!
+            //aggiornare il colore (fuxia?) in caso di comando
+
             n = UpdateStateMsg(n, 0);
             s.sprintf("[02] Answer Status; len = %d \n", n-3);
             if (Form1->SendAnswerPopMnu->Checked)
@@ -298,9 +303,10 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
 
         case 0x06:      //!SELF! attribute status (every 6 secs)
             Form1->RichEdit1->SelAttributes->Color = DebugFlag? clYellow:clAqua;
+            //^^ aggiustare qui: o yellow o aqua!
             n = Form1->DeviceComboBox->ItemIndex;
             n = UpdateStateMsg(n, 1);
-            s.sprintf("[06] Answer Status; len = %d \n", n-3);
+            s.sprintf("[06] Send Status; len = %d \n", n-3);
             if (Form1->SendAnswerPopMnu->Checked)
                 ris = -Ser->BIN_Write(Answ_014D01, n, LenReaden);
             if (ris)

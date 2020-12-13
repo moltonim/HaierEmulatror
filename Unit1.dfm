@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 122
   Width = 698
   Height = 577
-  Caption = 'Emulor machine 0.70'
+  Caption = 'Emulor machine 0.71'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

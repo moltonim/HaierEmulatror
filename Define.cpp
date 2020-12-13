@@ -422,6 +422,33 @@ unsigned char CalcCKS(const unsigned char* buf)
     return val;
 }
 
+
+unsigned char CalcCKS_FULL(unsigned char* buf)
+{
+    unsigned char val = 0;
+    int n, len, newlen;
+    unsigned char* p;
+    unsigned char c;
+
+    p = (unsigned char*)buf;
+    p += 2;
+    len = *p;   //len include the ks
+    newlen = len;
+
+    for(n = 0; n < len; n++)
+    {
+        c = *p;
+        if (c == 0xFF)
+        {
+            len++;
+            memmove(p+2, p+1, len);
+            *(p+1) = 0x55;
+            val += *p++;
+        }
+    }
+    return val;
+}
+
 static int arcLen = 12;
 static int StateMsgdim(DEV_TYPE val)
 {
