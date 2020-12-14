@@ -12,6 +12,7 @@
 #include "TokenThread.h"
 #include "SendCustomMsgForm.h"
 #include "SureConnectionThread.h"
+#include "AlarmPanel.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "LMDBaseEdit"
@@ -526,6 +527,12 @@ void __fastcall TForm1::SpeedButton3Click(TObject *Sender)
     p += newlen;
     *p = 0x12;
     n++;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::AlarmBttnClick(TObject *Sender)
+{
+    Form3->Show();    
 }
 //---------------------------------------------------------------------------
 
