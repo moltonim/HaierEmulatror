@@ -516,7 +516,15 @@ void __fastcall TForm1::DeviceListInit()
 void __fastcall TForm1::SpeedButton3Click(TObject *Sender)
 {
     static int n;
+    int newlen;
+    char buf[20] = {0xFF, 0xFF, 0x0D, 0x01, 0x02, 0x03, 0x04, 0x05,
+                    0x06, 0x02, 0x6D, 0x01, 0x05, 0xFF, 0xFF, 0x95,
+                    0x10, 0x20, 0x30, 0x40};
 
+    unsigned char c = CalcCKS2(buf, &newlen);
+    char* p = buf;
+    p += newlen;
+    *p = 0x12;
     n++;
 }
 //---------------------------------------------------------------------------
