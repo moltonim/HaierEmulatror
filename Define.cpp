@@ -40,6 +40,34 @@ SERIAL_CMD serial_cmd[] = {
     {    0, "" },
 };
 
+
+JSON_ALARM ALARM_HB20[] = {
+    { "envTempSensorErr", 	    1 },
+	{ "refrigeratorSensorErr", 	2 },
+	{ "freezerSensorErr", 	    4 },
+	{ "vtRoomSensorErr", 	    5 },
+	{ "freezerDefrostingSensorErr", 	9 },
+	{ "ctrBoardCommErr", 	    11 },
+	{ "freezerFanErr", 	        13 },
+	{ "freezerDefrostingErr", 	15 },
+	{ "humiditySensorErr", 	    16 },
+	{ "refrigeratorDoorAlarm", 	31 },
+	{ "airDoor1Err", 	        46 },
+};
+
+JSON_ALARM ALARM_FRA3FE744[] = {
+   	{ "envTempSensorErr", 	    1 },
+	{ "refrigeratorSensorErr", 	2 },
+	{ "freezerSensorErr", 	    4 },
+	{ "vtRoomSensorErr", 	    5 },
+	{ "freezerDefrostingSensorErr", 	9 },
+	{ "ctrBoardCommErr", 	    11 },
+	{ "freezerFanErr", 	        13 },
+	{ "humiditySensorErr", 	    16 },
+	{ "refrigeratorDoorAlarm", 	31 },
+	{ "airDoor1Err", 	        46 },
+};
+
 SERIAL_CMD Device_status[] = {
     {0x01, "SoftAP configuration mode"      },
     {0x02, "Smartlink configuration mode"   },
@@ -467,6 +495,29 @@ static int StateMsgdim(DEV_TYPE val)
         case DEV_TYPE_FR_MultiD_HB20:
         case DEV_TYPE_FR_MultiD_A3FE744:
                                     return 28;      // FR FRA3FE744 & HB20 !
+
+        default:                    break;
+    }
+    return 0;
+}
+
+static int AlarmMsgByte(DEV_TYPE val)
+{
+    switch (val)
+    {
+        case DEV_TYPE_WC:           return 8;      //WC
+        case DEV_TYPE_WH:           return 4;      //WH  ??? 3??
+        case DEV_TYPE_HVAC:         return 8;      //HVAC
+        case DEV_TYPE_WM:           return 8;      //WM ???
+
+        case DEV_TYPE_HO_Arcair:    // Hood Arcair
+        case DEV_TYPE_HO_Haier:     // Hood Haier
+                                    return 4;
+
+        case DEV_TYPE_FR_RU60cm:
+        case DEV_TYPE_FR_MultiD_HB20:
+        case DEV_TYPE_FR_MultiD_A3FE744:
+                                    return 8;      // FR FRA3FE744 & HB20 !
 
         default:                    break;
     }

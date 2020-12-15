@@ -13,20 +13,22 @@ object Form3: TForm3
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 183
     Top = 72
-    Width = 19
+    Width = 22
     Height = 13
-    Caption = 'Hex'
+    Caption = 'HEX'
   end
   object Edit1: TEdit
-    Left = 16
+    Left = 5
     Top = 24
-    Width = 33
+    Width = 25
     Height = 21
     TabOrder = 0
+    Visible = False
   end
 end

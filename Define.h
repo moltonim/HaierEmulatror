@@ -24,6 +24,22 @@ typedef enum _devtype
 } DEV_TYPE;
 
 
+typedef struct _proprieties
+{
+    int startWord, startBit, length;
+	//"dataType":"int" o "bool"
+	bool readable;
+	bool writable;      //":true o false,
+	String eppCmd;  //"5D04",
+}   JSON_PROPS;
+
+typedef struct _alarm
+{
+    //int tag;
+    char* name;
+    int pos;
+}   JSON_ALARM;
+
 
 //Functions
 void StringInit(void);
