@@ -5,12 +5,12 @@
     <VERSION value="BCB.06.00"/>
     <PROJECT value="HaierEmu.exe"/>
     <OBJFILES value="HaierEmu.obj Unit1.obj algorithm.obj SERIALPORT.obj TokenThread.obj 
-      Define.obj SendCustomMsgForm.obj SureConnectionThread.obj"/>
+      Define.obj SendCustomMsgForm.obj SureConnectionThread.obj AlarmPanel.obj"/>
     <RESFILES value="HaierEmu.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
     <DEFFILE value=""/>
-    <RESDEPEN value="$(RESFILES) Unit1.dfm SendCustomMsgForm.dfm"/>
+    <RESDEPEN value="$(RESFILES) Unit1.dfm SendCustomMsgForm.dfm AlarmPanel.dfm"/>
     <LIBFILES value=""/>
     <LIBRARIES value="vclx.lib lmd50se_B6.lib dxForumLibC6.lib dbrtl.lib vcldb.lib rtl.lib vcl.lib"/>
     <SPARELIBS value="vcl.lib rtl.lib vcldb.lib dbrtl.lib dxForumLibC6.lib lmd50se_B6.lib vclx.lib"/>
@@ -66,6 +66,7 @@
       <FILE FILENAME="Define.cpp" FORMNAME="" UNITNAME="Define" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="SendCustomMsgForm.cpp" FORMNAME="Form2" UNITNAME="SendCustomMsgForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="SureConnectionThread.cpp" FORMNAME="" UNITNAME="SureConnectionThread" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="AlarmPanel.cpp" FORMNAME="Form3" UNITNAME="AlarmPanel" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
   </FILELIST>
   <BUILDTOOLS>
   </BUILDTOOLS>

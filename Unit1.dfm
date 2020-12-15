@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 122
   Width = 698
   Height = 577
-  Caption = 'Emulor machine 0.71'
+  Caption = 'Emulator machine 0.71'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -179,7 +179,7 @@ object Form1: TForm1
     end
     object WriteLogPopMnu: TCheckBox
       Left = 5
-      Top = 192
+      Top = 224
       Width = 71
       Height = 17
       Caption = 'Write Log'
@@ -187,7 +187,7 @@ object Form1: TForm1
     end
     object SendAnswerPopMnu: TCheckBox
       Left = 5
-      Top = 217
+      Top = 249
       Width = 85
       Height = 17
       Caption = 'Send Answer'
@@ -197,7 +197,7 @@ object Form1: TForm1
     end
     object Edit1: TEdit
       Left = 13
-      Top = 241
+      Top = 273
       Width = 89
       Height = 21
       TabOrder = 5
@@ -206,43 +206,52 @@ object Form1: TForm1
     end
     object Panel3: TPanel
       Left = 13
-      Top = 288
+      Top = 328
       Width = 90
       Height = 105
       TabOrder = 6
       object Label1: TLabel
-        Left = 37
-        Top = 80
-        Width = 15
+        Left = 65
+        Top = 10
+        Width = 20
         Height = 13
         Caption = '0.0'
       end
       object Button2: TButton
-        Left = 7
-        Top = 42
-        Width = 75
+        Left = 3
+        Top = 32
+        Width = 83
         Height = 25
         Caption = 'Force status'
         TabOrder = 0
         OnClick = Button2Click
       end
       object StatusCKB: TCheckBox
-        Left = 15
-        Top = 13
-        Width = 60
+        Left = 5
+        Top = 8
+        Width = 43
         Height = 17
-        Caption = 'Enable'
+        Caption = 'Auto'
         TabOrder = 1
       end
     end
     object ExitBttn: TButton
       Left = 16
-      Top = 431
+      Top = 437
       Width = 87
       Height = 25
       Caption = '&Quit'
       TabOrder = 7
       OnClick = ExitBttnClick
+    end
+    object AlarmBttn: TButton
+      Left = 15
+      Top = 185
+      Width = 86
+      Height = 25
+      Caption = 'Alarms ...'
+      TabOrder = 8
+      OnClick = AlarmBttnClick
     end
   end
   object StatusBar1: TStatusBar

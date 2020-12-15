@@ -422,30 +422,32 @@ unsigned char CalcCKS(const unsigned char* buf)
     return val;
 }
 
-
-unsigned char CalcCKS_FULL(unsigned char* buf)
+unsigned char CalcCKS2(unsigned char* buf, int* newlen)
 {
     unsigned char val = 0;
-    int n, len, newlen;
-    unsigned char* p;
+    int n, len;
+    int delta;
     unsigned char c;
+    unsigned char* p;
 
-    p = (unsigned char*)buf;
-    p += 2;
-    len = *p;   //len include the ks
-    newlen = len;
-
+    p  = (unsigned char*)buf;
+    p += 2;         //Jump the 0xFFFF header
+    len  = *p;      //len include the cks
+    
     for(n = 0; n < len; n++)
     {
         c = *p;
+        val += c;
         if (c == 0xFF)
         {
-            len++;
-            memmove(p+2, p+1, len);
+            delta = len-n+1;
+            memmove(p+1, p, delta);
             *(p+1) = 0x55;
-            val += *p++;
+            len++;
         }
+        p++;
     }
+    *newlen = len;
     return val;
 }
 
@@ -539,12 +541,13 @@ int UpdateStateMsg(int val, char mode)
 
     len = p - Answ_014D01;     //debug purp also!
     Answ_014D01[2] = StateMsgdim((DEV_TYPE)val)+10;
-    p = Answ_014D01;           //restart!!
+    p = Answ_014D01;    //restart!!
+    p += 12;            //Point to Byte index1
 
     switch (val)
     {
         case DEV_TYPE_WC:     // WC = Wine cooler, cantinetta
-            p += 12;    //Point to Byte index1: Upper temperature zone
+            //p += 12;    //Point to Byte index1: Upper temperature zone
             Temperature[0] %= 0xA0;
             *p = Temperature[0]++;
             p++;
@@ -568,13 +571,13 @@ int UpdateStateMsg(int val, char mode)
             Answ_014D01[12+9] = 1;      //upperboxwinemode
             Answ_014D01[12+11] = 1;     //lowerboxwinemode
 
-            p = Answ_014D01 + len;
-            *p++ = CalcCKS(Answ_014D01);
-            len++;
+            //p = Answ_014D01 + len;
+            //*p++ = CalcCKS(Answ_014D01);
+            //len++;
         break;
 
         case DEV_TYPE_WH:     // WH = water heater, scaldabagno
-            p += 12;    //Point to Byte index1: Upper temperature zone
+            //p += 12;    //Point to Byte index1: Upper temperature zone
             Temperature[0] %= 0x6E;
             *p = Temperature[0]++;
             p++;
@@ -596,13 +599,13 @@ int UpdateStateMsg(int val, char mode)
             flagByte ^= 0x7F;
             *p = flagByte;             //toggle Power and light
 
-            p = Answ_014D01 + len;
-            *p++ = CalcCKS(Answ_014D01);
-            len++;
+            //p = Answ_014D01 + len;
+            //*p++ = CalcCKS(Answ_014D01);
+            //len++;
         break;
 
         case DEV_TYPE_HVAC:     // HVAC
-            p += 12;    //Point to Byte index1: Upper temperature zone
+            //p += 12;    //Point to Byte index1: Upper temperature zone
             p += st;
             p = Answ_014D01 + 12;           //restart!!
             Answ_014D01[14] = 1;    //windSpeed [4]
@@ -622,14 +625,13 @@ int UpdateStateMsg(int val, char mode)
             Temperature[3] %= 0x3C;
             *p = Temperature[3]++;
 
-            p = Answ_014D01 + len;
-            *p++ = CalcCKS(Answ_014D01);
-            len++;
+            //p = Answ_014D01 + len;
+            //*p++ = CalcCKS(Answ_014D01);
+            //len++;
         break;
 
         case DEV_TYPE_WM:     // WM  lavatrice
-
-            p += 12;    //Point to Byte index1: Upper temperature zone
+            //p += 12;    //Point to Byte index1: Upper temperature zone
             Temperature[0] %= 13;
             *p = Temperature[0]++;
             p++;
@@ -646,13 +648,13 @@ int UpdateStateMsg(int val, char mode)
             p++;
             *p = Temperature[2]&0xFF;
 
-            p = Answ_014D01 + len;
-            *p++ = CalcCKS(Answ_014D01);
-            len++;
+            //p = Answ_014D01 + len;
+            //*p++ = CalcCKS(Answ_014D01);
+            //len++;
         break;
 
         case DEV_TYPE_FR_RU60cm:     // FR01: Fridge, RU60cm
-            p += 12;    //Point to Byte index1: Upper temperature zone
+            //p += 12;    //Point to Byte index1: Upper temperature zone
             Temperature[0] %= 85;       //0 means -38
             *p = Temperature[0]++;
             p++;
@@ -661,14 +663,13 @@ int UpdateStateMsg(int val, char mode)
             p += 3;
             *p = Temperature[2]++;      //0 means -38
 
-            p = Answ_014D01 + len;
-            *p++ = CalcCKS(Answ_014D01);
-
-            len++;
+            //p = Answ_014D01 + len;
+            //*p++ = CalcCKS(Answ_014D01);
+            //len++;
         break;
 
         case DEV_TYPE_HO_Arcair:     // Hood Arcair
-            p += 12;    //Point to Byte index1: OnOff Status etc.
+            //p += 12;    //Point to Byte index1: OnOff Status etc.
             //p += 4;     //Point to Byte index1:
             for(n = 0; n < len; n++)
                 *p++ = arcBuf[n];
@@ -676,29 +677,43 @@ int UpdateStateMsg(int val, char mode)
             Temperature[0] %= 100;
             *p = Temperature[0]++;
 
-            p = Answ_014D01 + len;
-            *p++ = CalcCKS(Answ_014D01);
-            len++;
+            /*if (0)
+            {
+                p = Answ_014D01 + len;
+                *p++ = CalcCKS(Answ_014D01);
+            }
+            else if (0)
+            {
+                c = CalcCKS2(Answ_014D01, &len);
+                len += 2;     //add 0xFF, 0xFF as header
+                p = Answ_014D01 + len;
+                *p = c;
+            }*/
+            //len++;
         break;
 
         case DEV_TYPE_HO_Haier:     // Hood Haier
         default:
-            len = 0;
+            len = -1;
         break;
 
         case DEV_TYPE_FR_MultiD_A3FE744:
         case DEV_TYPE_FR_MultiD_HB20:
-            p += 12;    //Point to Byte index1: OnOff Status etc.
+            //p += 12;    //Point to Byte index1: OnOff Status etc.
             Temperature[0] %= 58;       //0 means -38
             *p = Temperature[0]++;
             
-            p = Answ_014D01 + len;
-            *p++ = CalcCKS(Answ_014D01);
-            len++;
-        break;           
+            //p = Answ_014D01 + len;
+            //*p++ = CalcCKS(Answ_014D01);
+            //len++;
+        break;
     }
+    unsigned char c = CalcCKS2(Answ_014D01, &len);
+    len += 2;     //add 0xFF, 0xFF as header
+    p = Answ_014D01 + len;
+    *p = c;
 
-    return len;
+    return ++len;
 }
 
 
