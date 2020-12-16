@@ -246,6 +246,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         //
         SpeedButton3->Visible = DebugFlag;
         Edit1->Visible        = DebugFlag;
+        AlarmBttn->Enabled    = DebugFlag;
     }
 
     #ifdef ARCAIR_ONLY
@@ -480,6 +481,8 @@ void __fastcall TForm1::CB_ConnectClick(TObject *Sender)
         Ser->FlushBuffer(2);
         comBuf.connect = 1;
         DeviceComboBox->Enabled = false;
+        if (!DebugFlag)
+            AlarmBttn->Enabled = false;
         Panel1->Enabled = true;
         Sleep(50);
         TaskToken->Resume();
@@ -494,6 +497,7 @@ void __fastcall TForm1::CB_ConnectClick(TObject *Sender)
         comBuf.connect = 0;
         LiveRB->Checked = false;
         DeviceComboBox->Enabled = true;
+        AlarmBttn->Enabled = true;
         StringInit();
         Panel1->Enabled = false;
         StatusBar1->Panels->Items[1]->Text = "Status: ";

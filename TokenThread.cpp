@@ -292,13 +292,24 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
         break;
 
         case 0x01:      //Query attribute status
-            Form1->RichEdit1->SelAttributes->Color = DebugFlag? clYellow:clAqua;
-            //^^ aggiustare qui: o yellow o aqua!
+            //Form1->RichEdit1->SelAttributes->Color = clYellow;
             n = Form1->DeviceComboBox->ItemIndex;
-
             // Aggiungere qui il parser oppure il comando ricevuto etc!
             //aggiornare il colore (fuxia?) in caso di comando
 
+            if (comBuf.msg[10] == 0x5D)
+            {
+                Form1->RichEdit1->SelAttributes->Color = clFuchsia;
+                s.sprintf(">> Command: %02x, val = %02x %02x",
+                    comBuf.msg[11], comBuf.msg[12], comBuf.msg[13]);
+                Form1->RichEdit1->Lines->Add(s);
+
+                Application->ProcessMessages();
+                UpdateLog(NULL, 'r', "W => "+s, 0);
+                Application->ProcessMessages();
+            }
+
+            Form1->RichEdit1->SelAttributes->Color = clYellow;
             n = UpdateStateMsg(n, 0);
             s.sprintf("[02] Answer Status; len = %d \n", n-3);
             if (Form1->SendAnswerPopMnu->Checked)

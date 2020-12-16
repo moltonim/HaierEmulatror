@@ -715,7 +715,7 @@ char arcBuf[14] = {
     1,   //windSpeed            1
 
     2,   //delaytime            2
-    1,   //                     3
+    3,   //                     3
 
     4,  //machMode              4
     5,  //                      5
