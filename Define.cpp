@@ -40,7 +40,7 @@ SERIAL_CMD serial_cmd[] = {
     {    0, "" },
 };
 
-const JSON_ALARM ALARM_WH[] = {
+JSON_ALARM ALARM_WH[] = {
 	{ "middleTempSensorErr", 	1 },
 	{ "dryHeatingAlarm", 		2 },
 	{ "leakageAlarm", 			3 },
@@ -60,7 +60,7 @@ const JSON_ALARM ALARM_WH[] = {
     { "", -1}
 };
 
-const JSON_ALARM ALARM_WC[] = {
+JSON_ALARM ALARM_WC[] = {
 	{ "upperBoxTempSensorErr", 	2 },
 	{ "lowerBoxTempSensorErr", 	4 },
 	{ "doorAlarm", 				31 },
@@ -72,7 +72,7 @@ const JSON_ALARM ALARM_WC[] = {
     { "", -1}
 };
 
-const JSON_ALARM ALARM_WM[] = {
+JSON_ALARM ALARM_WM[] = {
     { "fanErr", 				3 },
 	{ "waterHeatingErr", 		4 },
 	{ "hallErr", 				5 },
@@ -133,7 +133,7 @@ const JSON_ALARM ALARM_WM[] = {
     { "", -1}
 };
 
-const JSON_ALARM ALARM_HVAC[] = {
+JSON_ALARM ALARM_HVAC[] = {
 	{ "outdoorModuleErr", 		1 },
 	{ "outdoorDeforstSensorErr",2 },
 	{ "outdoorExhaustSensorErr",3 },
@@ -188,7 +188,68 @@ const JSON_ALARM ALARM_HVAC[] = {
     { "", -1}
 };
 
-const JSON_ALARM ALARM_HB20[] = {
+
+JSON_ALARM ALARM_FR_RU60cm[] = {
+	{ "envTempSensorErr", 		1 },
+	{ "refrigeratorSensorErr", 	2 },
+	{ "freezerSensorErr", 		4 },
+	{ "freezerDefrostingSensorErr", 	9 },
+	{ "ctrBoardCommErr", 		11 },
+	{ "freezerFanErr", 			13 },
+	{ "freezerDefrostingErr", 	15 },
+	{ "wifiCommunicationErr", 	52 },
+    { "", -1}
+};
+
+JSON_ALARM ALARM_HO_Arcair[] = {
+	{ "scDryHeatingAlarm", 		1 },
+	{ "scTempSensorErr", 		2 },
+	{ "scHeaterErr", 			3 },
+	{ "scMotorLacunarityErr", 	4 },
+	{ "scMotorOvervoltageErr", 	5 },
+	{ "scMotorOvercurrentErr", 	6 },
+	{ "scMotorOverheatErr", 	7 },
+	{ "scMotorUndervoltageErr", 8 },
+	{ "communicationErr", 		9 },
+	{ "linkageModuleErr", 		10 },
+	{ "bluetoothModuleErr", 	11 },
+	{ "voiceModuleErr", 		12 },
+	{ "gestureModuleErr", 		13 },
+	{ "windCurtainModuleErr", 	14 },
+	{ "anionModuleErr", 		15 },
+	{ "smartWindModuleErr", 	16 },
+	{ "airCleaningModuleErr", 	17 },
+	{ "humanSensingModuleErr", 	18 },
+	{ "windPressureSensorErr", 	19 },
+	{ "sceneLightErr", 			20 },
+    { "", -1}
+};
+
+JSON_ALARM ALARM_HO_Haier[] = {
+	{ "scDryHeatingAlarm", 		1 },
+	{ "scTempSensorErr", 		2 },
+	{ "scHeaterErr", 			3 },
+	{ "scMotorLacunarityErr", 	4 },
+	{ "scMotorOvervoltageErr", 	5 },
+	{ "scMotorOvercurrentErr", 	6 },
+	{ "scMotorOverheatErr", 	7 },
+	{ "scMotorUndervoltageErr",	8 },
+	{ "communicationErr", 		9 },
+	{ "linkageModuleErr", 		10 },
+	{ "bluetoothModuleErr", 	11 },
+	{ "voiceModuleErr", 		12 },
+	{ "gestureModuleErr", 		13 },
+	{ "windCurtainModuleErr", 	14 },
+	{ "anionModuleErr", 		15 },
+	{ "smartWindModuleErr", 	16 },
+	{ "airCleaningModuleErr", 	17 },
+	{ "humanSensingModuleErr", 	18 },
+	{ "windPressureSensorErr", 	19 },
+	{ "sceneLightErr", 			20 },
+    { "", -1}
+};
+
+JSON_ALARM ALARM_HB20[] = {
     { "envTempSensorErr", 	    1 },
 	{ "refrigeratorSensorErr", 	2 },
 	{ "freezerSensorErr", 	    4 },
@@ -203,7 +264,7 @@ const JSON_ALARM ALARM_HB20[] = {
     { "", -1}
 };
 
-const JSON_ALARM ALARM_FRA3FE744[] = {
+JSON_ALARM ALARM_FRA3FE744[] = {
    	{ "envTempSensorErr", 	    1 },
 	{ "refrigeratorSensorErr", 	2 },
 	{ "freezerSensorErr", 	    4 },
@@ -217,8 +278,21 @@ const JSON_ALARM ALARM_FRA3FE744[] = {
     { "", -1}
 };
 
+//////////////////////////////////////////////
 
+ALARM_ARRAY JsonALRM[] = {
+    { ALARM_WC          , 0 },
+    { ALARM_WH          , 0 },
+    { ALARM_HVAC        , 0 },
+    { ALARM_WM			, 0 },
+    { ALARM_FR_RU60cm	, 0 },
+    { ALARM_HO_Arcair   , 0 },
+    { ALARM_HO_Haier    , 0 },
+    { ALARM_FRA3FE744   , 0 },
+    { ALARM_HB20        , 0 },
 
+	{NULL, 0}
+};
 
 
 //not used yet
@@ -362,9 +436,41 @@ unsigned char Answ_F2[50];
 //#define ANSW_FC_LEN
 unsigned char Answ_FC[50];
 
+int numOfAlarms[DEV_TYPE_LAST];
+
+static void VarsInit(void)
+{
+    int n;
+    int i;
+    char *p;
+    JSON_ALARM *ja;
+
+    for (n = 0; n < DEV_TYPE_LAST; n++)
+    {
+        ja = JsonALRM[n].alrm;
+        i = ja->pos;
+        p = ja->name;
+        i++;
+        while (JsonALRM[n].alrm->pos != -1)
+        {
+            numOfAlarms[n]++;
+            JsonALRM[n].totAlarm++;
+            JsonALRM[n].alrm++;
+            /*ja++;
+            i = ja->pos;
+            p = ja->name;
+            */
+        }
+    }
+
+}
+
+
 void StringInit(void)
 {
     unsigned char *p;
+
+    VarsInit();
 
     p = Answ_62;
     *p++ = 0xFF;

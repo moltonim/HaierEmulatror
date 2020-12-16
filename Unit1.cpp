@@ -272,7 +272,6 @@ void __fastcall TForm1::Clean1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-
 String __fastcall TForm1::SendString(unsigned char* buf, int len)
 {
     String s = "";

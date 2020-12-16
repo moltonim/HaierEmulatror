@@ -40,6 +40,12 @@ typedef struct _alarm
     int pos;
 }   JSON_ALARM;
 
+typedef struct _alarm_struct
+{
+    JSON_ALARM* alrm;
+    int totAlarm;
+}   ALARM_ARRAY;
+
 
 //Functions
 void StringInit(void);
@@ -52,6 +58,9 @@ int FindCmdIdx(int val);
 int UpdateStateMsg(int val, char mode);
 
 //variables...
+
+extern ALARM_ARRAY JsonALRM[];
+
 extern unsigned char DeviceProtocolVersion[8];
 
 extern unsigned char EncriptionSign[3];

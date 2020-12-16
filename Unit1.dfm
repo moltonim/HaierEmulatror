@@ -87,7 +87,6 @@ object Form1: TForm1
     Font.Height = -13
     Font.Name = 'Courier New'
     Font.Style = []
-    HideScrollBars = False
     ParentFont = False
     PopupMenu = PopupMenu1
     ScrollBars = ssVertical
@@ -213,7 +212,7 @@ object Form1: TForm1
       object Label1: TLabel
         Left = 65
         Top = 10
-        Width = 20
+        Width = 15
         Height = 13
         Caption = '0.0'
       end
