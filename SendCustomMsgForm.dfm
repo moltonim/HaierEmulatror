@@ -16,17 +16,23 @@ object Form2: TForm2
   TextHeight = 13
   object Label1: TLabel
     Left = 16
-    Top = 56
+    Top = 80
     Width = 167
     Height = 13
     Caption = 'Checksum will be add automatically'
   end
   object Label2: TLabel
     Left = 16
-    Top = 80
-    Width = 142
+    Top = 56
+    Width = 205
     Height = 13
-    Caption = 'Remeber string start = FF FF  !'
+    Caption = 'Remeber string start = FF FF <len> !'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object Edit2: TMemo
     Left = 0
@@ -34,6 +40,8 @@ object Form2: TForm2
     Width = 402
     Height = 134
     Align = alBottom
+    Lines.Strings = (
+      'FF FF ')
     TabOrder = 0
     OnChange = Edit2Change
     OnDblClick = Edit2DblClick

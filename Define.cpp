@@ -40,8 +40,151 @@ SERIAL_CMD serial_cmd[] = {
     {    0, "" },
 };
 
+const JSON_ALARM ALARM_WH[] = {
+	{ "middleTempSensorErr", 	1 },
+	{ "dryHeatingAlarm", 	2 },
+	{ "leakageAlarm", 	3 },
+	{ "upperTempSensorErr", 	4 },
+	{ "lowerTempSensorErr", 	5 },
+	{ "middleUpperTempSensorErr", 	6 },
+	{ "communicationErr", 	7 },
+	{ "relayErr", 	8 },
+	{ "inWaterTempSensorErr", 	9 },
+	{ "thermostaticValveColdWaterSensorErr", 	10 },
+	{ "thermostaticValveHotWaterSensorErr", 	11 },
+	{ "thermostaticValveCommunicationErr", 	12 },
+	{ "stepMotorErr", 	13 },
+	{ "filterErr", 	14 },
+	{ "middleLowerTempSensorErr", 	15 },
+	{ "fireWallTempSensorErr", 	16 },
+};
 
-JSON_ALARM ALARM_HB20[] = {
+const JSON_ALARM ALARM_WC[] = {
+	{ "upperBoxTempSensorErr", 	2 },
+	{ "lowerBoxTempSensorErr", 	4 },
+	{ "doorAlarm", 	31 },
+	{ "doorErr", 	34 },
+	{ "upperBoxLowTempAlarm", 	45 },
+	{ "upperBoxHighTempAlarm", 	46 },
+	{ "lowerBoxLowTempAlarm", 	49 },
+	{ "lowerBoxHighTempAlarm", 	50 },
+};
+
+const JSON_ALARM ALARM_WM[] = {
+    { "fanErr", 	3 },
+	{ "waterHeatingErr", 	4 },
+	{ "hallErr", 	5 },
+	{ "rpmErr", 	6 },
+	{ "voltageHighAlarm", 	7 },
+	{ "voltageLowAlarm", 	8 },
+	{ "dataBackup1", 	9 },
+	{ "ddMotorNTCErr", 	10 },
+	{ "motorStatorHighTempProtection", 	11 },
+	{ "currentSensingCircuitErr", 	12 },
+	{ "overcurrentAlarm", 	13 },
+	{ "ipmErr", 	14 },
+	{ "phaseBreakProtection", 	15 },
+	{ "launchFailed", 	16 },
+	{ "noPowerOnSignal", 	17 },
+	{ "heaterRelayErr", 	18 },
+	{ "heaterErr", 	19 },
+	{ "tempSensorErr", 	20 },
+	{ "inAirSensorErr", 	21 },
+	{ "condenserSensorErr", 	22 },
+	{ "doorLockFail", 	23 },
+	{ "doorUnlockFail", 	24 },
+	{ "motorDriverCommErr", 	25 },
+	{ "powerDriverCommErr", 	26 },
+	{ "displayBoardCommErr", 	27 },
+	{ "mainRelayAdhesion", 	28 },
+	{ "waterLevelSensorErr", 	29 },
+	{ "inWaterErr", 	30 },
+	{ "drainErr", 	31 },
+	{ "waterOverHighAlarm", 	32 },
+	{ "dryWaterLevelAlarm", 	33 },
+	{ "dryHeatingAlarm", 	34 },
+	{ "waterOverLowAlarm", 	35 },
+	{ "waterLevelAlarm", 	36 },
+	{ "spinUnbalanceAlarm", 	37 },
+	{ "weightErr", 	38 },
+	{ "dryOverweightAlarm", 	39 },
+	{ "mainEEPROMErr", 	40 },
+	{ "tempOverHighAlarm", 	41 },
+	{ "otherAlarm", 	42 },
+	{ "washFinishAlarm", 	43 },
+	{ "dryDriverCommErr", 	44 },
+	{ "waterLeakageAlarm", 	45 },
+	{ "purificationReductionWarning", 	46 },
+	{ "purificationReductionAlarm", 	47 },
+	{ "purificationDriverCommErr", 	48 },
+	{ "muCommErr", 	49 },
+	{ "busCommErr", 	50 },
+	{ "wpCommErr", 	51 },
+	{ "clutchMotorErr", 	52 },
+	{ "swSelfTestErr", 	53 },
+	{ "autoFlowmeterErr", 	54 },
+	{ "fanDriverCommErr", 	55 },
+	{ "rfidCommErr", 	56 },
+	{ "proxSensorErr", 	61 },
+	{ "wifiCfgFailed", 	62 },
+	{ "wallLimitSwitchAlarm", 	63 },
+};
+
+const JSON_ALARM ALARM_HVAC[] = {
+	{ "outdoorModuleErr", 	1 },
+	{ "outdoorDeforstSensorErr", 	2 },
+	{ "outdoorExhaustSensorErr", 	3 },
+	{ "outdoorEEPROMErr", 	4 },
+	{ "indoorCoilerSensorErr", 	5 },
+	{ "indoorOutdoorCommErr", 	6 },
+	{ "powerProtection", 	7 },
+	{ "panelCommErr", 	8 },
+	{ "outdoorCompressorOverheatProtection", 	9 },
+	{ "outdoorEnviSensorErr", 	10 },
+	{ "fullWaterProtection", 	11 },
+	{ "indoorEEPROMErr", 	12 },
+	{ "outdoorReturnAirSensorErr", 	13 },
+	{ "cbdCommErr", 	14 },
+	{ "indoorFanErr", 	15 },
+	{ "outdoorFanErr", 	16 },
+	{ "doorErr", 	17 },
+	{ "filterCleaningAlarm", 	18 },
+	{ "waterLackProtection", 	19 },
+	{ "humiditySensorErr", 	20 },
+	{ "indoorTempSensorErr", 	21 },
+	{ "mechanicalArmLimitErr", 	22 },
+	{ "indoorPM2p5SensorErr", 	23 },
+	{ "outdoorPM2p5SensorErr", 	24 },
+	{ "indoorHeatingOverloadAlarm", 	25 },
+	{ "outdoorACProtection", 	26 },
+	{ "outdoorCompressorRunningErr", 	27 },
+	{ "outdoorDCProtection", 	28 },
+	{ "outdoorUnloadedErr", 	29 },
+	{ "ctCurrentErr", 	30 },
+	{ "indoorFreezingProtection", 	31 },
+	{ "pressureProtection", 	32 },
+	{ "returnAirOverheatAlarm", 	33 },
+	{ "outdoorEvaporationSensorErr", 	34 },
+	{ "outdoorCoolingOverloadAlarm", 	35 },
+	{ "waterPumpErr", 	36 },
+	{ "threePhaseSupplyErr", 	37 },
+	{ "fourWayValveErr", 	38 },
+	{ "externalAlarmSwitchErr", 	39 },
+	{ "tempCuttingOffProtection", 	40 },
+	{ "differentModeRunningErr", 	41 },
+	{ "expansionValveErr", 	42 },
+	{ "twErr", 	43 },
+	{ "wireCtrCommErr", 	44 },
+	{ "indoorUnitIdConflictErr", 	45 },
+	{ "zeroPassageErr", 	46 },
+	{ "outdoorUnitErr", 	47 },
+	{ "ch2oSensorErr", 	48 },
+	{ "vocSensorErr", 	49 },
+	{ "co2SensorErr", 	50 },
+	{ "firewallErr", 	51 },    
+};
+
+const JSON_ALARM ALARM_HB20[] = {
     { "envTempSensorErr", 	    1 },
 	{ "refrigeratorSensorErr", 	2 },
 	{ "freezerSensorErr", 	    4 },
@@ -55,7 +198,7 @@ JSON_ALARM ALARM_HB20[] = {
 	{ "airDoor1Err", 	        46 },
 };
 
-JSON_ALARM ALARM_FRA3FE744[] = {
+const JSON_ALARM ALARM_FRA3FE744[] = {
    	{ "envTempSensorErr", 	    1 },
 	{ "refrigeratorSensorErr", 	2 },
 	{ "freezerSensorErr", 	    4 },
@@ -68,7 +211,12 @@ JSON_ALARM ALARM_FRA3FE744[] = {
 	{ "airDoor1Err", 	        46 },
 };
 
-SERIAL_CMD Device_status[] = {
+
+
+
+
+
+static SERIAL_CMD Device_status[] = {
     {0x01, "SoftAP configuration mode"      },
     {0x02, "Smartlink configuration mode"   },
     {0x03, "WPS configuration mode"         },
@@ -450,6 +598,7 @@ unsigned char CalcCKS(const unsigned char* buf)
     return val;
 }
 
+
 unsigned char CalcCKS2(unsigned char* buf, int* newlen)
 {
     unsigned char val = 0;
@@ -479,7 +628,36 @@ unsigned char CalcCKS2(unsigned char* buf, int* newlen)
     return val;
 }
 
-static int arcLen = 12;
+//
+bool CheckCKSrx(const unsigned char* buf)
+{
+    unsigned char val = 0;
+    int n, len;
+    bool b = false;
+    unsigned char c;
+    unsigned char* p;
+
+    p  = (unsigned char*)buf;
+    p += 2;         //Jump the 0xFFFF header
+    len  = *p;      //len include the cks
+
+    for(n = 0; n < len; n++)
+    {
+        c = *p;
+        val += c;
+        if (c == 0xFF)
+        {
+            len++;
+        }
+        p++;
+    }
+    b = (val == *p);
+
+    return b;
+}
+
+
+//static int arcLen = 12;
 static int StateMsgdim(DEV_TYPE val)
 {
     switch (val)
@@ -489,7 +667,7 @@ static int StateMsgdim(DEV_TYPE val)
         case DEV_TYPE_HVAC:         return 32;      //HVAC
         case DEV_TYPE_WM:           return 23*2;    //WM ???
         case DEV_TYPE_FR_RU60cm:    return 28;      //FR01 RU 60cm ?
-        case DEV_TYPE_HO_Arcair:    return arcLen;  // Hood Arcair
+        case DEV_TYPE_HO_Arcair:    return 12;      // Hood Arcair
         case DEV_TYPE_HO_Haier:     return 15;      // Hood Haier
 
         case DEV_TYPE_FR_MultiD_HB20:

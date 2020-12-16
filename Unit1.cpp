@@ -397,17 +397,31 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
 void __fastcall TForm1::SendCustomStr(int len)
 {                                                         
-    unsigned char cks = CalcCKS(Form2->ToWrite);
-    Form2->ToWrite[len++] = cks;
+    unsigned char cks;
+    unsigned char buf[200];
+
+    memcpy(buf, Form2->ToWrite, len);
+    cks = CalcCKS2(buf, &len);
+    len += 2;   //add header FF FF  
+    buf[len++] = cks;
 
     unsigned long LenReaden;
-    //int ris = -Ser->BIN_Write(Form2->ToWrite, len, LenReaden);
+    int ris = -Ser->BIN_Write(buf, len, LenReaden);
     //Write something on LOG & panel
 
-    String s = "Custom message sent: ";
-    s += Form1->SendString(Form2->ToWrite, len);
+    String s;
+    if (ris == 0)
+    {
+        Form1->RichEdit1->SelAttributes->Color = clYellow;
+        s.sprintf("Custom message sent [%d]: ", len);
+        s += Form1->SendString(buf, len);
+    }
+    else
+    {
+        Form1->RichEdit1->SelAttributes->Color = clRed;
+        s.sprintf("Error %d on transmit!", -ris);
+    }
 
-    Form1->RichEdit1->SelAttributes->Color = clYellow;
     Form1->RichEdit1->Lines->Add(s);
     Form1->RichEdit1->SetFocus();
     UpdateLog(NULL, 'r', "W => "+s, len);
@@ -518,11 +532,18 @@ void __fastcall TForm1::SpeedButton3Click(TObject *Sender)
 {
     static int n;
     int newlen;
+    /*
     char buf[20] = {0xFF, 0xFF, 0x0D, 0x01, 0x02, 0x03, 0x04, 0x05,
                     0x06, 0x02, 0x6D, 0x01, 0x05, 0xFF, 0xFF, 0x95,
                     0x10, 0x20, 0x30, 0x40};
+    */
+    //case receiving...
+    char buf[20] = {0xFF, 0xFF, 0x0D, 0x01, 0x02, 0x03, 0x04, 0x05,
+                    0x06, 0x02, 0x6D, 0x01, 0x05, 0xFF, 0x55, 0xFF,
+                    0x55, 0x3F, 0x10, 0x20, };
 
-    unsigned char c = CalcCKS2(buf, &newlen);
+    //unsigned char c = CalcCKS2(buf, &newlen);
+    bool b = CheckCKSrx(buf);
     char* p = buf;
     p += newlen;
     *p = 0x12;

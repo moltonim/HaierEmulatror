@@ -221,9 +221,16 @@ void __fastcall TokenThread::MessageReceived(void)
     if (comBuf.rcv_size <= 2)
         return;
 
+    /*
     n = CalcCKS(comBuf.msg);
     if (n != comBuf.msg[comBuf.rcv_size-1])
         return;
+    */
+    if (!CheckCKSrx(comBuf.msg))
+    {
+        n++;
+        return;
+    }
 
     s = Form1->SendString(comBuf.msg, comBuf.rcv_size);
     /*n = 43 - s.Length();

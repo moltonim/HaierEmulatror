@@ -125,8 +125,7 @@ void __fastcall TForm2::SendBttnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 void __fastcall TForm2::Edit2Exit(TObject *Sender)
-{
-
+{ 
   
   AnsiString App, App2;
   unsigned char numch;

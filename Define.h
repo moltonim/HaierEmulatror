@@ -45,6 +45,8 @@ typedef struct _alarm
 void StringInit(void);
 unsigned char CalcCKS(const unsigned char* buf);
 unsigned char CalcCKS2(unsigned char* buf, int* newlen);
+//check chs in ricezione!
+bool CheckCKSrx(const unsigned char* buf);
 void UpdateLog(unsigned char *buf, int read, String note, int opt);
 int FindCmdIdx(int val);
 int UpdateStateMsg(int val, char mode);
@@ -66,7 +68,7 @@ extern unsigned char QueryAttrStatus[50];
 
 
 extern SERIAL_CMD serial_cmd[];
-extern SERIAL_CMD Device_status[];
+//extern SERIAL_CMD Device_status[];
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
