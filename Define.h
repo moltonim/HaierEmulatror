@@ -44,6 +44,8 @@ typedef struct _alarm_struct
 {
     JSON_ALARM* alrm;
     int totAlarm;
+    int dim;
+    char name[30];
 }   ALARM_ARRAY;
 
 

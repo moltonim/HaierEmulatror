@@ -389,7 +389,7 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button1Click(TObject *Sender)
+void __fastcall TForm1::CustomMsgBttnClick(TObject *Sender)
 {
     Form2->Show();
 }
@@ -546,6 +546,11 @@ void __fastcall TForm1::SpeedButton3Click(TObject *Sender)
                     0x55, 0x3F, 0x10, 0x20, };
 
     //unsigned char c = CalcCKS2(buf, &newlen);
+
+    unsigned __int64 v = 1;
+    v <<= (unsigned __int64)40;
+    v++;
+
     bool b = CheckCKSrx(buf);
     char* p = buf;
     p += newlen;

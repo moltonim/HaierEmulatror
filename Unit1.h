@@ -35,7 +35,7 @@ __published:	// IDE-managed Components
     TDBCheckBox *F2_SentCKB;
     TDBCheckBox *F2GotAnswerCKB;
     TComboBox *DeviceComboBox;
-    TButton *Button1;
+    TButton *CustomMsgBttn;
     TCheckBox *WriteLogPopMnu;
     TCheckBox *SendAnswerPopMnu;
     TSpeedButton *SpeedButton3;
@@ -59,7 +59,7 @@ __published:	// IDE-managed Components
     void __fastcall FormShow(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
     void __fastcall DeviceComboBoxChange(TObject *Sender);
-    void __fastcall Button1Click(TObject *Sender);
+    void __fastcall CustomMsgBttnClick(TObject *Sender);
     void __fastcall FormConstrainedResize(TObject *Sender, int &MinWidth,
           int &MinHeight, int &MaxWidth, int &MaxHeight);
     void __fastcall FormResize(TObject *Sender);

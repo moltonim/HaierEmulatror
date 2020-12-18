@@ -13,6 +13,7 @@ object Form3: TForm3
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -38,17 +39,11 @@ object Form3: TForm3
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 64
-    Top = 120
+    Left = 8
+    Top = 56
     Width = 32
     Height = 13
     Caption = 'Label3'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clRed
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
     Visible = False
   end
   object Edit1: TEdit
@@ -67,13 +62,22 @@ object Form3: TForm3
     Caption = 'Clear'
     TabOrder = 1
   end
-  object BitBtn1: TBitBtn
+  object NextBitBttn: TBitBtn
     Left = 200
     Top = 80
     Width = 75
     Height = 25
     Caption = 'Next'
     TabOrder = 2
+    OnClick = NextBitBttnClick
     Kind = bkRetry
+  end
+  object AlrmComboBox: TComboBox
+    Left = 24
+    Top = 115
+    Width = 233
+    Height = 21
+    ItemHeight = 13
+    TabOrder = 3
   end
 end

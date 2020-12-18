@@ -42,8 +42,8 @@
       -I&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot; 
       -IC:\MLT\Progetti\HaierEmulator -I$(BCB)\include -I$(BCB)\include\vcl 
       -src_suffix cpp -D_DEBUG -boa"/>
-    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
-      -tW -tWM"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -4 -b- -k -y -v -vi- 
+      -c -tW -tWM"/>
     <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
     <RFLAGS value=""/>
     <AFLAGS value="/mx /w2 /zd"/>
@@ -97,6 +97,22 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
+
+[HistoryLists\hlIncludePath]
+Count=1
+Item0=$(BCB)\LIB\lmd50\MAIN;..\Hopper_ccTalk;C:\Program Files (x86)\Borland\Developer Express Inc\ExpressForumLibrary\C++Builder 6\Lib;C:\Program Files (x86)\Borland\CBuilder6\Projects;C:\MLT\Progetti\HaierEmulator;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=1
+Item0=..\Hopper_ccTalk;C:\Program Files (x86)\Borland\Developer Express Inc\ExpressForumLibrary\C++Builder 6\Lib;C:\Program Files (x86)\Borland\CBuilder6\Projects;C:\MLT\Progetti\HaierEmulator;..\..\Developer Express Inc\ExpressForumLibrary\C++Builder 6\Lib;$(BCB)\LIB\lmd50\MAIN;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
 
 [Debugging]
 DebugSourceDirs=$(BCB)\source\vcl

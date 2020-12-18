@@ -41,257 +41,257 @@ SERIAL_CMD serial_cmd[] = {
 };
 
 JSON_ALARM ALARM_WH[] = {
-	{ "middleTempSensorErr", 	1 },
-	{ "dryHeatingAlarm", 		2 },
-	{ "leakageAlarm", 			3 },
-	{ "upperTempSensorErr", 	4 },
-	{ "lowerTempSensorErr", 	5 },
-	{ "middleUpperTempSensorErr", 	6 },
-	{ "communicationErr", 		7 },
-	{ "relayErr", 				8 },
-	{ "inWaterTempSensorErr", 	9 },
-	{ "thermostaticValveColdWaterSensorErr", 	10 },
-	{ "thermostaticValveHotWaterSensorErr", 	11 },
-	{ "thermostaticValveCommunicationErr", 	12 },
-	{ "stepMotorErr", 			13 },
-	{ "filterErr", 				14 },
-	{ "middleLowerTempSensorErr", 	15 },
-	{ "fireWallTempSensorErr", 	16 },
+	{ "middleTempSensorErr", 		0 },
+	{ "dryHeatingAlarm", 			1 },
+	{ "leakageAlarm", 				2 },
+	{ "upperTempSensorErr", 		3 },
+	{ "lowerTempSensorErr", 		4 },
+	{ "middleUpperTempSensorErr", 	5 },
+	{ "communicationErr", 			6 },
+	{ "relayErr", 					7 },
+	{ "inWaterTempSensorErr", 		8 },
+	{ "thermostaticValveColdWaterSensorErr", 	9 },
+	{ "thermostaticValveHotWaterSensorErr", 	10 },
+	{ "thermostaticValveCommunicationErr", 		11 },
+	{ "stepMotorErr", 				12 },
+	{ "filterErr", 					13 },
+	{ "middleLowerTempSensorErr", 	14 },
+	{ "fireWallTempSensorErr", 		15 },
     { "", -1}
 };
 
 JSON_ALARM ALARM_WC[] = {
-	{ "upperBoxTempSensorErr", 	2 },
-	{ "lowerBoxTempSensorErr", 	4 },
-	{ "doorAlarm", 				31 },
-	{ "doorErr", 				34 },
-	{ "upperBoxLowTempAlarm", 	45 },
-	{ "upperBoxHighTempAlarm", 	46 },
-	{ "lowerBoxLowTempAlarm", 	49 },
-	{ "lowerBoxHighTempAlarm", 	50 },
+	{ "upperBoxTempSensorErr", 	1  },
+	{ "lowerBoxTempSensorErr", 	3  },
+	{ "doorAlarm", 				30 },
+	{ "doorErr", 				33 },
+	{ "upperBoxLowTempAlarm", 	44 },
+	{ "upperBoxHighTempAlarm", 	45 },
+	{ "lowerBoxLowTempAlarm", 	48 },
+	{ "lowerBoxHighTempAlarm", 	49 },
     { "", -1}
 };
 
 JSON_ALARM ALARM_WM[] = {
-    { "fanErr", 				3 },
-	{ "waterHeatingErr", 		4 },
-	{ "hallErr", 				5 },
-	{ "rpmErr", 				6 },
-	{ "voltageHighAlarm", 		7 },
-	{ "voltageLowAlarm", 		8 },
-	{ "dataBackup1", 			9 },
-	{ "ddMotorNTCErr", 			10 },
-	{ "motorStatorHighTempProtection", 	11 },
-	{ "currentSensingCircuitErr", 	12 },
-	{ "overcurrentAlarm", 		13 },
-	{ "ipmErr", 				14 },
-	{ "phaseBreakProtection", 	15 },
-	{ "launchFailed", 			16 },
-	{ "noPowerOnSignal", 		17 },
-	{ "heaterRelayErr", 		18 },
-	{ "heaterErr", 				19 },
-	{ "tempSensorErr", 			20 },
-	{ "inAirSensorErr", 		21 },
-	{ "condenserSensorErr", 	22 },
-	{ "doorLockFail", 			23 },
-	{ "doorUnlockFail", 		24 },
-	{ "motorDriverCommErr", 	25 },
-	{ "powerDriverCommErr", 	26 },
-	{ "displayBoardCommErr", 	27 },
-	{ "mainRelayAdhesion", 		28 },
-	{ "waterLevelSensorErr", 	29 },
-	{ "inWaterErr", 			30 },
-	{ "drainErr", 				31 },
-	{ "waterOverHighAlarm", 	32 },
-	{ "dryWaterLevelAlarm", 	33 },
-	{ "dryHeatingAlarm", 		34 },
-	{ "waterOverLowAlarm", 		35 },
-	{ "waterLevelAlarm", 		36 },
-	{ "spinUnbalanceAlarm", 	37 },
-	{ "weightErr", 				38 },
-	{ "dryOverweightAlarm", 	39 },
-	{ "mainEEPROMErr", 			40 },
-	{ "tempOverHighAlarm", 		41 },
-	{ "otherAlarm", 			42 },
-	{ "washFinishAlarm", 		43 },
-	{ "dryDriverCommErr", 		44 },
-	{ "waterLeakageAlarm", 		45 },
-	{ "purificationReductionWarning", 	46 },
-	{ "purificationReductionAlarm", 	47 },
-	{ "purificationDriverCommErr", 	48 },
-	{ "muCommErr", 				49 },
-	{ "busCommErr", 			50 },
-	{ "wpCommErr", 				51 },
-	{ "clutchMotorErr", 		52 },
-	{ "swSelfTestErr", 			53 },
-	{ "autoFlowmeterErr", 		54 },
-	{ "fanDriverCommErr", 		55 },
-	{ "rfidCommErr", 			56 },
-	{ "proxSensorErr", 			61 },
-	{ "wifiCfgFailed", 			62 },
-	{ "wallLimitSwitchAlarm", 	63 },
+	{ "fanErr", 					2 },
+	{ "waterHeatingErr", 			3 },
+	{ "hallErr", 					4 },
+	{ "rpmErr", 					5 },
+	{ "voltageHighAlarm", 			6 },
+	{ "voltageLowAlarm", 			7 },
+	{ "dataBackup1", 				8 },	
+	{ "ddMotorNTCErr", 				9 },
+	{ "motorStatorHighTempProtection", 	10 },
+	{ "currentSensingCircuitErr", 	11 },
+	{ "overcurrentAlarm", 			12 },
+	{ "ipmErr", 					13 },
+	{ "phaseBreakProtection", 		14 },
+	{ "launchFailed", 				15 },
+	{ "noPowerOnSignal", 			16 },
+	{ "heaterRelayErr", 			17 },
+	{ "heaterErr", 					18 },
+	{ "tempSensorErr", 				19 },
+	{ "inAirSensorErr", 			20 },
+	{ "condenserSensorErr", 		21 },
+	{ "doorLockFail", 				22 },
+	{ "doorUnlockFail", 			23 },
+	{ "motorDriverCommErr", 		24 },
+	{ "powerDriverCommErr", 		25 },
+	{ "displayBoardCommErr", 		26 },
+	{ "mainRelayAdhesion", 			27 },
+	{ "waterLevelSensorErr", 		28 },
+	{ "inWaterErr", 				29 },
+	{ "drainErr", 					30 },
+	{ "waterOverHighAlarm", 		31 },
+	{ "dryWaterLevelAlarm", 		32 },
+	{ "dryHeatingAlarm", 			33 },
+	{ "waterOverLowAlarm", 			34 },
+	{ "waterLevelAlarm", 			35 },
+	{ "spinUnbalanceAlarm", 		36 },
+	{ "weightErr", 					37 },
+	{ "dryOverweightAlarm", 		38 },
+	{ "mainEEPROMErr", 				39 },
+	{ "tempOverHighAlarm", 			40 },
+	{ "otherAlarm", 				41 },
+	{ "washFinishAlarm", 			42 },
+	{ "dryDriverCommErr",	 		43 },
+	{ "waterLeakageAlarm", 			44 },
+	{ "purificationReductionWarning", 	45 },
+	{ "purificationReductionAlarm", 46 },
+	{ "purificationDriverCommErr", 	47 },
+	{ "muCommErr", 					48 },
+	{ "busCommErr", 				49 },
+	{ "wpCommErr", 					50 },
+	{ "clutchMotorErr", 			51 },
+	{ "swSelfTestErr", 				52 },
+	{ "autoFlowmeterErr",	 		53 },
+	{ "fanDriverCommErr", 			54 },
+	{ "rfidCommErr",		 		55 },
+	{ "proxSensorErr",	 			60 },
+	{ "wifiCfgFailed", 				61 },
+	{ "wallLimitSwitchAlarm", 		62 },
     { "", -1}
 };
 
 JSON_ALARM ALARM_HVAC[] = {
-	{ "outdoorModuleErr", 		1 },
-	{ "outdoorDeforstSensorErr",2 },
-	{ "outdoorExhaustSensorErr",3 },
-	{ "outdoorEEPROMErr", 		4 },
-	{ "indoorCoilerSensorErr", 	5 },
-	{ "indoorOutdoorCommErr", 	6 },
-	{ "powerProtection", 		7 },
-	{ "panelCommErr", 			8 },
-	{ "outdoorCompressorOverheatProtection", 	9 },
-	{ "outdoorEnviSensorErr", 	10 },
-	{ "fullWaterProtection", 	11 },
-	{ "indoorEEPROMErr", 		12 },
-	{ "outdoorReturnAirSensorErr", 	13 },
-	{ "cbdCommErr", 			14 },
-	{ "indoorFanErr", 			15 },
-	{ "outdoorFanErr", 			16 },
-	{ "doorErr", 				17 },
-	{ "filterCleaningAlarm", 	18 },
-	{ "waterLackProtection", 	19 },
-	{ "humiditySensorErr", 		20 },
-	{ "indoorTempSensorErr", 	21 },
-	{ "mechanicalArmLimitErr", 	22 },
-	{ "indoorPM2p5SensorErr", 	23 },
-	{ "outdoorPM2p5SensorErr", 	24 },
-	{ "indoorHeatingOverloadAlarm", 	25 },
-	{ "outdoorACProtection", 	26 },
-	{ "outdoorCompressorRunningErr", 	27 },
-	{ "outdoorDCProtection", 	28 },
-	{ "outdoorUnloadedErr", 	29 },
-	{ "ctCurrentErr", 			30 },
-	{ "indoorFreezingProtection", 	31 },
-	{ "pressureProtection", 	32 },
-	{ "returnAirOverheatAlarm",	33 },
-	{ "outdoorEvaporationSensorErr", 	34 },
-	{ "outdoorCoolingOverloadAlarm", 	35 },
-	{ "waterPumpErr", 			36 },
-	{ "threePhaseSupplyErr", 	37 },
-	{ "fourWayValveErr", 		38 },
-	{ "externalAlarmSwitchErr", 39 },
-	{ "tempCuttingOffProtection", 	40 },
-	{ "differentModeRunningErr",41 },
-	{ "expansionValveErr", 		42 },
-	{ "twErr", 					43 },
-	{ "wireCtrCommErr", 		44 },
-	{ "indoorUnitIdConflictErr",45 },
-	{ "zeroPassageErr", 		46 },
-	{ "outdoorUnitErr", 		47 },
-	{ "ch2oSensorErr", 			48 },
-	{ "vocSensorErr", 			49 },
-	{ "co2SensorErr", 			50 },
-	{ "firewallErr", 			51 },
+	{ "outdoorModuleErr", 			0 },
+	{ "outdoorDeforstSensorErr", 	1 },
+	{ "outdoorExhaustSensorErr", 	2 },
+	{ "outdoorEEPROMErr", 			3 },
+	{ "indoorCoilerSensorErr", 		4 },
+	{ "indoorOutdoorCommErr",	 	5 },
+	{ "powerProtection", 			6 },
+	{ "panelCommErr", 				7 },
+	{ "outdoorCompressorOverheatProtection", 	8 },
+	{ "outdoorEnviSensorErr", 		9 },
+	{ "fullWaterProtection", 		10 },
+	{ "indoorEEPROMErr", 			11 },
+	{ "outdoorReturnAirSensorErr", 	12 },
+	{ "cbdCommErr", 				13 },
+	{ "indoorFanErr", 				14 },
+	{ "outdoorFanErr", 				15 },
+	{ "doorErr", 					16 },
+	{ "filterCleaningAlarm",	 	17 },
+	{ "waterLackProtection", 		18 },
+	{ "humiditySensorErr", 			19 },
+	{ "indoorTempSensorErr", 		20 },
+	{ "mechanicalArmLimitErr", 		21 },
+	{ "indoorPM2p5SensorErr",	 	22 },
+	{ "outdoorPM2p5SensorErr", 		23 },
+	{ "indoorHeatingOverloadAlarm", 24 },
+	{ "outdoorACProtection", 		25 },
+	{ "outdoorCompressorRunningErr",26 },
+	{ "outdoorDCProtection", 		27 },
+	{ "outdoorUnloadedErr", 		28 },
+	{ "ctCurrentErr", 				29 },
+	{ "indoorFreezingProtection", 	30 },
+	{ "pressureProtection", 		31 },
+	{ "returnAirOverheatAlarm", 	32 },
+	{ "outdoorEvaporationSensorErr",33 },
+	{ "outdoorCoolingOverloadAlarm",34 },
+	{ "waterPumpErr", 				35 },
+	{ "threePhaseSupplyErr", 		36 },
+	{ "fourWayValveErr", 			37 },
+	{ "externalAlarmSwitchErr", 	38 },
+	{ "tempCuttingOffProtection", 	39 },
+	{ "differentModeRunningErr", 	40 },
+	{ "expansionValveErr", 			41 },
+	{ "twErr", 						42 },
+	{ "wireCtrCommErr", 			43 },
+	{ "indoorUnitIdConflictErr", 	44 },
+	{ "zeroPassageErr", 			45 },
+	{ "outdoorUnitErr", 			46 },
+	{ "ch2oSensorErr",			 	47 },
+	{ "vocSensorErr", 				48 },
+	{ "co2SensorErr", 				49 },
+	{ "firewallErr", 				50 },
     { "", -1}
 };
 
 
 JSON_ALARM ALARM_FR_RU60cm[] = {
-	{ "envTempSensorErr", 		1 },
-	{ "refrigeratorSensorErr", 	2 },
-	{ "freezerSensorErr", 		4 },
-	{ "freezerDefrostingSensorErr", 	9 },
-	{ "ctrBoardCommErr", 		11 },
-	{ "freezerFanErr", 			13 },
-	{ "freezerDefrostingErr", 	15 },
-	{ "wifiCommunicationErr", 	52 },
+	{ "envTempSensorErr", 			0 },
+	{ "refrigeratorSensorErr", 		1 },
+	{ "freezerSensorErr", 			3 },
+	{ "freezerDefrostingSensorErr", 8 },
+	{ "ctrBoardCommErr", 			10 },
+	{ "freezerFanErr", 				12 },
+	{ "freezerDefrostingErr", 		14 },
+	{ "wifiCommunicationErr", 		51 },
     { "", -1}
 };
 
 JSON_ALARM ALARM_HO_Arcair[] = {
-	{ "scDryHeatingAlarm", 		1 },
-	{ "scTempSensorErr", 		2 },
-	{ "scHeaterErr", 			3 },
-	{ "scMotorLacunarityErr", 	4 },
-	{ "scMotorOvervoltageErr", 	5 },
-	{ "scMotorOvercurrentErr", 	6 },
-	{ "scMotorOverheatErr", 	7 },
-	{ "scMotorUndervoltageErr", 8 },
-	{ "communicationErr", 		9 },
-	{ "linkageModuleErr", 		10 },
-	{ "bluetoothModuleErr", 	11 },
-	{ "voiceModuleErr", 		12 },
-	{ "gestureModuleErr", 		13 },
-	{ "windCurtainModuleErr", 	14 },
-	{ "anionModuleErr", 		15 },
-	{ "smartWindModuleErr", 	16 },
-	{ "airCleaningModuleErr", 	17 },
-	{ "humanSensingModuleErr", 	18 },
-	{ "windPressureSensorErr", 	19 },
-	{ "sceneLightErr", 			20 },
+	{ "scDryHeatingAlarm", 			0 },
+	{ "scTempSensorErr", 			1 },
+	{ "scHeaterErr", 				2 },
+	{ "scMotorLacunarityErr", 		3 },
+	{ "scMotorOvervoltageErr", 		4 },
+	{ "scMotorOvercurrentErr", 		5 },
+	{ "scMotorOverheatErr", 		6 },
+	{ "scMotorUndervoltageErr", 	7 },
+	{ "communicationErr", 			8 },
+	{ "linkageModuleErr", 			9 },
+	{ "bluetoothModuleErr", 		10 },
+	{ "voiceModuleErr", 			11 },
+	{ "gestureModuleErr", 			12 },
+	{ "windCurtainModuleErr", 		13 },
+	{ "anionModuleErr", 			14 },
+	{ "smartWindModuleErr", 		15 },
+	{ "airCleaningModuleErr", 		16 },
+	{ "humanSensingModuleErr", 		17 },
+	{ "windPressureSensorErr", 		18 },
+	{ "sceneLightErr", 				19 },
     { "", -1}
 };
 
 JSON_ALARM ALARM_HO_Haier[] = {
-	{ "scDryHeatingAlarm", 		1 },
-	{ "scTempSensorErr", 		2 },
-	{ "scHeaterErr", 			3 },
-	{ "scMotorLacunarityErr", 	4 },
-	{ "scMotorOvervoltageErr", 	5 },
-	{ "scMotorOvercurrentErr", 	6 },
-	{ "scMotorOverheatErr", 	7 },
-	{ "scMotorUndervoltageErr",	8 },
-	{ "communicationErr", 		9 },
-	{ "linkageModuleErr", 		10 },
-	{ "bluetoothModuleErr", 	11 },
-	{ "voiceModuleErr", 		12 },
-	{ "gestureModuleErr", 		13 },
-	{ "windCurtainModuleErr", 	14 },
-	{ "anionModuleErr", 		15 },
-	{ "smartWindModuleErr", 	16 },
-	{ "airCleaningModuleErr", 	17 },
-	{ "humanSensingModuleErr", 	18 },
-	{ "windPressureSensorErr", 	19 },
-	{ "sceneLightErr", 			20 },
+	{ "scDryHeatingAlarm", 			0 },
+	{ "scTempSensorErr", 			1 },
+	{ "scHeaterErr", 				2 },
+	{ "scMotorLacunarityErr", 		3 },
+	{ "scMotorOvervoltageErr", 		4 },
+	{ "scMotorOvercurrentErr", 		5 },
+	{ "scMotorOverheatErr", 		6 },
+	{ "scMotorUndervoltageErr", 	7 },
+	{ "communicationErr", 			8 },
+	{ "linkageModuleErr", 			9 },
+	{ "bluetoothModuleErr", 		10 },
+	{ "voiceModuleErr", 			11 },
+	{ "gestureModuleErr", 			12 },
+	{ "windCurtainModuleErr", 		13 },
+	{ "anionModuleErr", 			14 },
+	{ "smartWindModuleErr", 		15 },
+	{ "airCleaningModuleErr", 		16 },
+	{ "humanSensingModuleErr", 		17 },
+	{ "windPressureSensorErr", 		18 },
+	{ "sceneLightErr", 				19 },
     { "", -1}
 };
 
 JSON_ALARM ALARM_HB20[] = {
-    { "envTempSensorErr", 	    1 },
-	{ "refrigeratorSensorErr", 	2 },
-	{ "freezerSensorErr", 	    4 },
-	{ "vtRoomSensorErr", 	    5 },
-	{ "freezerDefrostingSensorErr", 	9 },
-	{ "ctrBoardCommErr", 	    11 },
-	{ "freezerFanErr", 	        13 },
-	{ "freezerDefrostingErr", 	15 },
-	{ "humiditySensorErr", 	    16 },
-	{ "refrigeratorDoorAlarm", 	31 },
-	{ "airDoor1Err", 	        46 },
+	{ "envTempSensorErr", 			0 },
+	{ "refrigeratorSensorErr", 		1 },
+	{ "freezerSensorErr", 			3 },
+	{ "vtRoomSensorErr", 			4 },
+	{ "freezerDefrostingSensorErr", 8 },
+	{ "ctrBoardCommErr", 			10 },
+	{ "freezerFanErr", 				12 },
+	{ "freezerDefrostingErr", 		14 },
+	{ "humiditySensorErr", 			15 },
+	{ "refrigeratorDoorAlarm", 		30 },
+	{ "airDoor1Err", 				45 },
     { "", -1}
 };
 
 JSON_ALARM ALARM_FRA3FE744[] = {
-   	{ "envTempSensorErr", 	    1 },
-	{ "refrigeratorSensorErr", 	2 },
-	{ "freezerSensorErr", 	    4 },
-	{ "vtRoomSensorErr", 	    5 },
-	{ "freezerDefrostingSensorErr", 	9 },
-	{ "ctrBoardCommErr", 	    11 },
-	{ "freezerFanErr", 	        13 },
-	{ "humiditySensorErr", 	    16 },
-	{ "refrigeratorDoorAlarm", 	31 },
-	{ "airDoor1Err", 	        46 },
+	{ "envTempSensorErr", 			0 },
+	{ "refrigeratorSensorErr", 		1 },
+	{ "freezerSensorErr", 			3 },
+	{ "vtRoomSensorErr", 			4 },
+	{ "freezerDefrostingSensorErr", 8 },
+	{ "ctrBoardCommErr", 			10 },
+	{ "freezerFanErr", 				12 },
+	{ "humiditySensorErr", 			15 },
+	{ "refrigeratorDoorAlarm", 		30 },
+	{ "airDoor1Err", 				45 },
     { "", -1}
 };
 
 //////////////////////////////////////////////
 
 ALARM_ARRAY JsonALRM[] = {
-    { ALARM_WC          , 0 },
-    { ALARM_WH          , 0 },
-    { ALARM_HVAC        , 0 },
-    { ALARM_WM			, 0 },
-    { ALARM_FR_RU60cm	, 0 },
-    { ALARM_HO_Arcair   , 0 },
-    { ALARM_HO_Haier    , 0 },
-    { ALARM_FRA3FE744   , 0 },
-    { ALARM_HB20        , 0 },
+    { ALARM_WC          , 0, 0, "Wine Cooler" },
+    { ALARM_WH          , 0, 0, "Water Heater" },
+    { ALARM_HVAC        , 0, 0, "Air conditioning HVAC" },
+    { ALARM_WM			, 0, 0, "Drum washing machine" },
+    { ALARM_FR_RU60cm	, 0, 0, "Fridge RU 60cm" },
+    { ALARM_HO_Arcair   , 0, 0, "Hood Arcair" },
+    { ALARM_HO_Haier    , 0, 0, "Hood Haier" },
+    { ALARM_FRA3FE744   , 0, 0, "Multidoor 982k A3FE744" },
+    { ALARM_HB20        , 0, 0, "Multidoor 982J HB20" },
 
-	{NULL, 0}
+	{NULL, 0, 0, ""}
 };
 
 
@@ -438,31 +438,47 @@ unsigned char Answ_FC[50];
 
 int numOfAlarms[DEV_TYPE_LAST];
 
+//Valutare se necessaria. Usare il num massimo di allarmi arrotondato al 32bit superiore
+static int AlarmMsgByteDimension(DEV_TYPE val)
+{
+    switch (val)
+    {
+        case DEV_TYPE_WC:           return 8;      //WC
+        case DEV_TYPE_WH:           return 4;      //WH  ??? 3??
+        case DEV_TYPE_HVAC:         return 8;      //HVAC
+        case DEV_TYPE_WM:           return 8;      //WM ???
+
+        case DEV_TYPE_HO_Arcair:    // Hood Arcair
+        case DEV_TYPE_HO_Haier:     // Hood Haier
+                                    return 4;
+
+        case DEV_TYPE_FR_RU60cm:
+        case DEV_TYPE_FR_MultiD_HB20:
+        case DEV_TYPE_FR_MultiD_A3FE744:
+                                    return 8;      // FR FRA3FE744 & HB20 !
+
+        default:                    break;
+    }
+    return 0;
+}
+
+
 static void VarsInit(void)
 {
     int n;
-    int i;
-    char *p;
     JSON_ALARM *ja;
 
     for (n = 0; n < DEV_TYPE_LAST; n++)
     {
         ja = JsonALRM[n].alrm;
-        i = ja->pos;
-        p = ja->name;
-        i++;
-        while (JsonALRM[n].alrm->pos != -1)
+        JsonALRM[n].dim = AlarmMsgByteDimension((DEV_TYPE)n);
+        while (ja->pos != -1 )
         {
-            numOfAlarms[n]++;
+            numOfAlarms[n]++;       //to be removed!
             JsonALRM[n].totAlarm++;
-            JsonALRM[n].alrm++;
-            /*ja++;
-            i = ja->pos;
-            p = ja->name;
-            */
+            ja++;
         }
     }
-
 }
 
 
@@ -790,30 +806,6 @@ static int StateMsgdim(DEV_TYPE val)
     }
     return 0;
 }
-
-static int AlarmMsgByte(DEV_TYPE val)
-{
-    switch (val)
-    {
-        case DEV_TYPE_WC:           return 8;      //WC
-        case DEV_TYPE_WH:           return 4;      //WH  ??? 3??
-        case DEV_TYPE_HVAC:         return 8;      //HVAC
-        case DEV_TYPE_WM:           return 8;      //WM ???
-
-        case DEV_TYPE_HO_Arcair:    // Hood Arcair
-        case DEV_TYPE_HO_Haier:     // Hood Haier
-                                    return 4;
-
-        case DEV_TYPE_FR_RU60cm:
-        case DEV_TYPE_FR_MultiD_HB20:
-        case DEV_TYPE_FR_MultiD_A3FE744:
-                                    return 8;      // FR FRA3FE744 & HB20 !
-
-        default:                    break;
-    }
-    return 0;
-}
-
 
 
 char arcBuf[14] = {

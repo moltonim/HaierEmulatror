@@ -16,10 +16,13 @@ __published:	// IDE-managed Components
     TLabel *Label1;
     TLabel *Label2;
     TButton *ClearBttn;
-    TBitBtn *BitBtn1;
+    TBitBtn *NextBitBttn;
+    TComboBox *AlrmComboBox;
     TLabel *Label3;
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormShow(TObject *Sender);
+    void __fastcall NextBitBttnClick(TObject *Sender);
+    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
     __fastcall TForm3(TComponent* Owner);
@@ -27,6 +30,7 @@ public:		// User declarations
     void __fastcall EditClick(TObject *Sender);
 
     TEdit* Edit[8*2];
+    int device;
 
 };
 //---------------------------------------------------------------------------

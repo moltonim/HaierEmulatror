@@ -167,14 +167,14 @@ object Form1: TForm1
         'FR-MultiD k A3FE'
         'FR-MultiD j HB20')
     end
-    object Button1: TButton
+    object CustomMsgBttn: TButton
       Left = 15
       Top = 156
       Width = 86
       Height = 25
       Caption = 'Custom MSG'
       TabOrder = 2
-      OnClick = Button1Click
+      OnClick = CustomMsgBttnClick
     end
     object WriteLogPopMnu: TCheckBox
       Left = 5
