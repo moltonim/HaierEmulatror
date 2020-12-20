@@ -46,6 +46,14 @@ object Form3: TForm3
     Caption = 'Label3'
     Visible = False
   end
+  object SpeedButton1: TSpeedButton
+    Left = 0
+    Top = 144
+    Width = 23
+    Height = 22
+    Visible = False
+    OnClick = SpeedButton1Click
+  end
   object Edit1: TEdit
     Left = 5
     Top = 30
@@ -53,6 +61,8 @@ object Form3: TForm3
     Height = 21
     TabOrder = 0
     Visible = False
+    OnChange = Edit1Change
+    OnEnter = Edit1Enter
   end
   object ClearBttn: TButton
     Left = 16
@@ -61,9 +71,10 @@ object Form3: TForm3
     Height = 25
     Caption = 'Clear'
     TabOrder = 1
+    OnClick = ClearBttnClick
   end
   object NextBitBttn: TBitBtn
-    Left = 200
+    Left = 224
     Top = 80
     Width = 75
     Height = 25
@@ -79,5 +90,16 @@ object Form3: TForm3
     Height = 21
     ItemHeight = 13
     TabOrder = 3
+    OnChange = AlrmComboBoxChange
+  end
+  object EnterBitBttn: TBitBtn
+    Left = 128
+    Top = 80
+    Width = 65
+    Height = 25
+    Caption = 'Enter'
+    TabOrder = 4
+    OnClick = EnterBitBttnClick
+    Kind = bkOK
   end
 end
