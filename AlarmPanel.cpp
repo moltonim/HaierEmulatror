@@ -79,6 +79,10 @@ void __fastcall TForm3::FormShow(TObject *Sender)
 			Edit[n]->Text = "--";
             Edit[n]->Enabled = false;
         }
+        else if (Edit[n]->Text == "--")
+        {
+            Edit[n]->Text = "00";
+        }
 
 	}
 
@@ -102,6 +106,9 @@ void __fastcall TForm3::FormShow(TObject *Sender)
 	}
     AlrmComboBox->ItemIndex = 0;
 
+    s = "0x" + IntToHex((int)(ErrVal>>32), 8) + "." + IntToHex((int)(ErrVal&0xFFFFFFFF), 8);
+    //if (bit > 32) s = s+".00000000";
+    Label3->Caption = s;
 
 }
 //---------------------------------------------------------------------------
