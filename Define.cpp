@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "AlarmPanel.h"
 #include "Define.h"
 #include "Unit1.h"
 
@@ -412,6 +413,41 @@ static int StateMsgdim(DEV_TYPE val)
         default:                    break;
     }
     return 0;
+}
+
+int UpdateAlrmMsg()
+{
+    int device = Form1->DeviceComboBox->ItemIndex;
+    int len = JsonALRM[device].dim;  //JsonALRM[device].totAlarm;
+    unsigned char* p;
+    char buf[8];
+
+    memcpy(buf, (unsigned char*)&Form3->ErrVal, sizeof(__int64));
+
+    p = Answ_73;
+    *p++ = 0xFF;
+    *p++ = 0xFF;
+    *p++ = len;    // FRAME LENGTH
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;   //6th
+    *p++ = 0x74;
+    *p++ = 0x0F;
+    *p++ = 0x5A;
+    for(int n = 0; n < len; n++)
+        *p++ = buf[n];
+    //*p++ = 0;
+    //*p++ = 0;
+
+    unsigned char c = CalcCKS2(Answ_73, &len);
+    len += 2;     //add 0xFF, 0xFF as header
+    p = Answ_73 + len;
+    *p = c;
+    *p++ = CalcCKS(Answ_73);
+    return ++len;
 }
 
 

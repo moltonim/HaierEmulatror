@@ -340,12 +340,13 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
 
         case 0x73:
             Form1->RichEdit1->SelAttributes->Color = clAqua;
+            n = UpdateAlrmMsg();
             s.sprintf("[74] Alarm status len = %d\n", Answ_73_LEN-3);
             if (Form1->SendAnswerPopMnu->Checked)
-                ris = -Ser->BIN_Write(Answ_73, Answ_73_LEN, LenReaden);
+                ris = -Ser->BIN_Write(Answ_73, n, LenReaden);
             if (ris)
                 ris++;
-            s += Form1->SendString(Answ_73, Answ_73_LEN);
+            s += Form1->SendString(Answ_73, n);
         break;
 
         case 0xF7:      //ACKnowledge!
