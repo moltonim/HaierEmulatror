@@ -175,6 +175,7 @@ object Form1: TForm1
         'WC'
         'WH'
         'HVAC'
+        'HVAC II'
         'WM'
         'FR-RU60cm'
         'Hood Arcair'

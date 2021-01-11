@@ -344,6 +344,12 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
             Form1->StatusBar1->Panels->Items[2]->Text = "Air Conditioning HVAC";
         break;
 
+        case DEV_TYPE_HVAC2:
+            answ71 = Answ_71_HVAC2;
+            Answ71S = " -HVAC 2-";
+            Form1->StatusBar1->Panels->Items[2]->Text = "Air Conditioning HVAC II";
+        break;
+
         case DEV_TYPE_WM:
             answ71 = Answ_71_WM;
             Answ71S = " -WM-";

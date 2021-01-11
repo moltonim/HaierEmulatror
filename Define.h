@@ -12,6 +12,7 @@ typedef enum _devtype
     DEV_TYPE_WC,                 //0 wine cooler
     DEV_TYPE_WH,                 //1 water heater
     DEV_TYPE_HVAC,               //2 condizionatore
+    DEV_TYPE_HVAC2,              // condiz 2
     DEV_TYPE_WM,                 //3 washing machine (dram?)
     DEV_TYPE_FR_RU60cm,          //4 Fridge russo 1
     DEV_TYPE_HO_Arcair,          //5 Hood Arcair (custom)
@@ -93,6 +94,7 @@ extern unsigned char Answ_71_WC[];
 extern unsigned char Answ_71_WH[];
 extern unsigned char Answ_71_WM[];
 extern unsigned char Answ_71_HVAC[];
+extern unsigned char Answ_71_HVAC2[];
 extern unsigned char Answ_71_FR01[];
 extern unsigned char Answ_71_HO_ken1[];
 extern unsigned char Answ_71_HO_1[];

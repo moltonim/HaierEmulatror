@@ -22,6 +22,7 @@ unsigned char Answ_62[50];
 unsigned char Answ_71_WC[50];
 unsigned char Answ_71_WH[50];
 unsigned char Answ_71_HVAC[50];
+unsigned char Answ_71_HVAC2[50];
 unsigned char Answ_71_WM[50];
 
 unsigned char Answ_71_FR01[50];
@@ -54,6 +55,7 @@ static int AlarmMsgByteDimension(DEV_TYPE val)
         case DEV_TYPE_WC:           return 8;      //WC
         case DEV_TYPE_WH:           return 4;      //WH  ??? 3??
         case DEV_TYPE_HVAC:         return 8;      //HVAC
+        case DEV_TYPE_HVAC2:        return 8;      //HVAC type 2
         case DEV_TYPE_WM:           return 8;      //WM ???
 
         case DEV_TYPE_HO_Arcair:    // Hood Arcair
@@ -247,6 +249,22 @@ void StringInit(void)
     p += 32;
     *p++ = CalcCKS(Answ_71_HVAC);
 
+    /////////
+    p = Answ_71_HVAC2;
+    *p++ = 0xFF;
+    *p++ = 0xFF;
+    *p++ = 0x28;    // FRAME LENGTH
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;   //6th
+    *p++ = 0x71;
+    memcpy(p, TYPEID_HVAC2, 32);
+    p += 32;
+    *p++ = CalcCKS(Answ_71_HVAC2);
+
     p = Answ_F2;
     *p++ = 0xFF;
     *p++ = 0xFF;
@@ -401,6 +419,7 @@ static int StateMsgdim(DEV_TYPE val)
         case DEV_TYPE_WC:           return 28;      //WC
         case DEV_TYPE_WH:           return 50;      //WH
         case DEV_TYPE_HVAC:         return 32;      //HVAC
+        case DEV_TYPE_HVAC2:        return 40;      //HVAC2
         case DEV_TYPE_WM:           return 23*2;    //WM ???
         case DEV_TYPE_FR_RU60cm:    return 28;      //FR01 RU 60cm ?
         case DEV_TYPE_HO_Arcair:    return 12;      // Hood Arcair
@@ -604,6 +623,28 @@ int UpdateStateMsg(int val, char mode)
             //p = Answ_014D01 + len;
             //*p++ = CalcCKS(Answ_014D01);
             //len++;
+        break;
+
+        case DEV_TYPE_HVAC2:     // HVAC
+            //p += 12;    //Point to Byte index1: Upper temperature zone
+            p += st;
+            p = Answ_014D01 + 12;           //restart!!
+            Answ_014D01[14] = 1;    //windSpeed [4]
+            Answ_014D01[26] = 1;    //errCode [38]
+            Temperature[0] %= 0x0E;
+            *p = Temperature[0]++;
+            p += 4;
+            Temperature[1] %= 0xFE;
+            *p = Temperature[1]++;
+            p++;
+            flagByte ^= 0x3F;
+            *p = flagByte;             //toggle Power and light
+            p++;
+            Temperature[2] ^= 0xFF;
+            *p = Temperature[2];
+            p++;    //p = 5!
+            Temperature[3] %= 0x3C;
+            *p = Temperature[3]++;
         break;
 
         case DEV_TYPE_WM:     // WM  lavatrice
