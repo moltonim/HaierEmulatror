@@ -49,6 +49,8 @@ __published:	// IDE-managed Components
     TCheckBox *StatusCKB;
     TButton *ExitBttn;
     TButton *AlarmBttn;
+    TLabel *Label2;
+    TSpeedButton *SpeedButton1;
     void __fastcall SWDateTimePicker1Change(TObject *Sender);
     void __fastcall SerialSelectCBChange(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -70,6 +72,7 @@ __published:	// IDE-managed Components
     void __fastcall ExitBttnClick(TObject *Sender);
     void __fastcall SpeedButton3Click(TObject *Sender);
     void __fastcall AlarmBttnClick(TObject *Sender);
+    void __fastcall SpeedButton1Click(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;

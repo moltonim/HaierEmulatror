@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 220
-  Top = 122
+  Left = 264
+  Top = 103
   Width = 698
   Height = 577
-  Caption = 'Emulator machine 0.71'
+  Caption = 'Emulator machine 0.72'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -52,6 +52,13 @@ object Form1: TForm1
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 504
+    Top = 8
+    Width = 32
+    Height = 13
+    Caption = 'Label2'
   end
   object SerialSelectCB: TComboBox
     Left = 2
@@ -108,6 +115,14 @@ object Form1: TForm1
     Width = 116
     Height = 473
     TabOrder = 4
+    object SpeedButton1: TSpeedButton
+      Left = 85
+      Top = 222
+      Width = 23
+      Height = 22
+      Caption = '?'
+      OnClick = SpeedButton1Click
+    end
     object Panel1: TPanel
       Left = 13
       Top = 4
@@ -177,7 +192,7 @@ object Form1: TForm1
       OnClick = CustomMsgBttnClick
     end
     object WriteLogPopMnu: TCheckBox
-      Left = 5
+      Left = 3
       Top = 224
       Width = 71
       Height = 17
@@ -185,7 +200,7 @@ object Form1: TForm1
       TabOrder = 3
     end
     object SendAnswerPopMnu: TCheckBox
-      Left = 5
+      Left = 3
       Top = 249
       Width = 85
       Height = 17

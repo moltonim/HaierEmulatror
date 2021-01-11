@@ -33,7 +33,7 @@
     <MAINSOURCE value="HaierEmu.cpp"/>
     <INCLUDEPATH value="$(BCB)\LIB\lmd50\MAIN;..\Hopper_ccTalk;&quot;C:\Program Files (x86)\Borland\Developer Express Inc\ExpressForumLibrary\C++Builder 6\Lib&quot;;&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;C:\MLT\Progetti\HaierEmulator;$(BCB)\include;$(BCB)\include\vcl"/>
     <LIBPATH value="..\Hopper_ccTalk;&quot;C:\Program Files (x86)\Borland\Developer Express Inc\ExpressForumLibrary\C++Builder 6\Lib&quot;;&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;C:\MLT\Progetti\HaierEmulator;&quot;..\..\Developer Express Inc\ExpressForumLibrary\C++Builder 6\Lib&quot;;$(BCB)\LIB\lmd50\MAIN;$(BCB)\lib\obj;$(BCB)\lib"/>
-    <WARNINGS value="-w-par"/>
+    <WARNINGS value="-w-pck -w-pch -w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
@@ -60,13 +60,13 @@
       <FILE FILENAME="Unit1.cpp" FORMNAME="Form1" UNITNAME="Unit1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="TokenThread.cpp" FORMNAME="" UNITNAME="TokenThread" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="Define.cpp" FORMNAME="" UNITNAME="Define" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DEF.h" FORMNAME="" UNITNAME="DEF.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="SendCustomMsgForm.cpp" FORMNAME="Form2" UNITNAME="SendCustomMsgForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="AlarmPanel.cpp" FORMNAME="Form3" UNITNAME="AlarmPanel" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="SureConnectionThread.cpp" FORMNAME="" UNITNAME="SureConnectionThread" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="HaierEmu.res" FORMNAME="" UNITNAME="HaierEmu.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="HaierEmu.cpp" FORMNAME="" UNITNAME="HaierEmu" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="SERIALPORT.cpp" FORMNAME="" UNITNAME="SERIALPORT.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="DEF.h" FORMNAME="" UNITNAME="DEF.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
   </FILELIST>
   <BUILDTOOLS>
   </BUILDTOOLS>

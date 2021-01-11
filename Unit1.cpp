@@ -565,3 +565,20 @@ void __fastcall TForm1::AlarmBttnClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::SpeedButton1Click(TObject *Sender)
+{
+    //Scrivo il device ID selezionato sullo schermo.
+    unsigned char* p = answ71;
+    p += 10;
+    String s = "Type ID selected:";
+    RichEdit1->SelAttributes->Color = clLime;
+    RichEdit1->Lines->Add(s);
+    s = SendString(p, 32);
+    RichEdit1->SelAttributes->Color = clLime;
+    RichEdit1->Lines->Add(s);                    
+//    RichEdit1->SetFocus();
+    //RichEdit1->Lines->Add();
+    //Lo copio nella clipboard ?
+}
+//---------------------------------------------------------------------------
+
