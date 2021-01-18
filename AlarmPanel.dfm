@@ -4,7 +4,7 @@ object Form3: TForm3
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsDialog
   Caption = 'Alarm'
-  ClientHeight = 171
+  ClientHeight = 218
   ClientWidth = 386
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object Form3: TForm3
   TextHeight = 13
   object Label1: TLabel
     Left = 183
-    Top = 144
+    Top = 187
     Width = 22
     Height = 13
     Caption = 'HEX'
@@ -40,7 +40,7 @@ object Form3: TForm3
   end
   object Label3: TLabel
     Left = 8
-    Top = 56
+    Top = 88
     Width = 32
     Height = 13
     Caption = 'Label3'
@@ -48,15 +48,14 @@ object Form3: TForm3
   end
   object SpeedButton1: TSpeedButton
     Left = 0
-    Top = 144
+    Top = 187
     Width = 23
     Height = 22
-    Visible = False
     OnClick = SpeedButton1Click
   end
   object Edit1: TEdit
     Left = 5
-    Top = 30
+    Top = 62
     Width = 25
     Height = 21
     TabOrder = 0
@@ -66,7 +65,7 @@ object Form3: TForm3
   end
   object ClearBttn: TButton
     Left = 16
-    Top = 80
+    Top = 123
     Width = 75
     Height = 25
     Caption = 'Clear'
@@ -74,8 +73,8 @@ object Form3: TForm3
     OnClick = ClearBttnClick
   end
   object NextBitBttn: TBitBtn
-    Left = 224
-    Top = 80
+    Left = 296
+    Top = 123
     Width = 75
     Height = 25
     Caption = 'Next'
@@ -85,7 +84,7 @@ object Form3: TForm3
   end
   object AlrmComboBox: TComboBox
     Left = 24
-    Top = 115
+    Top = 158
     Width = 233
     Height = 21
     ItemHeight = 13
@@ -93,13 +92,22 @@ object Form3: TForm3
     OnChange = AlrmComboBoxChange
   end
   object EnterBitBttn: TBitBtn
-    Left = 128
-    Top = 80
+    Left = 152
+    Top = 123
     Width = 65
     Height = 25
     Caption = 'Enter'
     TabOrder = 4
     OnClick = EnterBitBttnClick
     Kind = bkOK
+  end
+  object StaticText1: TStaticText
+    Left = 13
+    Top = 41
+    Width = 10
+    Height = 17
+    Caption = '0'
+    TabOrder = 5
+    Visible = False
   end
 end

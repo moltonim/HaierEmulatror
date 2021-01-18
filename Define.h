@@ -62,6 +62,8 @@ int UpdateStateMsg(int val, char mode);
 
 //variables...
 
+#define ERRBUFF_LEN     10
+extern unsigned char ErrBuff[ERRBUFF_LEN];
 extern ALARM_ARRAY JsonALRM[];
 extern unsigned char EncriptionSign[3];
 //SoftAp Device name when in configuration mode

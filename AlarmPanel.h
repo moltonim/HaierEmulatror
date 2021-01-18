@@ -8,6 +8,8 @@
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
 #include <Buttons.hpp>
+
+#include "Define.h"
 //---------------------------------------------------------------------------
 class TForm3 : public TForm
 {
@@ -21,6 +23,7 @@ __published:	// IDE-managed Components
     TLabel *Label3;
     TSpeedButton *SpeedButton1;
     TBitBtn *EnterBitBttn;
+    TStaticText *StaticText1;
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormShow(TObject *Sender);
     void __fastcall NextBitBttnClick(TObject *Sender);
@@ -38,7 +41,8 @@ public:		// User declarations
     void __fastcall EditClick(TObject *Sender);
     void __fastcall FillEdits();
 
-    TEdit* Edit[8*2];
+    TEdit* Edit[ERRBUFF_LEN];
+    TStaticText* NumByteLabel[ERRBUFF_LEN];
     int device;
     unsigned long long ErrVal;
 

@@ -69,6 +69,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
     Ser->BufferRX = BUFSIZE;
     Ser->BufferTX = BUFSIZE;
     memset((char*)&comBuf, 0, sizeof(SERBUF_STRUCT));
+    memset(ErrBuff, 0, ERRBUFF_LEN);
 
     StringInit();
     F2Req = false;

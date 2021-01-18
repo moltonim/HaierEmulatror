@@ -7,7 +7,7 @@ unsigned char SoftApDeviceName_configMode_WC[8] = {
     };
 
 
-    JSON_ALARM ALARM_WH[] = {
+JSON_ALARM ALARM_WH[] = {
 	{ "middleTempSensorErr", 		0 },
 	{ "dryHeatingAlarm", 			1 },
 	{ "leakageAlarm", 				2 },
@@ -221,7 +221,7 @@ JSON_ALARM ALARM_HVAC2[] = {
 	{ "airPipeBTempSensorErr", 		61 },
 	{ "airPipeCTempSensorErr", 		62 },
 	{ "airPipeDTempSensorErr", 		63 },
-/*
+
 	{ "airPipeETempSensorErr", 		64 },
 	{ "moduleTempSensorErr", 		65 },
 	{ "powerInstantDetectErr", 		66 },
@@ -230,7 +230,8 @@ JSON_ALARM ALARM_HVAC2[] = {
 	{ "tc2Err", 					69 },
 	{ "tc3Err", 					70 },
 	{ "humanSensingModuleErr", 		71 },
-*/
+    { "", -1}
+
 };
 
 JSON_ALARM ALARM_FR_RU60cm[] = {
