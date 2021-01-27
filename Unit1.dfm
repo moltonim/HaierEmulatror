@@ -276,10 +276,13 @@ object Form1: TForm1
     Height = 19
     Panels = <
       item
-        Width = 100
+        Width = 70
       end
       item
-        Width = 300
+        Width = 250
+      end
+      item
+        Width = 200
       end
       item
         Width = 50
@@ -395,6 +398,18 @@ object Form1: TForm1
   object PopupMenu1: TPopupMenu
     Left = 120
     Top = 192
+    object Frame09force1: TMenuItem
+      Caption = '09 Alarm force'
+      Enabled = False
+      OnClick = Frame09force1Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object PrintRTF1: TMenuItem
+      Caption = 'Print RTF'
+      OnClick = PrintRTF1Click
+    end
     object Clean1: TMenuItem
       Caption = 'Clean'
       OnClick = Clean1Click

@@ -51,6 +51,9 @@ __published:	// IDE-managed Components
     TButton *AlarmBttn;
     TLabel *Label2;
     TSpeedButton *SpeedButton1;
+    TMenuItem *N1;
+    TMenuItem *Frame09force1;
+    TMenuItem *PrintRTF1;
     void __fastcall SWDateTimePicker1Change(TObject *Sender);
     void __fastcall SerialSelectCBChange(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -73,6 +76,8 @@ __published:	// IDE-managed Components
     void __fastcall SpeedButton3Click(TObject *Sender);
     void __fastcall AlarmBttnClick(TObject *Sender);
     void __fastcall SpeedButton1Click(TObject *Sender);
+    void __fastcall Frame09force1Click(TObject *Sender);
+    void __fastcall PrintRTF1Click(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;
@@ -89,6 +94,7 @@ public:		// User declarations
 
     bool F2Req;
     bool Cmd6Req;
+    bool Cmd09Req;
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;

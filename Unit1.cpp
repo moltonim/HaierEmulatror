@@ -3,6 +3,7 @@
 #include <vcl.h>
 #include <inifiles.hpp>
 #include <stdio.h>
+#include <dateutils.hpp>
 #pragma hdrstop
 
 #include "Unit1.h"
@@ -69,11 +70,12 @@ __fastcall TForm1::TForm1(TComponent* Owner)
     Ser->BufferRX = BUFSIZE;
     Ser->BufferTX = BUFSIZE;
     memset((char*)&comBuf, 0, sizeof(SERBUF_STRUCT));
-    memset(ErrBuff, 0, ERRBUFF_LEN);
+    memset(AlrmBuf.ErrBuff, 0, ERRBUFF_LEN);
 
     StringInit();
     F2Req = false;
     Cmd6Req = false;
+    Cmd09Req = false;
 }
 //---------------------------------------------------------------------------
 
@@ -248,6 +250,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         SpeedButton3->Visible = DebugFlag;
         Edit1->Visible        = DebugFlag;
         AlarmBttn->Enabled    = DebugFlag;
+        Frame09force1->Enabled= DebugFlag;
     }
 
     #ifdef ARCAIR_ONLY
@@ -303,7 +306,8 @@ void __fastcall TForm1::FormShow(TObject *Sender)
     if (TaskToken)
         ThreadHandle = TaskToken->Handle;
     else
-        ThreadHandle = 0;    
+        ThreadHandle = 0;
+    Form1->StatusBar1->Panels->Items[3]->Text = "ALARM: none";
 }
 //---------------------------------------------------------------------------
 
@@ -563,6 +567,7 @@ void __fastcall TForm1::SpeedButton3Click(TObject *Sender)
     p += newlen;
     *p = 0x12;
     n++;
+    b = b;
 }
 //---------------------------------------------------------------------------
 
@@ -586,6 +591,31 @@ void __fastcall TForm1::SpeedButton1Click(TObject *Sender)
 //    RichEdit1->SetFocus();
     //RichEdit1->Lines->Add();
     //Lo copio nella clipboard ?
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Frame09force1Click(TObject *Sender)
+{
+    // forzo lo stato 09
+    if (!DebugFlag)
+        return;
+    Cmd09Req = true;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::PrintRTF1Click(TObject *Sender)
+{
+    //Save to file "Log_*.rtf
+    String s = ExtractFilePath( Application->ExeName );
+    String s2;
+    //int n, len;
+
+    unsigned short y, m, d, h, mm, ss, msec;
+    DecodeDateTime(Now(), y, m, d, h, mm, ss, msec);
+
+    s2.sprintf("EmulatorWindow_%02d_%02d_%02d-%02d", y, m, d, h);
+    s += s2+".rtf";
+    RichEdit1->Lines->SaveToFile(s);
 }
 //---------------------------------------------------------------------------
 

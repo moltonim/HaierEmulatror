@@ -60,6 +60,8 @@ void __fastcall TokenThread::Execute()
         if (Form1->F2Req == true)
             Synchronize(SendRequestTest);   //Richiesta invio messaggio?
 
+        Synchronize(SendAlarmFrame);
+
         Synchronize(SendStatus);
         
         Sleep(9);
@@ -164,17 +166,29 @@ void __fastcall TokenThread::SendStatus(void)
        )
     {
         Form1->Cmd6Req = false;
-        SendComAnsw(6);
+        SendComAnsw(0x06);
         StatusTimer = MilliSecondOfTheWeek(Now());
     }
 
+    if (Connected == true && Form1->Cmd09Req == true)
+    {
+        Form1->Cmd09Req = false;
+        // forzare il comando 09!!!
+        SendComAnsw(0x09);
+        Form1->RichEdit1->SelAttributes->Color = clRed;
+        Form1->RichEdit1->Lines->Add("Frame 09 'Module stop device alarm info' forced");
+        Application->ProcessMessages();
+    }
+
     if (!Connected &&
-         (Form1->Cmd6Req == true)
+         (Form1->Cmd6Req == true || Form1->Cmd09Req == true)
         )
     {
         Form1->RichEdit1->SelAttributes->Color = clRed;
         Form1->RichEdit1->Lines->Add("Not connected!");
         Form1->Cmd6Req = false;
+        Form1->Cmd09Req = false;
+        Application->ProcessMessages();
     }
 
     String s;
@@ -182,6 +196,84 @@ void __fastcall TokenThread::SendStatus(void)
     n /=10;
     s.sprintf("%01d.%02d", n/100, (n%100));
     Form1->Label1->Caption = s;
+}
+
+/*
+    Nota: cambia errore: trasmetto frame 04, poi:
+    1.Need to reply within 50s;
+    2.If the device does not receive the confirmation frame of 05, it will send 04 every 200ms;
+    3.When the device receives 05, it will pause 5s and continue to send 04 at the frequency of 200ms;
+    4.After receiving 09, the device will stop sending the current alarm;
+    5.If the alarm status changes, the alarm will be resend;
+    6.Status changes include the creation of new alarms or the disappearance of existing alarms;
+    7.If all alarms disappear, send an alarm command with all zeros as per the rules until 09 is received;
+    8.When an alarm is generated, query and shutdown commands can be supported.
+    
+*/
+void __fastcall TokenThread::SendAlarmFrame(void)
+{
+    String s;
+    int ris = 0;
+    int n;
+    __int64 t;
+
+    if (AlrmBuf.err_present && AlrmBuf.ack_received  )
+    {
+        t = MilliSecondOfTheYear(Now());
+        if (t > AlrmBuf.Delay5sec )
+        {
+            AlrmBuf.ack_received = 0;
+            AlrmBuf.msg_toSend = 1;
+            if (DebugFlag)
+            {
+                Form1->RichEdit1->SelAttributes->Color = clWhite;
+                Form1->RichEdit1->Lines->Add(" debug: 5 sec alrm passed");
+                Application->ProcessMessages();
+            }
+        }
+    }
+    if (AlrmBuf.err_present && AlrmBuf.msg_sent)
+    {
+        t = MilliSecondOfTheYear(Now());
+        if (t > AlrmBuf.Delay200ms)
+        {
+            AlrmBuf.msg_toSend = 1;
+            if (DebugFlag)
+            {
+                Form1->RichEdit1->SelAttributes->Color = clWhite;
+                Form1->RichEdit1->Lines->Add(" debug: 200 ms alrm ack not recvd");
+                Application->ProcessMessages();
+                AlrmBuf.Delay200ms = MilliSecondOfTheYear(Now()) + 200;
+            }
+        }
+    }
+    if (AlrmBuf.err_present == 0 && AlrmBuf.err_zero )
+    {
+        AlrmBuf.err_zero = 0;
+        AlrmBuf.msg_toSend = 1;
+        AlrmBuf.ack_received = 0;
+    }
+
+    if (AlrmBuf.msg_toSend == 1)
+    {
+        AlrmBuf.msg_sent = 1;
+        AlrmBuf.msg_toSend = 0;
+        AlrmBuf.ack_received = 0;
+        //Form1->RichEdit1->SelAttributes->Color = clFuchsia;
+        n = UpdateAlrmMsg(0x04);
+        s.sprintf("[04] Alarm sent: len = %d\n", n-3);
+        if (Form1->SendAnswerPopMnu->Checked)
+            ris = -Ser->BIN_Write(Answ_73, n, LenReaden);
+        if (ris)
+            ris++;
+        AlrmBuf.Delay200ms = MilliSecondOfTheYear(Now()) + 200;
+        s += Form1->SendString(Answ_73, n);
+        Form1->RichEdit1->SelAttributes->Color = clFuchsia;
+        Form1->RichEdit1->Lines->Add(s);
+        if (!Form2->Visible)
+            Form1->RichEdit1->SetFocus();
+        UpdateLog(NULL, 'w', "W => "+s, 0);
+        }
 }
 
 
@@ -305,7 +397,7 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 Form1->RichEdit1->Lines->Add(s);
 
                 Application->ProcessMessages();
-                UpdateLog(NULL, 'r', "W => "+s, 0);
+                UpdateLog(NULL, 'w', "W => "+s, 0);
                 Application->ProcessMessages();
             }
 
@@ -320,8 +412,9 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
         break;
 
         case 0x06:      //!SELF! attribute status (every 6 secs)
-            Form1->RichEdit1->SelAttributes->Color = DebugFlag? clYellow:clAqua;
-            //^^ aggiustare qui: o yellow o aqua!
+            //Form1->RichEdit1->SelAttributes->Color = DebugFlag? clYellow:clAqua;
+            Form1->RichEdit1->SelAttributes->Color = clYellow;
+            //^^ aggiustare qui: o yellow o aqua!    [done]
             n = Form1->DeviceComboBox->ItemIndex;
             n = UpdateStateMsg(n, 1);
             s.sprintf("[06] Send Status; len = %d \n", n-3);
@@ -336,12 +429,45 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
             Form1->RichEdit1->SelAttributes->Color = clWhite;
             s.sprintf("[05] Acknowledge received!");
             //s += Form1->SendString(Answ_73, Answ_73_LEN);
+            if (AlrmBuf.msg_sent == 1)
+            {
+                AlrmBuf.msg_sent = 0;
+                //stop sendig frame 4 for 5 seconds!
+                s += " [Error request]";
+                AlrmBuf.ack_received = 1;
+                AlrmBuf.Delay5sec = MilliSecondOfTheYear(Now()) + 5000;
+            }
+        break;
+
+        case 0x09:      //Module stop device alarm info
+            Form1->RichEdit1->SelAttributes->Color = clWhite;
+            s.sprintf("[09] Stop send alarm info");
+            //s += Form1->SendString(Answ_73, Answ_73_LEN);
+            if (Form1->SendAnswerPopMnu->Checked)
+                ris = -Ser->BIN_Write(ACK_5, ACK_5_LEN, LenReaden);
+            if (ris)
+                ris++;
+
+            s += "\n";
+            s += Form1->SendString(ACK_5, ACK_5_LEN);
+            Form1->StatusBar1->Panels->Items[1]->Text = s;
+            AlrmBuf.F09_received = 1;
+            AlrmBuf.err_present = 0;
+            if (AlrmBuf.msg_sent == 1)
+            {
+                //AlrmBuf.msg_sent = 0;
+                /*
+                //stop sendig frame 4 for 5 seconds!
+                AlrmBuf.ack_received = 1;
+                AlrmBuf.Delay5sec = MilliSecondOfTheYear(Now()) + 5000;
+                */
+            }
         break;
 
         case 0x73:
             Form1->RichEdit1->SelAttributes->Color = clAqua;
             n = UpdateAlrmMsg();
-            s.sprintf("[74] Alarm status len = %d\n", Answ_73_LEN-3);
+            s.sprintf("[74] Alarm status len = %d\n", n-3);
             if (Form1->SendAnswerPopMnu->Checked)
                 ris = -Ser->BIN_Write(Answ_73, n, LenReaden);
             if (ris)
@@ -403,6 +529,8 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
         s = "[Test]"+s;
 
     UpdateLog(NULL, 'r', "W => "+s, 0);
+    if (Form1->RichEdit1->SelAttributes->Color == clBlack)
+        Form1->RichEdit1->SelAttributes->Color  = clWhite;
     Form1->RichEdit1->Lines->Add(s);
 }
 

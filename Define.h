@@ -41,13 +41,35 @@ typedef struct _alarm
     int pos;
 }   JSON_ALARM;
 
+
+#define ERRBUFF_LEN     12
+
 typedef struct _alarm_struct
 {
     JSON_ALARM* alrm;
     int totAlarm;
     int dim;
+
     char name[30];
 }   ALARM_ARRAY;
+
+
+typedef struct _globalalrm_struct
+{
+    unsigned char ErrBuff[ERRBUFF_LEN];
+    char err_present;
+    char msg_sent;
+    char msg_toSend;
+    char ack_received;
+    char F09_received;
+    char err_zero;
+
+    //MilliSecondOfTheYear
+    __int64 Delay200ms;         //MilliSecondOfTheYear when starting
+    __int64 Delay5sec;          //MilliSecondOfTheYear when starting
+    // change?
+
+}   ALARM_MESSAGE;
 
 //Functions
 void StringInit(void);
@@ -56,15 +78,16 @@ unsigned char CalcCKS2(unsigned char* buf, int* newlen);
 //check chs in ricezione!
 bool CheckCKSrx(const unsigned char* buf);
 void UpdateLog(unsigned char *buf, int read, String note, int opt);
-int UpdateAlrmMsg();
+int UpdateAlrmMsg(unsigned char frame = 74);
 int FindCmdIdx(int val);
 int UpdateStateMsg(int val, char mode);
 
 //variables...
 
-#define ERRBUFF_LEN     10
-extern unsigned char ErrBuff[ERRBUFF_LEN];
-extern ALARM_ARRAY JsonALRM[];
+
+//extern unsigned char ErrBuff[ERRBUFF_LEN];
+extern ALARM_ARRAY   JsonALRM[];
+extern ALARM_MESSAGE AlrmBuf;
 extern unsigned char EncriptionSign[3];
 //SoftAp Device name when in configuration mode
 extern unsigned char SoftApDeviceName_configMode[];

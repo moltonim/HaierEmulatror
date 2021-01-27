@@ -11,8 +11,7 @@
 
 
 //////////////////////////////////////////////
-
-unsigned char ErrBuff[ERRBUFF_LEN];
+ALARM_MESSAGE AlrmBuf;
 
 //#define Answ_014D01_LEN     (42+1)
 unsigned char Answ_014D01[100];
@@ -55,7 +54,7 @@ static int AlarmMsgByteDimension(DEV_TYPE val)
     switch (val)
     {
         case DEV_TYPE_WC:           return 8;      //WC
-        case DEV_TYPE_WH:           return 4;      //WH  ??? 3??
+        case DEV_TYPE_WH:           return 2;      //WH  ??? 3??
         case DEV_TYPE_HVAC:         return 8;      //HVAC
         case DEV_TYPE_HVAC2:        return 10;     //HVAC type 2
         case DEV_TYPE_WM:           return 8;      //WM ???
@@ -91,6 +90,8 @@ static void VarsInit(void)
             ja++;
         }
     }
+
+    memset((char*)&AlrmBuf, 0, sizeof(AlrmBuf));
 }
 
 
@@ -436,36 +437,34 @@ static int StateMsgdim(DEV_TYPE val)
     return 0;
 }
 
-int UpdateAlrmMsg()
+int UpdateAlrmMsg(unsigned char frame)
 {
     int device = Form1->DeviceComboBox->ItemIndex;
     int len = JsonALRM[device].dim;  //JsonALRM[device].totAlarm;
     unsigned char* p;
-    
+
     p = Answ_73;
     *p++ = 0xFF;
     *p++ = 0xFF;
-    *p++ = len;    // FRAME LENGTH
+    *p++ = 8 + 2 + len;    // FRAME LENGTH
     *p++ = 0;
     *p++ = 0;
     *p++ = 0;
     *p++ = 0;
     *p++ = 0;
     *p++ = 0;   //6th
-    *p++ = 0x74;
+    *p++ = frame;
     *p++ = 0x0F;
     *p++ = 0x5A;
-    for(int n = 0; n < len; n++)
-        *p++ = ErrBuff[n];
-    //*p++ = 0;
-    //*p++ = 0;
-
+    for(int n = len-1; n >= 0; n--)
+        *p++ = AlrmBuf.ErrBuff[n];
+    len += 8;
     unsigned char c = CalcCKS2(Answ_73, &len);
     len += 2;     //add 0xFF, 0xFF as header
     p = Answ_73 + len;
-    *p = c;
-    *p++ = CalcCKS(Answ_73);
-    return ++len;
+    *p++ = c;
+    len = p - Answ_73;
+    return len;
 }
 
 

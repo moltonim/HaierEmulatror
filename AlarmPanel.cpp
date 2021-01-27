@@ -156,7 +156,7 @@ void __fastcall TForm3::FillEdits()
 
     for (n = 0; n < ERRBUFF_LEN; n++)
     {
-        s.sprintf("%02X", ErrBuff[n]);
+        s.sprintf("%02X", AlrmBuf.ErrBuff[n]);
         Edit[n]->Text = s;
     }
 }
@@ -169,7 +169,7 @@ void __fastcall TForm3::SpeedButton1Click(TObject *Sender)
     int max = JsonALRM[device].dim;
     for(n = 0; n < max; n++)
     {
-        s.sprintf("%02X", ErrBuff[n]);
+        s.sprintf("%02X", AlrmBuf.ErrBuff[n]);
         Edit[n]->Text = s;
     }
 
@@ -180,7 +180,7 @@ void __fastcall TForm3::AlrmComboBoxChange(TObject *Sender)
 {
     int v = AlrmComboBox->ItemIndex;
     
-    memset(ErrBuff, 0, ERRBUFF_LEN);
+    memset(AlrmBuf.ErrBuff, 0, ERRBUFF_LEN);
     if (v == 0)
     {
         FillEdits();
@@ -192,7 +192,7 @@ void __fastcall TForm3::AlrmComboBoxChange(TObject *Sender)
     int byte = bit/8;
     int pos = bit%8;
     int val = 1<<pos;
-    ErrBuff[byte] = (unsigned char)val;
+    AlrmBuf.ErrBuff[byte] = (unsigned char)val;
 
     FillEdits();
 }
@@ -224,18 +224,50 @@ void __fastcall TForm3::ClearBttnClick(TObject *Sender)
 
 void __fastcall TForm3::EnterBitBttnClick(TObject *Sender)
 {
-    unsigned int n;
+    int n;
     unsigned int i;
     String s;
+    unsigned char ErrBuffCpy[ERRBUFF_LEN];
+
+    memcpy(ErrBuffCpy, AlrmBuf.ErrBuff, ERRBUFF_LEN);
+
 
     for(n = 0; n < ERRBUFF_LEN; n++)
     {
         s = "0x" + Edit[n]->Text;
         i = StrToIntDef(s, 0);
         Edit[n]->Text = IntToHex((int)i, 2);
-        ErrBuff[n] = (unsigned char)i;
+        AlrmBuf.ErrBuff[n] = (unsigned char)i;
     }
-        
+
+    int max = JsonALRM[device].dim;
+    char previous_err = AlrmBuf.err_present;
+    s = "ALARM: 0x";
+    AlrmBuf.err_present = 0;
+    for(n = max-1; n >= 0; n--)
+    {
+        s.cat_sprintf("%02X", AlrmBuf.ErrBuff[n]);
+        if (AlrmBuf.ErrBuff[n])
+            AlrmBuf.err_present = 1;
+    }
+    Form1->StatusBar1->Panels->Items[3]->Text = s;
+
+    if ( AlrmBuf.msg_toSend == 0 && AlrmBuf.err_present)
+    {
+        n = memcmp(ErrBuffCpy, AlrmBuf.ErrBuff, ERRBUFF_LEN);
+        if (n != 0)     //qualcosa è cambiato
+        {
+            AlrmBuf.msg_toSend = 1;
+            AlrmBuf.F09_received = 0;
+        }
+    }
+
+    if (previous_err != 0 && AlrmBuf.err_present == 0)
+    {
+        AlrmBuf.err_zero = 1;
+        AlrmBuf.msg_toSend = 1;
+        AlrmBuf.F09_received = 0;
+    }
 }
 //---------------------------------------------------------------------------
 

@@ -21,6 +21,7 @@ public:
 
     void __fastcall HeartBeat(void);
     void __fastcall CommReceiving(void);
+    void __fastcall SendAlarmFrame(void);
     String __fastcall GetStatusStr(char* c);
     int StatusTimer;
     bool Connected;
