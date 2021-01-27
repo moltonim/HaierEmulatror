@@ -20,10 +20,11 @@ object Form3: TForm3
   TextHeight = 13
   object Label1: TLabel
     Left = 183
-    Top = 187
+    Top = 198
     Width = 22
     Height = 13
     Caption = 'HEX'
+    Visible = False
   end
   object Label2: TLabel
     Left = 16
@@ -48,10 +49,39 @@ object Form3: TForm3
   end
   object SpeedButton1: TSpeedButton
     Left = 0
-    Top = 187
+    Top = 192
     Width = 23
     Height = 22
     OnClick = SpeedButton1Click
+  end
+  object SpeedButton2: TSpeedButton
+    Left = 272
+    Top = 158
+    Width = 23
+    Height = 22
+    Caption = '+'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    OnClick = SpeedButton2Click
+  end
+  object SpeedButton3: TSpeedButton
+    Tag = 1
+    Left = 312
+    Top = 159
+    Width = 23
+    Height = 22
+    Caption = '-'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    OnClick = SpeedButton2Click
   end
   object Edit1: TEdit
     Left = 5
@@ -65,7 +95,7 @@ object Form3: TForm3
   end
   object ClearBttn: TButton
     Left = 16
-    Top = 123
+    Top = 115
     Width = 75
     Height = 25
     Caption = 'Clear'
@@ -74,7 +104,7 @@ object Form3: TForm3
   end
   object NextBitBttn: TBitBtn
     Left = 296
-    Top = 123
+    Top = 115
     Width = 75
     Height = 25
     Caption = 'Next'
@@ -83,9 +113,9 @@ object Form3: TForm3
     Kind = bkRetry
   end
   object AlrmComboBox: TComboBox
-    Left = 24
+    Left = 16
     Top = 158
-    Width = 233
+    Width = 241
     Height = 21
     ItemHeight = 13
     TabOrder = 3
@@ -93,7 +123,7 @@ object Form3: TForm3
   end
   object EnterBitBttn: TBitBtn
     Left = 152
-    Top = 123
+    Top = 115
     Width = 65
     Height = 25
     Caption = 'Enter'

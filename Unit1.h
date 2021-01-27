@@ -78,6 +78,7 @@ __published:	// IDE-managed Components
     void __fastcall SpeedButton1Click(TObject *Sender);
     void __fastcall Frame09force1Click(TObject *Sender);
     void __fastcall PrintRTF1Click(TObject *Sender);
+    void __fastcall FormActivate(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;

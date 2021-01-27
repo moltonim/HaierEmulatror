@@ -24,6 +24,8 @@ __published:	// IDE-managed Components
     TSpeedButton *SpeedButton1;
     TBitBtn *EnterBitBttn;
     TStaticText *StaticText1;
+    TSpeedButton *SpeedButton2;
+    TSpeedButton *SpeedButton3;
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormShow(TObject *Sender);
     void __fastcall NextBitBttnClick(TObject *Sender);
@@ -34,6 +36,7 @@ __published:	// IDE-managed Components
     void __fastcall Edit1Enter(TObject *Sender);
     void __fastcall ClearBttnClick(TObject *Sender);
     void __fastcall EnterBitBttnClick(TObject *Sender);
+    void __fastcall SpeedButton2Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     __fastcall TForm3(TComponent* Owner);

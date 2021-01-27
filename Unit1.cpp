@@ -573,7 +573,8 @@ void __fastcall TForm1::SpeedButton3Click(TObject *Sender)
 
 void __fastcall TForm1::AlarmBttnClick(TObject *Sender)
 {
-    Form3->Show();    
+    Form3->Show();
+    Form3->BringToFront();
 }
 //---------------------------------------------------------------------------
 
@@ -616,6 +617,13 @@ void __fastcall TForm1::PrintRTF1Click(TObject *Sender)
     s2.sprintf("EmulatorWindow_%02d_%02d_%02d-%02d", y, m, d, h);
     s += s2+".rtf";
     RichEdit1->Lines->SaveToFile(s);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormActivate(TObject *Sender)
+{
+    if (Form3->Visible)
+        Form3->BringToFront();
 }
 //---------------------------------------------------------------------------
 

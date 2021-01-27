@@ -62,9 +62,7 @@ void __fastcall TForm3::FormCreate(TObject *Sender)
     n = Form3->ClientWidth;
     n -= Form3->EnterBitBttn->Width;
     EnterBitBttn->Left = n;
-
-
-
+    SpeedButton1->Visible = DebugFlag;
 
 }
 //---------------------------------------------------------------------------
@@ -77,7 +75,7 @@ void __fastcall TForm3::EditClick(TObject *Sender)
 
 extern JSON_ALARM ALARM_WC[];
 void __fastcall TForm3::FormShow(TObject *Sender)
-{
+{   
 	device = Form1->DeviceComboBox->ItemIndex;
 	String s;
 
@@ -109,14 +107,14 @@ void __fastcall TForm3::FormShow(TObject *Sender)
 
     n = Form3->ClientWidth;
     n = n/2 - AlrmComboBox->Width/2;
-    AlrmComboBox->Left = n;
+    //AlrmComboBox->Left = n;
 
     n = Form3->ClientWidth;
     n = n/2 - EnterBitBttn->Width/2;
     EnterBitBttn->Left = n;
 
 	AlrmComboBox->Items->Clear();
-    AlrmComboBox->Items->Add("Erase");
+    //AlrmComboBox->Items->Add("Erase");
 	JSON_ALARM *ja = JsonALRM[device].alrm;
     //JSON_ALARM *ja = ALARM_WC;
 	for (n = 0; n < JsonALRM[device].totAlarm; n++)
@@ -137,8 +135,17 @@ void __fastcall TForm3::NextBitBttnClick(TObject *Sender)
 {
     int n = AlrmComboBox->ItemIndex;
     n %= JsonALRM[device].totAlarm;
-    AlrmComboBox->ItemIndex = n+1;
+
+    Sender = dynamic_cast<TSpeedButton*>(SpeedButton3);     // -
+    SpeedButton2Click(Sender);
+
+    if (++n >= AlrmComboBox->Items->Count)
+        n = 0;
+
+    AlrmComboBox->ItemIndex = n;
     AlrmComboBoxChange(NULL);
+    Sender = dynamic_cast<TSpeedButton*>(SpeedButton2);     // +
+    SpeedButton2Click(Sender);
 }
 //---------------------------------------------------------------------------
 
@@ -178,21 +185,24 @@ void __fastcall TForm3::SpeedButton1Click(TObject *Sender)
 
 void __fastcall TForm3::AlrmComboBoxChange(TObject *Sender)
 {
-    int v = AlrmComboBox->ItemIndex;
-    
+    //int v = AlrmComboBox->ItemIndex;
+
+    /*
     memset(AlrmBuf.ErrBuff, 0, ERRBUFF_LEN);
     if (v == 0)
     {
         FillEdits();
         return;
     }
+
     JSON_ALARM *ja = JsonALRM[device].alrm;
-    ja += --v;
+    ja += v;
     unsigned int    bit = ja->pos;
     int byte = bit/8;
     int pos = bit%8;
     int val = 1<<pos;
     AlrmBuf.ErrBuff[byte] = (unsigned char)val;
+    */
 
     FillEdits();
 }
@@ -217,8 +227,14 @@ void __fastcall TForm3::Edit1Enter(TObject *Sender)
 
 void __fastcall TForm3::ClearBttnClick(TObject *Sender)
 {
-    AlrmComboBox->ItemIndex = 0;
-    AlrmComboBoxChange(NULL);
+    //AlrmComboBox->ItemIndex = 0;
+    //AlrmComboBoxChange(NULL);
+    memset(AlrmBuf.ErrBuff, 0, ERRBUFF_LEN);
+    //if (v == 0)
+    {
+        FillEdits();
+        return;
+    }
 }
 //---------------------------------------------------------------------------
 
@@ -271,4 +287,28 @@ void __fastcall TForm3::EnterBitBttnClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TForm3::SpeedButton2Click(TObject *Sender)
+{
+    int tag = dynamic_cast<TSpeedButton*>(Sender)->Tag;
+
+    JSON_ALARM *ja = JsonALRM[device].alrm;
+    int v = AlrmComboBox->ItemIndex;
+
+    ja += v;
+    unsigned int    bit = ja->pos;
+    int byte = bit/8;
+    int pos = bit%8;
+    unsigned char val = 1<<pos;
+    if (tag == 0)   //Ho scelto '+'
+    {
+        AlrmBuf.ErrBuff[byte] |= val;
+    }
+    else
+    {
+        AlrmBuf.ErrBuff[byte] &= val^0xFF;
+    }
+    FillEdits();
+}
+//---------------------------------------------------------------------------
 
