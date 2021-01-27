@@ -54,7 +54,7 @@ static int AlarmMsgByteDimension(DEV_TYPE val)
     switch (val)
     {
         case DEV_TYPE_WC:           return 8;      //WC
-        case DEV_TYPE_WH:           return 2;      //WH  ??? 3??
+        case DEV_TYPE_WH:           return 2;      //WH
         case DEV_TYPE_HVAC:         return 8;      //HVAC
         case DEV_TYPE_HVAC2:        return 10;     //HVAC type 2
         case DEV_TYPE_WM:           return 8;      //WM ???
@@ -66,7 +66,7 @@ static int AlarmMsgByteDimension(DEV_TYPE val)
         case DEV_TYPE_FR_RU60cm:
         case DEV_TYPE_FR_MultiD_HB20:
         case DEV_TYPE_FR_MultiD_A3FE744:
-                                    return 8;      // FR FRA3FE744 & HB20 !
+                                    return 8;
 
         default:                    break;
     }

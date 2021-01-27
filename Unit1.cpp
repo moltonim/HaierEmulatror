@@ -32,10 +32,9 @@ TForm1 *Form1;
 TSerialPort *Ser;
 TList *TL;
 TStringList *CommList;
-
 SureConnectThread *Task;
-
 TokenThread *TaskToken;
+
 int ThreadHandle = 0;
 
 #define WINDOW_LARGE        675
