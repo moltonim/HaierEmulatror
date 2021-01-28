@@ -20,12 +20,12 @@ __published:	// IDE-managed Components
     TButton *ClearBttn;
     TBitBtn *NextBitBttn;
     TComboBox *AlrmComboBox;
-    TLabel *Label3;
     TSpeedButton *SpeedButton1;
     TBitBtn *EnterBitBttn;
     TStaticText *StaticText1;
     TSpeedButton *SpeedButton2;
     TSpeedButton *SpeedButton3;
+    TCheckBox *AutoEnterCkb;
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormShow(TObject *Sender);
     void __fastcall NextBitBttnClick(TObject *Sender);

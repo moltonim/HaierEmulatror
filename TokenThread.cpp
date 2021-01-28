@@ -266,8 +266,8 @@ void __fastcall TokenThread::SendAlarmFrame(void)
             ris = -Ser->BIN_Write(Answ_73, n, LenReaden);
         if (ris)
             ris++;
-        AlrmBuf.Delay200ms = MilliSecondOfTheYear(Now()) + 200;
-        s += Form1->SendString(Answ_73, n);
+        AlrmBuf.Delay200ms = MilliSecondOfTheYear(Now()) + 210; //Add 10ms due to task tick
+        s += Form1->FormatSendString(Answ_73, n);
         Form1->RichEdit1->SelAttributes->Color = clFuchsia;
         Form1->RichEdit1->Lines->Add(s);
         if (!Form2->Visible)
@@ -291,7 +291,7 @@ void __fastcall TokenThread::SendRequestTest(void)
         if (ris)
             ris++;
         s = "Module enters configuration mode frame: ";
-        s += Form1->SendString(Answ_F2, Answ_F2_LEN);
+        s += Form1->FormatSendString(Answ_F2, Answ_F2_LEN);
 
         Form1->RichEdit1->SelAttributes->Color = clFuchsia;
         Form1->RichEdit1->Lines->Add(s);
@@ -324,7 +324,7 @@ void __fastcall TokenThread::MessageReceived(void)
         return;
     }
 
-    s = Form1->SendString(comBuf.msg, comBuf.rcv_size);
+    s = Form1->FormatSendString(comBuf.msg, comBuf.rcv_size);
     /*n = 43 - s.Length();
     if (n < 0)
         n = 0;
@@ -370,7 +370,7 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 ris = -Ser->BIN_Write(Answ_62, Answ_62_LEN, LenReaden);
             if (ris)
                 ris++;
-            s += Form1->SendString(Answ_62, Answ_62_LEN);
+            s += Form1->FormatSendString(Answ_62, Answ_62_LEN);
         break;
 
         case 0x70:
@@ -380,7 +380,7 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 ris = -Ser->BIN_Write(answ71, Answ_71_LEN, LenReaden);
             if (ris)
                 ris++;
-            s += Form1->SendString(answ71, Answ_71_LEN);
+            s += Form1->FormatSendString(answ71, Answ_71_LEN);
         break;
 
         case 0x01:      //Query attribute status
@@ -408,7 +408,7 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 ris = -Ser->BIN_Write(Answ_014D01, n, LenReaden);
             if (ris)
                 ris++;
-            s += Form1->SendString(Answ_014D01, n);
+            s += Form1->FormatSendString(Answ_014D01, n);
         break;
 
         case 0x06:      //!SELF! attribute status (every 6 secs)
@@ -422,13 +422,13 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 ris = -Ser->BIN_Write(Answ_014D01, n, LenReaden);
             if (ris)
                 ris++;
-            s += Form1->SendString(Answ_014D01, n);
+            s += Form1->FormatSendString(Answ_014D01, n);
         break;
 
         case 0x05:
-            Form1->RichEdit1->SelAttributes->Color = clWhite;
+            Form1->RichEdit1->SelAttributes->Color = clYellow;
             s.sprintf("[05] Acknowledge received!");
-            //s += Form1->SendString(Answ_73, Answ_73_LEN);
+            //s += Form1->FormatSendString(Answ_73, Answ_73_LEN);
             if (AlrmBuf.msg_sent == 1)
             {
                 AlrmBuf.msg_sent = 0;
@@ -440,16 +440,16 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
         break;
 
         case 0x09:      //Module stop device alarm info
-            Form1->RichEdit1->SelAttributes->Color = clWhite;
+            Form1->RichEdit1->SelAttributes->Color = clYellow;
             s.sprintf("[09] Stop send alarm info");
-            //s += Form1->SendString(Answ_73, Answ_73_LEN);
+            //s += Form1->FormatSendString(Answ_73, Answ_73_LEN);
             if (Form1->SendAnswerPopMnu->Checked)
                 ris = -Ser->BIN_Write(ACK_5, ACK_5_LEN, LenReaden);
             if (ris)
                 ris++;
 
             s += "\n";
-            s += Form1->SendString(ACK_5, ACK_5_LEN);
+            s += Form1->FormatSendString(ACK_5, ACK_5_LEN);
             Form1->StatusBar1->Panels->Items[1]->Text = s;
             AlrmBuf.F09_received = 1;
             AlrmBuf.err_present = 0;
@@ -472,11 +472,11 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 ris = -Ser->BIN_Write(Answ_73, n, LenReaden);
             if (ris)
                 ris++;
-            s += Form1->SendString(Answ_73, n);
+            s += Form1->FormatSendString(Answ_73, n);
         break;
 
         case 0xF7:      //ACKnowledge!
-            Form1->RichEdit1->SelAttributes->Color = clWhite;
+            Form1->RichEdit1->SelAttributes->Color = clYellow;
             s.sprintf("[F7] Actively report network status = ");
                 //,/* ACK_5_LEN-3 */ );
             if (Form1->SendAnswerPopMnu->Checked)
@@ -487,14 +487,14 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
             r = GetStatusStr(comBuf.msg);
             Form1->StatusBar1->Panels->Items[1]->Text = "Status: "+r;
             s += r+"\n";
-            s += Form1->SendString(ACK_5, ACK_5_LEN);
+            s += Form1->FormatSendString(ACK_5, ACK_5_LEN);
 
         break;
 
         case 0xF3:
             Form1->RichEdit1->SelAttributes->Color = clFuchsia;
             s = "[F3] Module configuration mode frame: OK";
-            //s += Form1->SendString(Answ_F2, Answ_F2_LEN);
+            //s += Form1->FormatSendString(Answ_F2, Answ_F2_LEN);
             Form1->F2GotAnswerCKB->Checked = true;
             Form1->F2_SentCKB->Checked = false;
             UpdateLog(NULL, 'r', "==> "+s, 0);
@@ -511,13 +511,13 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 ris = -Ser->BIN_Write(Answ_FC, Answ_FC_LEN, LenReaden);
             if (ris)
                 ris++;
-            s += Form1->SendString(Answ_FC, Answ_FC_LEN);
+            s += Form1->FormatSendString(Answ_FC, Answ_FC_LEN);
         break;
 
         default:
             Form1->RichEdit1->SelAttributes->Color = clRed;
             s = "Unhandle command :<";
-            s += Form1->SendString(comBuf.msg, comBuf.rcv_size);
+            s += Form1->FormatSendString(comBuf.msg, comBuf.rcv_size);
             s += ">";
             fail = 1;
         break;
@@ -530,7 +530,7 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
 
     UpdateLog(NULL, 'r', "W => "+s, 0);
     if (Form1->RichEdit1->SelAttributes->Color == clBlack)
-        Form1->RichEdit1->SelAttributes->Color  = clWhite;
+        Form1->RichEdit1->SelAttributes->Color  = clYellow;
     Form1->RichEdit1->Lines->Add(s);
 }
 

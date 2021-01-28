@@ -57,7 +57,9 @@ void __fastcall TForm3::FormCreate(TObject *Sender)
     n = Form3->ClientWidth;
     n -= NextBitBttn->Width;
     n -= ClearBttn->Left;
-    NextBitBttn->Left = n;
+    NextBitBttn->Left  = n;
+    AutoEnterCkb->Left = n;
+
 
     n = Form3->ClientWidth;
     n -= Form3->EnterBitBttn->Width;
@@ -146,6 +148,9 @@ void __fastcall TForm3::NextBitBttnClick(TObject *Sender)
     AlrmComboBoxChange(NULL);
     Sender = dynamic_cast<TSpeedButton*>(SpeedButton2);     // +
     SpeedButton2Click(Sender);
+
+    if (AutoEnterCkb->Checked)
+        EnterBitBttnClick(NULL);
 }
 //---------------------------------------------------------------------------
 

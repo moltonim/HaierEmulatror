@@ -17,8 +17,7 @@ public:
     void __fastcall SendRequestTest(void);
     void __fastcall SendStatus(void);
     void __fastcall SendComAnsw(int cmd);
-    String __fastcall SendString(unsigned char* buf, int len);
-
+    
     void __fastcall HeartBeat(void);
     void __fastcall CommReceiving(void);
     void __fastcall SendAlarmFrame(void);

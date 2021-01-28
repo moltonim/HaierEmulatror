@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 264
   Top = 103
-  Width = 698
+  Width = 700
   Height = 577
-  Caption = 'Emulator machine 0.73'
+  Caption = 'Emulator machine 0.74'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -86,7 +86,7 @@ object Form1: TForm1
   object RichEdit1: TRichEdit
     Left = 2
     Top = 39
-    Width = 556
+    Width = 558
     Height = 477
     Hint = 'Receive window'
     Color = clBlack
@@ -111,19 +111,11 @@ object Form1: TForm1
     Visible = False
   end
   object Panel2: TPanel
-    Left = 561
-    Top = 40
+    Left = 563
+    Top = 41
     Width = 116
     Height = 473
     TabOrder = 4
-    object SpeedButton1: TSpeedButton
-      Left = 85
-      Top = 222
-      Width = 23
-      Height = 22
-      Caption = '?'
-      OnClick = SpeedButton1Click
-    end
     object Panel1: TPanel
       Left = 13
       Top = 4
@@ -186,7 +178,7 @@ object Form1: TForm1
     end
     object CustomMsgBttn: TButton
       Left = 15
-      Top = 156
+      Top = 184
       Width = 86
       Height = 25
       Caption = 'Custom MSG'
@@ -194,16 +186,17 @@ object Form1: TForm1
       OnClick = CustomMsgBttnClick
     end
     object WriteLogPopMnu: TCheckBox
-      Left = 3
-      Top = 224
+      Left = 15
+      Top = 261
       Width = 71
       Height = 17
       Caption = 'Write Log'
       TabOrder = 3
+      OnClick = WriteLogPopMnuClick
     end
     object SendAnswerPopMnu: TCheckBox
-      Left = 3
-      Top = 249
+      Left = 15
+      Top = 286
       Width = 85
       Height = 17
       Caption = 'Send Answer'
@@ -213,7 +206,7 @@ object Form1: TForm1
     end
     object Edit1: TEdit
       Left = 13
-      Top = 273
+      Top = 315
       Width = 89
       Height = 21
       TabOrder = 5
@@ -222,9 +215,9 @@ object Form1: TForm1
     end
     object Panel3: TPanel
       Left = 13
-      Top = 328
+      Top = 342
       Width = 90
-      Height = 105
+      Height = 83
       TabOrder = 6
       object Label1: TLabel
         Left = 65
@@ -262,18 +255,28 @@ object Form1: TForm1
     end
     object AlarmBttn: TButton
       Left = 15
-      Top = 185
+      Top = 213
       Width = 86
       Height = 25
       Caption = 'Alarms ...'
       TabOrder = 8
       OnClick = AlarmBttnClick
     end
+    object BitBtn1: TBitBtn
+      Left = 15
+      Top = 152
+      Width = 86
+      Height = 25
+      Caption = 'Type ID    '
+      TabOrder = 9
+      OnClick = BitBtn1Click
+      Kind = bkHelp
+    end
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 519
-    Width = 682
+    Width = 684
     Height = 19
     Panels = <
       item

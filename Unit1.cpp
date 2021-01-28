@@ -275,7 +275,7 @@ void __fastcall TForm1::Clean1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-String __fastcall TForm1::SendString(unsigned char* buf, int len)
+String __fastcall TForm1::FormatSendString(unsigned char* buf, int len, bool space)
 {
     String s = "";
     String r;
@@ -283,9 +283,12 @@ String __fastcall TForm1::SendString(unsigned char* buf, int len)
     for (int n = 0; n < len; n++)
     {
         r = r.IntToHex(buf[n], 2);
-        s += r + " ";
+        s += r;
+        if (space)
+            s += " ";
     }
-    s.SetLength(s.Length()-1);
+    if (space)
+        s.SetLength(s.Length()-1);  //remove last space added in the for loop
     return s;
 }
 
@@ -424,7 +427,7 @@ void __fastcall TForm1::SendCustomStr(int len)
     {
         Form1->RichEdit1->SelAttributes->Color = clYellow;
         s.sprintf("Custom message sent [%d]: ", len);
-        s += Form1->SendString(buf, len);
+        s += Form1->FormatSendString(buf, len);
     }
     else
     {
@@ -577,22 +580,6 @@ void __fastcall TForm1::AlarmBttnClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::SpeedButton1Click(TObject *Sender)
-{
-    //Scrivo il device ID selezionato sullo schermo.
-    unsigned char* p = answ71;
-    p += 10;
-    String s = "Type ID selected:";
-    RichEdit1->SelAttributes->Color = clLime;
-    RichEdit1->Lines->Add(s);
-    s = SendString(p, 32);
-    RichEdit1->SelAttributes->Color = clLime;
-    RichEdit1->Lines->Add(s);                    
-//    RichEdit1->SetFocus();
-    //RichEdit1->Lines->Add();
-    //Lo copio nella clipboard ?
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::Frame09force1Click(TObject *Sender)
 {
@@ -623,6 +610,40 @@ void __fastcall TForm1::FormActivate(TObject *Sender)
 {
     if (Form3->Visible)
         Form3->BringToFront();
+}
+//---------------------------------------------------------------------------
+//int answ = MessageDlg("Do you really want to ERASE flash?", mtConfirmation, TMsgDlgButtons() << mbOK << mbCancel/* <<mbIgnore*/, 0);
+void __fastcall TForm1::WriteLogPopMnuClick(TObject *Sender)
+{
+    static bool b = false;
+
+    if (!b)
+    {
+        b = true;
+        MessageDlg("You can also print in RTF format by\nright click on black message box", mtConfirmation,
+            TMsgDlgButtons() << mbOK , 0);
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::BitBtn1Click(TObject *Sender)
+{
+    //Scrivo il device ID selezionato sullo schermo.
+    unsigned char* p = answ71;
+    p += 10;
+    String s = "Type ID selected:";
+    RichEdit1->SelAttributes->Color = clLime;
+    RichEdit1->Lines->Add(s);
+    s = FormatSendString(p, 32);
+    RichEdit1->SelAttributes->Color = clLime;
+    RichEdit1->Lines->Add(s);
+    RichEdit1->SelAttributes->Color = clWhite;
+    s = FormatSendString(p, 32, false);
+    RichEdit1->Lines->Add(s);
+    RichEdit1->SelAttributes->Color = clLime;   //?    
+//    RichEdit1->SetFocus();
+    //RichEdit1->Lines->Add();
+    //Lo copio nella clipboard ?    
 }
 //---------------------------------------------------------------------------
 

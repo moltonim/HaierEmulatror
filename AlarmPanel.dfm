@@ -39,14 +39,6 @@ object Form3: TForm3
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Label3: TLabel
-    Left = 8
-    Top = 88
-    Width = 32
-    Height = 13
-    Caption = 'Label3'
-    Visible = False
-  end
   object SpeedButton1: TSpeedButton
     Left = 0
     Top = 192
@@ -95,7 +87,7 @@ object Form3: TForm3
   end
   object ClearBttn: TButton
     Left = 16
-    Top = 115
+    Top = 99
     Width = 75
     Height = 25
     Caption = 'Clear'
@@ -104,7 +96,7 @@ object Form3: TForm3
   end
   object NextBitBttn: TBitBtn
     Left = 296
-    Top = 115
+    Top = 99
     Width = 75
     Height = 25
     Caption = 'Next'
@@ -123,7 +115,7 @@ object Form3: TForm3
   end
   object EnterBitBttn: TBitBtn
     Left = 152
-    Top = 115
+    Top = 99
     Width = 65
     Height = 25
     Caption = 'Enter'
@@ -139,5 +131,13 @@ object Form3: TForm3
     Caption = '0'
     TabOrder = 5
     Visible = False
+  end
+  object AutoEnterCkb: TCheckBox
+    Left = 288
+    Top = 128
+    Width = 65
+    Height = 17
+    Caption = 'AutoEnter'
+    TabOrder = 6
   end
 end

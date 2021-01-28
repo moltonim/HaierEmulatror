@@ -50,10 +50,10 @@ __published:	// IDE-managed Components
     TButton *ExitBttn;
     TButton *AlarmBttn;
     TLabel *Label2;
-    TSpeedButton *SpeedButton1;
     TMenuItem *N1;
     TMenuItem *Frame09force1;
     TMenuItem *PrintRTF1;
+    TBitBtn *BitBtn1;
     void __fastcall SWDateTimePicker1Change(TObject *Sender);
     void __fastcall SerialSelectCBChange(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -75,10 +75,11 @@ __published:	// IDE-managed Components
     void __fastcall ExitBttnClick(TObject *Sender);
     void __fastcall SpeedButton3Click(TObject *Sender);
     void __fastcall AlarmBttnClick(TObject *Sender);
-    void __fastcall SpeedButton1Click(TObject *Sender);
     void __fastcall Frame09force1Click(TObject *Sender);
     void __fastcall PrintRTF1Click(TObject *Sender);
     void __fastcall FormActivate(TObject *Sender);
+    void __fastcall WriteLogPopMnuClick(TObject *Sender);
+    void __fastcall BitBtn1Click(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;
@@ -87,7 +88,7 @@ public:		// User declarations
 
     void __fastcall AnalyzeRcv(void);
     void __fastcall MessageReceived(void);
-    String __fastcall SendString(unsigned char* buf, int len);
+    String __fastcall FormatSendString(unsigned char* buf, int len, bool space=true);
     void __fastcall SendCustomStr(int len);
     void __fastcall DeviceListInit();
 
