@@ -469,7 +469,7 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 /*
                 //stop sendig frame 4 for 5 seconds!
                 AlrmBuf.ack_received = 1;
-                AlrmBuf.Delay5sec = MilliSecondOfTheYear(Now()) + 5000;
+                AlrmBuf.Delay5sec = MilliSecondOfTheYear(Now()) + 5000;   
                 */
             }
         break;
