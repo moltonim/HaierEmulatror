@@ -180,6 +180,16 @@ void __fastcall TokenThread::SendStatus(void)
         Application->ProcessMessages();
     }
 
+    if (Connected == true && Form1->Cmd7CReq == true)
+    {
+        Form1->Cmd7CReq = false;
+        // forzare il comando 7C!!!
+        SendComAnsw(0x7C);
+        Form1->RichEdit1->SelAttributes->Color = clRed;
+        Form1->RichEdit1->Lines->Add("Frame 7C 'Device active reporting interval' forced");
+        Application->ProcessMessages();
+    }
+
     if (!Connected &&
          (Form1->Cmd6Req == true || Form1->Cmd09Req == true)
         )
@@ -444,12 +454,12 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
             s.sprintf("[09] Stop send alarm info");
             //s += Form1->FormatSendString(Answ_73, Answ_73_LEN);
             if (Form1->SendAnswerPopMnu->Checked)
-                ris = -Ser->BIN_Write(ACK_5, ACK_5_LEN, LenReaden);
+                ris = -Ser->BIN_Write(STOP_ALARM_9, STOP_ALARM_9_LEN, LenReaden);
             if (ris)
                 ris++;
 
             s += "\n";
-            s += Form1->FormatSendString(ACK_5, ACK_5_LEN);
+            s += Form1->FormatSendString(STOP_ALARM_9, STOP_ALARM_9_LEN);
             Form1->StatusBar1->Panels->Items[1]->Text = s;
             AlrmBuf.F09_received = 1;
             AlrmBuf.err_present = 0;
@@ -474,6 +484,18 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
                 ris++;
             s += Form1->FormatSendString(Answ_73, n);
         break;
+
+        case 0x7C:
+            Form1->RichEdit1->SelAttributes->Color = clAqua;
+            s.sprintf("[7C]  = Set reporting interval\n");
+            if (Form1->SendAnswerPopMnu->Checked)
+                ris = -Ser->BIN_Write(STATUS_INTERVAL_7C, STATUS_INTERVAL_7C_LEN, LenReaden);
+            if (ris)
+                ris++;
+            s += Form1->FormatSendString(STATUS_INTERVAL_7C, STATUS_INTERVAL_7C_LEN);
+        break;
+
+        //case 0x7D !!
 
         case 0xF7:      //ACKnowledge!
             Form1->RichEdit1->SelAttributes->Color = clYellow;

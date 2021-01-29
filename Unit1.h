@@ -54,6 +54,7 @@ __published:	// IDE-managed Components
     TMenuItem *Frame09force1;
     TMenuItem *PrintRTF1;
     TBitBtn *BitBtn1;
+    TMenuItem *N7CSetreportinterval1;
     void __fastcall SWDateTimePicker1Change(TObject *Sender);
     void __fastcall SerialSelectCBChange(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -80,6 +81,7 @@ __published:	// IDE-managed Components
     void __fastcall FormActivate(TObject *Sender);
     void __fastcall WriteLogPopMnuClick(TObject *Sender);
     void __fastcall BitBtn1Click(TObject *Sender);
+    void __fastcall N7CSetreportinterval1Click(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;
@@ -97,6 +99,7 @@ public:		// User declarations
     bool F2Req;
     bool Cmd6Req;
     bool Cmd09Req;
+    bool Cmd7CReq;
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;

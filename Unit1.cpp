@@ -75,6 +75,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
     F2Req = false;
     Cmd6Req = false;
     Cmd09Req = false;
+    Cmd7CReq = false;
 }
 //---------------------------------------------------------------------------
 
@@ -644,6 +645,15 @@ void __fastcall TForm1::BitBtn1Click(TObject *Sender)
 //    RichEdit1->SetFocus();
     //RichEdit1->Lines->Add();
     //Lo copio nella clipboard ?    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N7CSetreportinterval1Click(TObject *Sender)
+{
+    //frame 7C:   Device active reporting interval
+
+    //if (!DebugFlag)         return;
+    Cmd7CReq = true;
 }
 //---------------------------------------------------------------------------
 

@@ -403,9 +403,13 @@ object Form1: TForm1
     Left = 120
     Top = 192
     object Frame09force1: TMenuItem
-      Caption = '09 Alarm force'
+      Caption = '09 Stop Alarm frame'
       Enabled = False
       OnClick = Frame09force1Click
+    end
+    object N7CSetreportinterval1: TMenuItem
+      Caption = '7C Set report interval'
+      OnClick = N7CSetreportinterval1Click
     end
     object N1: TMenuItem
       Caption = '-'

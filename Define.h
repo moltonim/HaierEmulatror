@@ -125,6 +125,8 @@ extern unsigned char Answ_71_HO_ken1[];
 extern unsigned char Answ_71_HO_1[];
 
 extern unsigned char ACK_5[];
+extern unsigned char STOP_ALARM_9[];
+extern unsigned char STATUS_INTERVAL_7C[];
 
 #define Answ_73_LEN     (14+1)
 extern unsigned char Answ_73[];
@@ -135,7 +137,10 @@ extern unsigned char Answ_014D01[];
 #define Answ_FC_LEN     (17+1)
 extern unsigned char Answ_FC[];
 
-#define ACK_5_LEN       (10+1)
+#define ACK_5_LEN           (10+1)
+#define STOP_ALARM_9_LEN    (10)
+#define STATUS_INTERVAL_7C_LEN  (13)
+
 
 
 #endif  //__DEFINE_H
