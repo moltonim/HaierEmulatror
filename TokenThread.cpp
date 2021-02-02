@@ -18,7 +18,7 @@ extern TSerialPort *Ser;
 extern SERBUF_STRUCT comBuf;
 extern unsigned long LenReaden;
 extern bool DebugFlag;
-//
+
 int res;
 
 //---------------------------------------------------------------------------
