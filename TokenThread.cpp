@@ -451,15 +451,15 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
 
         case 0x09:      //Module stop device alarm info
             Form1->RichEdit1->SelAttributes->Color = clYellow;
-            s.sprintf("[09] Stop send alarm info");
+            s.sprintf("[09] Stop send alarm info (forced, send ACK)");
             //s += Form1->FormatSendString(Answ_73, Answ_73_LEN);
             if (Form1->SendAnswerPopMnu->Checked)
-                ris = -Ser->BIN_Write(STOP_ALARM_9, STOP_ALARM_9_LEN, LenReaden);
+                ris = -Ser->BIN_Write(ACK_5, ACK_5_LEN, LenReaden);
             if (ris)
                 ris++;
 
             s += "\n";
-            s += Form1->FormatSendString(STOP_ALARM_9, STOP_ALARM_9_LEN);
+            s += Form1->FormatSendString(ACK_5, ACK_5_LEN);
             Form1->StatusBar1->Panels->Items[1]->Text = s;
             AlrmBuf.F09_received = 1;
             AlrmBuf.err_present = 0;
