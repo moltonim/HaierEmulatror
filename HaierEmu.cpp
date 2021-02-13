@@ -4,8 +4,8 @@
 #pragma hdrstop
 //---------------------------------------------------------------------------
 USEFORM("Unit1.cpp", Form1);
-USEFORM("SendCustomMsgForm.cpp", Form2);
 USEFORM("AlarmPanel.cpp", Form3);
+USEFORM("SendCustomMsgForm.cpp", Form2);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -26,9 +26,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
          Application->Initialize();
          Application->CreateForm(__classid(TForm1), &Form1);
          Application->CreateForm(__classid(TForm2), &Form2);
-         //Application->CreateForm(__classid(TForm2), &Form2);
          Application->CreateForm(__classid(TForm3), &Form3);
-         //Application->CreateForm(__classid(TForm3), &Form3);
          Application->Run();
     }
     catch (Exception &exception)
