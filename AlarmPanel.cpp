@@ -12,6 +12,7 @@
 TForm3 *Form3;
 
 extern bool DebugFlag;
+bool alrm_changed;
 
 //---------------------------------------------------------------------------
 __fastcall TForm3::TForm3(TComponent* Owner)
@@ -66,6 +67,7 @@ void __fastcall TForm3::FormCreate(TObject *Sender)
     EnterBitBttn->Left = n;
     SpeedButton1->Visible = DebugFlag;
 
+    alrm_changed = false;
 }
 //---------------------------------------------------------------------------
 
@@ -276,10 +278,11 @@ void __fastcall TForm3::EnterBitBttnClick(TObject *Sender)
     if ( AlrmBuf.msg_toSend == 0 && AlrmBuf.err_present)
     {
         n = memcmp(ErrBuffCpy, AlrmBuf.ErrBuff, ERRBUFF_LEN);
-        if (n != 0)     //qualcosa è cambiato
+        if (n != 0 || alrm_changed)     //qualcosa è cambiato
         {
             AlrmBuf.msg_toSend = 1;
             AlrmBuf.F09_received = 0;
+            alrm_changed  = false;
         }
     }
 
@@ -289,6 +292,7 @@ void __fastcall TForm3::EnterBitBttnClick(TObject *Sender)
         AlrmBuf.msg_toSend = 1;
         AlrmBuf.F09_received = 0;
     }
+    max++;      //debug only
 }
 //---------------------------------------------------------------------------
 
@@ -314,6 +318,7 @@ void __fastcall TForm3::SpeedButton2Click(TObject *Sender)
         AlrmBuf.ErrBuff[byte] &= val^0xFF;
     }
     FillEdits();
+    alrm_changed = true;
 }
 //---------------------------------------------------------------------------
 

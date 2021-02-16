@@ -97,6 +97,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     PopupMenu = PopupMenu1
+    ReadOnly = True
     ScrollBars = ssVertical
     TabOrder = 3
     OnChange = RichEdit1Change
@@ -409,6 +410,8 @@ object Form1: TForm1
     end
     object N7CSetreportinterval1: TMenuItem
       Caption = '7C Set report interval'
+      Enabled = False
+      Visible = False
       OnClick = N7CSetreportinterval1Click
     end
     object N1: TMenuItem
@@ -421,6 +424,13 @@ object Form1: TForm1
     object Clean1: TMenuItem
       Caption = 'Clean'
       OnClick = Clean1Click
+    end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object Predictive1: TMenuItem
+      Caption = 'Predictive'
+      OnClick = Predictive1Click
     end
   end
 end

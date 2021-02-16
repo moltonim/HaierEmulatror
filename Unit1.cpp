@@ -657,3 +657,10 @@ void __fastcall TForm1::N7CSetreportinterval1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::Predictive1Click(TObject *Sender)
+{
+    //???
+    Predictive1->Checked = !Predictive1->Checked; 
+}
+//---------------------------------------------------------------------------
+

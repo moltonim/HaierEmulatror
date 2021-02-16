@@ -312,6 +312,7 @@ void __fastcall TokenThread::SendRequestTest(void)
 }
 
 
+unsigned char   MLT[100];
 void __fastcall TokenThread::MessageReceived(void)
 {
     int n;
@@ -319,6 +320,7 @@ void __fastcall TokenThread::MessageReceived(void)
 
     s.sprintf("%d", comBuf.rcv_pointer);
     Form1->Edit1->Text = s;
+    memcpy(MLT, comBuf.buf, comBuf.rcv_pointer);
 
     if (comBuf.rcv_size <= 2)
         return;
