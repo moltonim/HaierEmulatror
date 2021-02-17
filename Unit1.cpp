@@ -387,13 +387,13 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
         break;
 
         case DEV_TYPE_FR_MultiD_A3FE744:
-            answ71 = Answ_71_HO_1;
+            answ71 = Answ_71_FRA3FE744;
             Answ71S = " FR MD 982K A3FE";
             Form1->StatusBar1->Panels->Items[2]->Text = "Multidoor 982k A3FE744";
         break;
 
         case DEV_TYPE_FR_MultiD_HB20:
-            answ71 = Answ_71_HO_1;
+            answ71 = Answ_71_HB20;
             Answ71S = " FR MD 982J HB20";
             Form1->StatusBar1->Panels->Items[2]->Text = "Multidoor 982J HB20";
         break;

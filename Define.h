@@ -118,12 +118,21 @@ extern String Answ71S;
 extern unsigned char Answ_71_WC[];
 extern unsigned char Answ_71_WH[];
 extern unsigned char Answ_71_WM[];
+
+//HVAC
 extern unsigned char Answ_71_HVAC[];
 extern unsigned char Answ_71_HVAC2[];
+
+//Fridges:
 extern unsigned char Answ_71_FR01[];
+extern unsigned char Answ_71_FRA3FE744[];    //k
+extern unsigned char Answ_71_HB20[];         //j
+
+//Hood, cappa
 extern unsigned char Answ_71_HO_ken1[];
 extern unsigned char Answ_71_HO_1[];
 
+/////////////////////////////////////////////
 extern unsigned char ACK_5[];
 extern unsigned char STOP_ALARM_9[];
 extern unsigned char STATUS_INTERVAL_7C[];

@@ -28,6 +28,7 @@ unsigned char Answ_71_WM[50];
 
 unsigned char Answ_71_FR01[50];
 unsigned char Answ_71_FRA3FE744[50];
+unsigned char Answ_71_HB20[50];
 
 unsigned char Answ_71_HO_ken1[50];
 unsigned char Answ_71_HO_1[50];
@@ -189,6 +190,22 @@ void StringInit(void)
     memcpy(p, TYPEID_FRA3FE744, 32);
     p += 32;
     *p++ = CalcCKS(Answ_71_FRA3FE744);
+    /////////
+
+    p = Answ_71_HB20;
+    *p++ = 0xFF;
+    *p++ = 0xFF;
+    *p++ = 0x28;    // FRAME LENGTH
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;   //6th
+    *p++ = 0x71;
+    memcpy(p, TYPEID_HB20, 32);
+    p += 32;
+    *p++ = CalcCKS(Answ_71_HB20);
     /////////
 
     p = Answ_71_WM;
