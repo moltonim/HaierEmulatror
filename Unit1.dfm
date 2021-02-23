@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 103
   Width = 700
   Height = 577
-  Caption = 'Emulator machine 0.74'
+  Caption = 'Emulator machine 0.76'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

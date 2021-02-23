@@ -176,7 +176,7 @@ void __fastcall TokenThread::SendStatus(void)
         // forzare il comando 09!!!
         SendComAnsw(0x09);
         Form1->RichEdit1->SelAttributes->Color = clRed;
-        Form1->RichEdit1->Lines->Add("Frame 09 'Module stop device alarm info' forced");
+        Form1->RichEdit1->Lines->Add(">> Frame 09 'Module stop device alarm info' forced");
         Application->ProcessMessages();
     }
 
