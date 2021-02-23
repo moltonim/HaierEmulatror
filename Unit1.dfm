@@ -287,7 +287,7 @@ object Form1: TForm1
         Width = 250
       end
       item
-        Width = 200
+        Width = 180
       end
       item
         Width = 50

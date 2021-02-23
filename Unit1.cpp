@@ -361,7 +361,7 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
         case DEV_TYPE_WM:
             answ71 = Answ_71_WM;
             Answ71S = " -WM-";
-            Form1->StatusBar1->Panels->Items[2]->Text = "Drum Washing Machine";
+            Form1->StatusBar1->Panels->Items[2]->Text = "SDrum Washing Machine";
         break;
 
         case DEV_TYPE_FR_RU60cm:

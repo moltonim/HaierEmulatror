@@ -14,7 +14,7 @@
 ALARM_MESSAGE AlrmBuf;
 
 //#define Answ_014D01_LEN     (42+1)
-unsigned char Answ_014D01[100];
+unsigned char Answ_014D01[200];
 
 //#define Answ_62_LEN     (46+1)
 unsigned char Answ_62[50];
@@ -58,7 +58,7 @@ static int AlarmMsgByteDimension(DEV_TYPE val)
         case DEV_TYPE_WH:           return 2;      //WH
         case DEV_TYPE_HVAC:         return 8;      //HVAC
         case DEV_TYPE_HVAC2:        return 10;     //HVAC type 2
-        case DEV_TYPE_WM:           return 8;      //WM ???
+        case DEV_TYPE_WM:           return 10;     //WM ??? - tipo 2!
 
         case DEV_TYPE_HO_Arcair:    // Hood Arcair
         case DEV_TYPE_HO_Haier:     // Hood Haier
@@ -440,7 +440,7 @@ static int StateMsgdim(DEV_TYPE val)
         case DEV_TYPE_WH:           return 50;      //WH
         case DEV_TYPE_HVAC:         return 32;      //HVAC
         case DEV_TYPE_HVAC2:        return 40;      //HVAC2
-        case DEV_TYPE_WM:           return 23*2;    //WM ???
+        case DEV_TYPE_WM:           return 56*2;    //WM ???
         case DEV_TYPE_FR_RU60cm:    return 28;      //FR01 RU 60cm ?
         case DEV_TYPE_HO_Arcair:    return 12;      // Hood Arcair
         case DEV_TYPE_HO_Haier:     return 15;      // Hood Haier

@@ -97,6 +97,10 @@ JSON_ALARM ALARM_WM[] = {
 	{ "proxSensorErr",	 			60 },
 	{ "wifiCfgFailed", 				61 },
 	{ "wallLimitSwitchAlarm", 		62 },
+    { "eccentricityAlarm", 	        63 },
+	{ "detergentInValveErr", 	    64 },
+	{ "softenerInValveErr", 	    65 },
+	{ "innerDrainErr", 	            66 },
     { "", -1}
 };
 
@@ -329,7 +333,7 @@ ALARM_ARRAY JsonALRM[] = {
     { ALARM_WH          , 0, 0, "Water Heater" },
     { ALARM_HVAC        , 0, 0, "Air conditioning HVAC" },
     { ALARM_HVAC2       , 0, 0, "Air conditioning HVAC II" },
-    { ALARM_WM			, 0, 0, "Drum washing machine" },
+    { ALARM_WM			, 0, 0, "SDrum washing machine" },
     { ALARM_FR_RU60cm	, 0, 0, "Fridge RU 60cm" },
     { ALARM_HO_Arcair   , 0, 0, "Hood Arcair" },
     { ALARM_HO_Haier    , 0, 0, "Hood Haier" },
@@ -416,11 +420,20 @@ unsigned char SoftApDeviceName_configMode_HVAC[8] = {
     0xee, 0xc4, 0x1b, 0x63, 0x51, 0xc1, 0x63, 0x40,
     };
 
+/*  //old, obsolete
  unsigned char TYPEID_WM[32] = {
     0x20, 0x1c, 0x51, 0x89, 0x0c, 0x31, 0xc3, 0x08,
     0x05, 0x01, 0x00, 0x21, 0x80, 0x00, 0x67, 0x4b,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40,
+    };
+*/
+
+  unsigned char TYPEID_WM[32] = {
+    0x20, 0x1c, 0x51, 0x89, 0x0c, 0x31, 0xc3, 0x08,
+    0x05, 0x01, 0x00, 0x21, 0x80, 0x00, 0x67, 0x4b,
+    0x41, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40
     };
 
  unsigned char TYPEID_FR01[32] = {   //Fridge: RU 60cm
@@ -502,4 +515,4 @@ SERIAL_CMD serial_cmd[] = {
 };
 
 
-#endif 
+#endif
