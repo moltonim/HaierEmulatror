@@ -249,8 +249,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         //
         SpeedButton3->Visible = DebugFlag;
         Edit1->Visible        = DebugFlag;
-        AlarmBttn->Enabled    = DebugFlag;
-        Frame09force1->Enabled= DebugFlag;
+        //AlarmBttn->Enabled    = DebugFlag;
+        //Frame09force1->Enabled= DebugFlag;
     }
 
     #ifdef ARCAIR_ONLY
@@ -400,6 +400,8 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
 
     }
     // Write something?
+    memset(AlrmBuf.ErrBuff, 0, ERRBUFF_LEN);
+    Form1->StatusBar1->Panels->Items[3]->Text = "ALARM: none";
 }
 //---------------------------------------------------------------------------
 
@@ -494,8 +496,7 @@ void __fastcall TForm1::CB_ConnectClick(TObject *Sender)
         Ser->FlushBuffer(2);
         comBuf.connect = 1;
         DeviceComboBox->Enabled = false;
-        if (!DebugFlag)
-            AlarmBttn->Enabled = false;
+        //if (!DebugFlag)            AlarmBttn->Enabled = false;
         Panel1->Enabled = true;
         Sleep(50);
         TaskToken->Resume();
@@ -511,7 +512,7 @@ void __fastcall TForm1::CB_ConnectClick(TObject *Sender)
         LiveRB->Checked = false;
         DeviceComboBox->Enabled = true;
         AlarmBttn->Enabled = true;
-        StringInit();
+        //StringInit();
         Panel1->Enabled = false;
         StatusBar1->Panels->Items[1]->Text = "Status: ";
         StatusBar1->Panels->Items[0]->Text = "";

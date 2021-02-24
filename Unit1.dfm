@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 103
   Width = 700
   Height = 577
-  Caption = 'Emulator machine 0.76'
+  Caption = 'Emulator machine 0.80'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -60,6 +60,7 @@ object Form1: TForm1
     Width = 32
     Height = 13
     Caption = 'Label2'
+    Visible = False
   end
   object SerialSelectCB: TComboBox
     Left = 2
@@ -287,10 +288,10 @@ object Form1: TForm1
         Width = 250
       end
       item
-        Width = 180
+        Width = 160
       end
       item
-        Width = 50
+        Width = 100
       end>
     SimplePanel = False
     OnDblClick = StatusBar1DblClick

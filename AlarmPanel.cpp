@@ -131,6 +131,7 @@ void __fastcall TForm3::FormShow(TObject *Sender)
 
     //if (bit > 32) s = s+".00000000";
     //Label3->Caption = s;
+    FillEdits();
 
 }
 //---------------------------------------------------------------------------
