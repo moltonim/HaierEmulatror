@@ -331,47 +331,41 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
         return;
     }
 
+    answ71 = TypeID_init((DEV_TYPE)n);
     switch (n)
     {
         default:
         case DEV_TYPE_WC:
-            answ71 = Answ_71_WC;
             Answ71S = " -WC-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Wine Cooler";
         break;
 
         case DEV_TYPE_WH:
-            answ71 = Answ_71_WH;
             Answ71S = " -WH-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Water Heater";
         break;
 
         case DEV_TYPE_HVAC:
-            answ71 = Answ_71_HVAC;
             Answ71S = " -HVAC-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Air Conditioning HVAC";
         break;
 
         case DEV_TYPE_HVAC2:
-            answ71 = Answ_71_HVAC2;
             Answ71S = " -HVAC 2-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Air Conditioning HVAC II";
         break;
 
         case DEV_TYPE_WM:
-            answ71 = Answ_71_WM;
             Answ71S = " -WM-";
             Form1->StatusBar1->Panels->Items[2]->Text = "SDrum Washing Machine";
         break;
 
         case DEV_TYPE_FR_RU60cm:
-            answ71 = Answ_71_FR01;
             Answ71S = " -FR01-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Fridge RU 60cm";
         break;
 
         case DEV_TYPE_HO_Arcair:
-            answ71 = Answ_71_HO_ken1;
             Answ71S = " -HO-Ark-";
             #ifdef ARCAIR_ONLY
                 Form1->StatusBar1->Panels->Items[2]->Text = ">> ARCAIR ONLY!";
@@ -381,19 +375,16 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
         break;
 
         case DEV_TYPE_HO_Haier:
-            answ71 = Answ_71_HO_1;
             Answ71S = " -HO-01-";
             Form1->StatusBar1->Panels->Items[2]->Text = "Hood Haier";
         break;
 
         case DEV_TYPE_FR_MultiD_A3FE744:
-            answ71 = Answ_71_FRA3FE744;
             Answ71S = " FR MD 982K A3FE";
             Form1->StatusBar1->Panels->Items[2]->Text = "Multidoor 982k A3FE744";
         break;
 
         case DEV_TYPE_FR_MultiD_HB20:
-            answ71 = Answ_71_HB20;
             Answ71S = " FR MD 982J HB20";
             Form1->StatusBar1->Panels->Items[2]->Text = "Multidoor 982J HB20";
         break;
@@ -628,7 +619,7 @@ void __fastcall TForm1::WriteLogPopMnuClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::BitBtn1Click(TObject *Sender)
+void __fastcall TForm1::TypeIDreadBttnClick(TObject *Sender)
 {
     //Scrivo il device ID selezionato sullo schermo.
     unsigned char* p = answ71;

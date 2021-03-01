@@ -20,6 +20,8 @@ unsigned char Answ_014D01[200];
 unsigned char Answ_62[50];
 
 //#define ANSW_70_LEN     (42+1)
+unsigned char Answ_71[50];
+/*
 unsigned char Answ_71_WC[50];
 unsigned char Answ_71_WH[50];
 unsigned char Answ_71_HVAC[50];
@@ -32,8 +34,9 @@ unsigned char Answ_71_HB20[50];
 
 unsigned char Answ_71_HO_ken1[50];
 unsigned char Answ_71_HO_1[50];
+*/
 
-unsigned char* answ71 = Answ_71_WC;     //default
+unsigned char* answ71;  // = Answ_71_WC;     //default
 
 //
 String Answ71S = " {WC}";
@@ -96,6 +99,43 @@ static void VarsInit(void)
 }
 
 
+unsigned char* TypeID_init(DEV_TYPE dev)
+{
+    unsigned char *p;
+
+    p = Answ_71;
+    *p++ = 0xFF;
+    *p++ = 0xFF;
+    *p++ = 0x28;    // FRAME LENGTH
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;
+    *p++ = 0;   //6th
+    *p++ = 0x71;
+    switch (dev)
+    {
+        case DEV_TYPE_WC:           memcpy(p, TYPEID_WH, 32);   break;
+        case DEV_TYPE_WH:           memcpy(p, TYPEID_WH, 32);   break;
+        case DEV_TYPE_HVAC:         memcpy(p, TYPEID_HVAC,  32);   break;
+        case DEV_TYPE_HVAC2:        memcpy(p, TYPEID_HVAC2, 32);   break;
+        case DEV_TYPE_WM:           memcpy(p, TYPEID_WM, 32);   break;
+        case DEV_TYPE_FR_RU60cm:    memcpy(p, TYPEID_FR01,  32);   break;   //fridge
+        case DEV_TYPE_HO_Arcair:    memcpy(p, TYPEID_HO_ken1, 32);   break;
+        case DEV_TYPE_HO_Haier:     memcpy(p, TYPEID_HO_1, 32);   break;
+        //fridge
+        case DEV_TYPE_FR_MultiD_A3FE744:    memcpy(p, TYPEID_FRA3FE744, 32);   break;
+        case DEV_TYPE_FR_MultiD_HB20:       memcpy(p, TYPEID_HB20,      32);   break;
+    }
+    p += 32;
+
+    *p++ = CalcCKS(Answ_71);
+    return Answ_71;
+}
+
+
+
 void StringInit(void)
 {
     unsigned char *p;
@@ -130,7 +170,8 @@ void StringInit(void)
     *p++ = CalcCKS(Answ_62);
 
     ////////////////////////////////////////////////////
-
+    answ71 = TypeID_init(DEV_TYPE_WH);  //default type ?
+    /*
     p = Answ_71_WC;
     *p++ = 0xFF;
     *p++ = 0xFF;
@@ -284,6 +325,7 @@ void StringInit(void)
     memcpy(p, TYPEID_HVAC2, 32);
     p += 32;
     *p++ = CalcCKS(Answ_71_HVAC2);
+    */
 
     p = Answ_F2;
     *p++ = 0xFF;
@@ -440,7 +482,7 @@ static int StateMsgdim(DEV_TYPE val)
         case DEV_TYPE_WH:           return 50;      //WH
         case DEV_TYPE_HVAC:         return 32;      //HVAC
         case DEV_TYPE_HVAC2:        return 40;      //HVAC2
-        case DEV_TYPE_WM:           return 56*2;    //WM ???
+        case DEV_TYPE_WM:           return 56*2;    //WM
         case DEV_TYPE_FR_RU60cm:    return 28;      //FR01 RU 60cm ?
         case DEV_TYPE_HO_Arcair:    return 12;      // Hood Arcair
         case DEV_TYPE_HO_Haier:     return 15;      // Hood Haier
@@ -457,7 +499,7 @@ static int StateMsgdim(DEV_TYPE val)
 int UpdateAlrmMsg(unsigned char frame)
 {
     int device = Form1->DeviceComboBox->ItemIndex;
-    int len = JsonALRM[device].dim;  //JsonALRM[device].totAlarm;
+    int len = JsonALRM[device].dim;
     unsigned char* p;
 
     p = Answ_73;

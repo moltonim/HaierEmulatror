@@ -264,14 +264,14 @@ object Form1: TForm1
       TabOrder = 8
       OnClick = AlarmBttnClick
     end
-    object BitBtn1: TBitBtn
+    object TypeIDreadBttn: TBitBtn
       Left = 15
       Top = 152
       Width = 86
       Height = 25
       Caption = 'Type ID    '
       TabOrder = 9
-      OnClick = BitBtn1Click
+      OnClick = TypeIDreadBttnClick
       Kind = bkHelp
     end
   end

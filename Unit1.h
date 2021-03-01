@@ -53,7 +53,7 @@ __published:	// IDE-managed Components
     TMenuItem *N1;
     TMenuItem *Frame09force1;
     TMenuItem *PrintRTF1;
-    TBitBtn *BitBtn1;
+    TBitBtn *TypeIDreadBttn;
     TMenuItem *N7CSetreportinterval1;
     TMenuItem *N2;
     TMenuItem *Predictive1;
@@ -82,7 +82,7 @@ __published:	// IDE-managed Components
     void __fastcall PrintRTF1Click(TObject *Sender);
     void __fastcall FormActivate(TObject *Sender);
     void __fastcall WriteLogPopMnuClick(TObject *Sender);
-    void __fastcall BitBtn1Click(TObject *Sender);
+    void __fastcall TypeIDreadBttnClick(TObject *Sender);
     void __fastcall N7CSetreportinterval1Click(TObject *Sender);
     void __fastcall Predictive1Click(TObject *Sender);
 private:	// User declarations
