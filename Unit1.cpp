@@ -331,7 +331,7 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
         return;
     }
 
-    answ71 = TypeID_init((DEV_TYPE)n);
+    TypeID_init((DEV_TYPE)n);
     switch (n)
     {
         default:
@@ -622,7 +622,7 @@ void __fastcall TForm1::WriteLogPopMnuClick(TObject *Sender)
 void __fastcall TForm1::TypeIDreadBttnClick(TObject *Sender)
 {
     //Scrivo il device ID selezionato sullo schermo.
-    unsigned char* p = answ71;
+    unsigned char* p = Answ_71;
     p += 10;
     String s = "Type ID selected:";
     RichEdit1->SelAttributes->Color = clLime;

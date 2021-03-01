@@ -389,10 +389,10 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
             Form1->RichEdit1->SelAttributes->Color = clAqua;
             s.sprintf("[71] Device ID response %s; len = %d\:\n", Answ71S.c_str(), Answ_71_LEN-3);
             if (Form1->SendAnswerPopMnu->Checked)
-                ris = -Ser->BIN_Write(answ71, Answ_71_LEN, LenReaden);
+                ris = -Ser->BIN_Write(Answ_71, Answ_71_LEN, LenReaden);
             if (ris)
                 ris++;
-            s += Form1->FormatSendString(answ71, Answ_71_LEN);
+            s += Form1->FormatSendString(Answ_71, Answ_71_LEN);
         break;
 
         case 0x01:      //Query attribute status

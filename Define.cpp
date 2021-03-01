@@ -21,22 +21,6 @@ unsigned char Answ_62[50];
 
 //#define ANSW_70_LEN     (42+1)
 unsigned char Answ_71[50];
-/*
-unsigned char Answ_71_WC[50];
-unsigned char Answ_71_WH[50];
-unsigned char Answ_71_HVAC[50];
-unsigned char Answ_71_HVAC2[50];
-unsigned char Answ_71_WM[50];
-
-unsigned char Answ_71_FR01[50];
-unsigned char Answ_71_FRA3FE744[50];
-unsigned char Answ_71_HB20[50];
-
-unsigned char Answ_71_HO_ken1[50];
-unsigned char Answ_71_HO_1[50];
-*/
-
-unsigned char* answ71;  // = Answ_71_WC;     //default
 
 //
 String Answ71S = " {WC}";
@@ -49,8 +33,6 @@ unsigned char Answ_F2[50];
 
 //#define ANSW_FC_LEN
 unsigned char Answ_FC[50];
-
-int numOfAlarms[DEV_TYPE_LAST];
 
 //Valutare se necessaria. Usare il num massimo di allarmi arrotondato al 32bit superiore
 static int AlarmMsgByteDimension(DEV_TYPE val)
@@ -78,7 +60,7 @@ static int AlarmMsgByteDimension(DEV_TYPE val)
 }
 
 
-static void VarsInit(void)
+static void AlrmVarsInit(void)
 {
     int n;
     JSON_ALARM *ja;
@@ -89,17 +71,15 @@ static void VarsInit(void)
         JsonALRM[n].dim = AlarmMsgByteDimension((DEV_TYPE)n);
         while (ja->pos != -1 )
         {
-            numOfAlarms[n]++;       //to be removed!
             JsonALRM[n].totAlarm++;
             ja++;
         }
     }
-
     memset((char*)&AlrmBuf, 0, sizeof(AlrmBuf));
 }
 
 
-unsigned char* TypeID_init(DEV_TYPE dev)
+void TypeID_init(DEV_TYPE dev)
 {
     unsigned char *p;
 
@@ -129,9 +109,7 @@ unsigned char* TypeID_init(DEV_TYPE dev)
         case DEV_TYPE_FR_MultiD_HB20:       memcpy(p, TYPEID_HB20,      32);   break;
     }
     p += 32;
-
     *p++ = CalcCKS(Answ_71);
-    return Answ_71;
 }
 
 
@@ -139,8 +117,7 @@ unsigned char* TypeID_init(DEV_TYPE dev)
 void StringInit(void)
 {
     unsigned char *p;
-
-    VarsInit();
+    AlrmVarsInit();
 
     p = Answ_62;
     *p++ = 0xFF;
@@ -170,163 +147,8 @@ void StringInit(void)
     *p++ = CalcCKS(Answ_62);
 
     ////////////////////////////////////////////////////
-    answ71 = TypeID_init(DEV_TYPE_WH);  //default type ?
-    /*
-    p = Answ_71_WC;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_WC, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_WC);
-    /////////
-    p = Answ_71_WH;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_WH, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_WH);
-    /////////
-    p = Answ_71_FR01;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_FR01, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_FR01);
-    /////////
-    p = Answ_71_FRA3FE744;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_FRA3FE744, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_FRA3FE744);
-    /////////
-
-    p = Answ_71_HB20;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_HB20, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_HB20);
-    /////////
-
-    p = Answ_71_WM;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_WM, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_WM);
-    /////////
-    p = Answ_71_HO_ken1;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_HO_ken1, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_HO_ken1);
-
-    p = Answ_71_HO_1;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_HO_1, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_HO_1);
-
-    /////////
-    p = Answ_71_HVAC;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_HVAC, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_HVAC);
-
-    /////////
-    p = Answ_71_HVAC2;
-    *p++ = 0xFF;
-    *p++ = 0xFF;
-    *p++ = 0x28;    // FRAME LENGTH
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;
-    *p++ = 0;   //6th
-    *p++ = 0x71;
-    memcpy(p, TYPEID_HVAC2, 32);
-    p += 32;
-    *p++ = CalcCKS(Answ_71_HVAC2);
-    */
-
+    TypeID_init(DEV_TYPE_WH);  //default type ?
+    
     p = Answ_F2;
     *p++ = 0xFF;
     *p++ = 0xFF;

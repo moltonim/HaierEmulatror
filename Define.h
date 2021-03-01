@@ -73,7 +73,7 @@ typedef struct _globalalrm_struct
 
 //Functions
 void StringInit(void);
-unsigned char* TypeID_init(DEV_TYPE dev);
+void TypeID_init(DEV_TYPE dev);
 unsigned char CalcCKS(const unsigned char* buf);
 unsigned char CalcCKS2(unsigned char* buf, int* newlen);
 //check chs in ricezione!
@@ -114,26 +114,8 @@ extern unsigned char Answ_F2[];
 extern unsigned char Answ_62[];
 
 #define Answ_71_LEN     (42+1)
-extern unsigned char* answ71;
+extern unsigned char Answ_71[];
 extern String Answ71S;
-/*
-extern unsigned char Answ_71_WC[];
-extern unsigned char Answ_71_WH[];
-extern unsigned char Answ_71_WM[];
-
-//HVAC
-extern unsigned char Answ_71_HVAC[];
-extern unsigned char Answ_71_HVAC2[];
-
-//Fridges:
-extern unsigned char Answ_71_FR01[];
-extern unsigned char Answ_71_FRA3FE744[];    //k
-extern unsigned char Answ_71_HB20[];         //j
-
-//Hood, cappa
-extern unsigned char Answ_71_HO_ken1[];
-extern unsigned char Answ_71_HO_1[];
-*/
 
 /////////////////////////////////////////////
 extern unsigned char ACK_5[];

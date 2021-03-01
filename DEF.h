@@ -363,13 +363,6 @@ unsigned char EncriptionSign[3] = {
     0xF1, 0x00, 0x00
     };
 
-//SoftAp Device name when in configuration mode
-/*
-unsigned char SoftApDeviceName_configMode_WC[8] = {
-    0x55, 0x2D, 0x43, 0x45, 0x4C, 0x4C, 0x00, 0x00
-    };
-*/
-
 unsigned char SoftApDeviceName_configMode_WH[8] = {
     0x55, 0x2D, 0x45, 0x57, 0x48, 0x00, 0x00, 0x00
     };
@@ -377,6 +370,58 @@ unsigned char SoftApDeviceName_configMode_WH[8] = {
 unsigned char SoftApDeviceName_configMode_HVAC[8] = {
     0x55, 0x2D, 0x41, 0x43, 0x00, 0x00, 0x00, 0x00
     };
+
+unsigned char HW_SW_Version[8] = {
+    0x32, 0x30, 0x31, 0x38, 0x30, 0x39, 0x30, 0x35,
+    };
+
+unsigned char ACK_5[11] = {
+    0xFF, 0xFF, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x0d
+    };
+
+unsigned char STOP_ALARM_9[10] = {
+    0xFF, 0xFF, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0b
+    };
+
+unsigned char STATUS_INTERVAL_7C[13] = {
+    0xFF, 0xFF, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7C, 0x00, 0x64, 0xEA    //>checksum!
+    };
+
+SERIAL_CMD serial_cmd[] = {
+	{ 0x01,	"01 Control or setting"									 },
+	{ 0x02,	"02 Status return"                                          },
+	{ 0x03,	"03 Invalid command"                                        },
+	{ 0x04,	"04 Alarm status report"                                    },
+	{ 0x05,	"05 ACK"                                                    },
+	{ 0x06,	"06 Status report"                                          },
+	{ 0x09,	"09 Stop fault alarm frame"                                 },
+	{ 0x60,	"60 Group command"                                          },
+	{ 0x61,	"61 Device version query"                                   },
+	{ 0x62,	"62 Device version response"                                },
+	{ 0x63,	"63 Get the key"                                            },
+	{ 0x64,	"64 Set encryption parameters"                              },
+	{ 0x70,	"70 Device ID query"                                        },
+	{ 0x71,	"71 Device ID response"                                     },
+	{ 0x73,	"73 Query alarm status"                                     },
+	{ 0x74,	"74 Query alarm response"                                   },
+	{ 0x7C,	"7C Device report config frame"                             },
+	{ 0x7D,	"7D Device report config response frame"                    },
+	{ 0xF2,	"F2 Module enters config mode"                              },
+	{ 0xF3,	"F3 Module enters config mode response"                     },
+	{ 0xF4,	"F4 Module enters working mode"                             },
+	{ 0xF5,	"F5 Module enters working mode response"                    },
+	{ 0xF7,	"F7 Actively report network status"                         },
+	{ 0xF8,	"F8 Module clear configuration information command"         },
+	{ 0xF9,	"F9 Module enters production test mode"                     },
+	{ 0xFA,	"FA Device big data report config"                          },
+	{ 0xFB,	"FB Device big data report config resp"                     },
+    { 0xFC,	"FC Query management info"                                  },
+    { 0xFD,	"FD Query management info response"                         },
+    {    0, "" },
+};
+
+
+//TYPE ID
 
  unsigned char TYPEID_WC[32] = {
     0x20, 0x08, 0x61, 0x05, 0x1c, 0x40, 0x85, 0x04,
@@ -464,55 +509,6 @@ c3 08 05 01 00 21 80 00 67 4b 00 00 00 00 00 00
 00 00 00 00 00 00 00 00 00 40 50
 */
 
-
-unsigned char HW_SW_Version[8] = {
-    0x32, 0x30, 0x31, 0x38, 0x30, 0x39, 0x30, 0x35,
-    };
-
-unsigned char ACK_5[11] = {
-    0xFF, 0xFF, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x0d
-    };
-
-unsigned char STOP_ALARM_9[10] = {
-    0xFF, 0xFF, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0b
-    };
-
-unsigned char STATUS_INTERVAL_7C[13] = {
-    0xFF, 0xFF, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7C, 0x00, 0x64, 0xEA    //>checksum!
-    };
-
-SERIAL_CMD serial_cmd[] = {
-	{ 0x01,	"01 Control or setting"									 },
-	{ 0x02,	"02 Status return"                                          },
-	{ 0x03,	"03 Invalid command"                                        },
-	{ 0x04,	"04 Alarm status report"                                    },
-	{ 0x05,	"05 ACK"                                                    },
-	{ 0x06,	"06 Status report"                                          },
-	{ 0x09,	"09 Stop fault alarm frame"                                 },
-	{ 0x60,	"60 Group command"                                          },
-	{ 0x61,	"61 Device version query"                                   },
-	{ 0x62,	"62 Device version response"                                },
-	{ 0x63,	"63 Get the key"                                            },
-	{ 0x64,	"64 Set encryption parameters"                              },
-	{ 0x70,	"70 Device ID query"                                        },
-	{ 0x71,	"71 Device ID response"                                     },
-	{ 0x73,	"73 Query alarm status"                                     },
-	{ 0x74,	"74 Query alarm response"                                   },
-	{ 0x7C,	"7C Device report config frame"                             },
-	{ 0x7D,	"7D Device report config response frame"                    },
-	{ 0xF2,	"F2 Module enters config mode"                              },
-	{ 0xF3,	"F3 Module enters config mode response"                     },
-	{ 0xF4,	"F4 Module enters working mode"                             },
-	{ 0xF5,	"F5 Module enters working mode response"                    },
-	{ 0xF7,	"F7 Actively report network status"                         },
-	{ 0xF8,	"F8 Module clear configuration information command"         },
-	{ 0xF9,	"F9 Module enters production test mode"                     },
-	{ 0xFA,	"FA Device big data report config"                          },
-	{ 0xFB,	"FB Device big data report config resp"                     },
-    { 0xFC,	"FC Query management info"                                  },
-    { 0xFD,	"FD Query management info response"                         },
-    {    0, "" },
-};
 
 
 #endif
