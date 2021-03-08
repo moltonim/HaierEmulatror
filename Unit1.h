@@ -45,7 +45,7 @@ __published:	// IDE-managed Components
     TLabel *ConnectLabel;
     TPanel *Panel3;
     TLabel *Label1;
-    TButton *Button2;
+    TButton *ForceStatusBttn;
     TCheckBox *StatusCKB;
     TButton *ExitBttn;
     TButton *AlarmBttn;
@@ -57,6 +57,7 @@ __published:	// IDE-managed Components
     TMenuItem *N7CSetreportinterval1;
     TMenuItem *N2;
     TMenuItem *Predictive1;
+    TButton *BigDataBttn;
     void __fastcall SWDateTimePicker1Change(TObject *Sender);
     void __fastcall SerialSelectCBChange(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -74,7 +75,7 @@ __published:	// IDE-managed Components
     void __fastcall RichEdit1Change(TObject *Sender);
     void __fastcall CB_ConnectClick(TObject *Sender);
     void __fastcall StatusBar1DblClick(TObject *Sender);
-    void __fastcall Button2Click(TObject *Sender);
+    void __fastcall ForceStatusBttnClick(TObject *Sender);
     void __fastcall ExitBttnClick(TObject *Sender);
     void __fastcall SpeedButton3Click(TObject *Sender);
     void __fastcall AlarmBttnClick(TObject *Sender);
@@ -85,6 +86,7 @@ __published:	// IDE-managed Components
     void __fastcall TypeIDreadBttnClick(TObject *Sender);
     void __fastcall N7CSetreportinterval1Click(TObject *Sender);
     void __fastcall Predictive1Click(TObject *Sender);
+    void __fastcall BigDataBttnClick(TObject *Sender);
 private:	// User declarations
     int MemoSizeL;
     int MemoSizeH;
@@ -103,6 +105,7 @@ public:		// User declarations
     bool Cmd6Req;
     bool Cmd09Req;
     bool Cmd7CReq;
+    bool BidataReq;
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;

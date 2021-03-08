@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 103
   Width = 700
   Height = 577
-  Caption = 'Emulator machine 0.80'
+  Caption = 'Emulator machine 0.82'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -122,12 +122,12 @@ object Form1: TForm1
       Left = 13
       Top = 4
       Width = 89
-      Height = 105
+      Height = 76
       Enabled = False
       TabOrder = 0
       object ConfigRequestBttn: TBitBtn
         Left = 7
-        Top = 11
+        Top = 3
         Width = 75
         Height = 25
         Caption = 'Config [F2]'
@@ -136,7 +136,7 @@ object Form1: TForm1
       end
       object F2_SentCKB: TDBCheckBox
         Left = 11
-        Top = 51
+        Top = 34
         Width = 49
         Height = 17
         Caption = 'Sent'
@@ -147,7 +147,7 @@ object Form1: TForm1
       end
       object F2GotAnswerCKB: TDBCheckBox
         Left = 11
-        Top = 75
+        Top = 53
         Width = 63
         Height = 17
         Caption = 'Answer'
@@ -159,7 +159,7 @@ object Form1: TForm1
     end
     object DeviceComboBox: TComboBox
       Left = 3
-      Top = 124
+      Top = 97
       Width = 109
       Height = 21
       ItemHeight = 13
@@ -180,7 +180,7 @@ object Form1: TForm1
     end
     object CustomMsgBttn: TButton
       Left = 15
-      Top = 184
+      Top = 157
       Width = 86
       Height = 25
       Caption = 'Custom MSG'
@@ -189,7 +189,7 @@ object Form1: TForm1
     end
     object WriteLogPopMnu: TCheckBox
       Left = 15
-      Top = 261
+      Top = 228
       Width = 71
       Height = 17
       Caption = 'Write Log'
@@ -198,7 +198,7 @@ object Form1: TForm1
     end
     object SendAnswerPopMnu: TCheckBox
       Left = 15
-      Top = 286
+      Top = 253
       Width = 85
       Height = 17
       Caption = 'Send Answer'
@@ -208,7 +208,7 @@ object Form1: TForm1
     end
     object Edit1: TEdit
       Left = 13
-      Top = 315
+      Top = 281
       Width = 89
       Height = 21
       TabOrder = 5
@@ -217,33 +217,49 @@ object Form1: TForm1
     end
     object Panel3: TPanel
       Left = 13
-      Top = 342
+      Top = 328
       Width = 90
-      Height = 83
+      Height = 97
       TabOrder = 6
       object Label1: TLabel
         Left = 65
-        Top = 10
+        Top = 6
         Width = 15
         Height = 13
         Caption = '0.0'
       end
-      object Button2: TButton
+      object ForceStatusBttn: TButton
         Left = 3
-        Top = 32
+        Top = 24
         Width = 83
         Height = 25
         Caption = 'Force status'
         TabOrder = 0
-        OnClick = Button2Click
+        OnClick = ForceStatusBttnClick
       end
       object StatusCKB: TCheckBox
         Left = 5
-        Top = 8
+        Top = 4
         Width = 43
         Height = 17
         Caption = 'Auto'
         TabOrder = 1
+      end
+      object BigDataBttn: TButton
+        Left = 3
+        Top = 64
+        Width = 83
+        Height = 25
+        Caption = 'Big Data'
+        Enabled = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clYellow
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+        OnClick = BigDataBttnClick
       end
     end
     object ExitBttn: TButton
@@ -257,7 +273,7 @@ object Form1: TForm1
     end
     object AlarmBttn: TButton
       Left = 15
-      Top = 213
+      Top = 186
       Width = 86
       Height = 25
       Caption = 'Alarms ...'
@@ -266,7 +282,7 @@ object Form1: TForm1
     end
     object TypeIDreadBttn: TBitBtn
       Left = 15
-      Top = 152
+      Top = 125
       Width = 86
       Height = 25
       Caption = 'Type ID    '

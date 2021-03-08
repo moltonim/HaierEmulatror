@@ -170,6 +170,12 @@ void __fastcall TokenThread::SendStatus(void)
         StatusTimer = MilliSecondOfTheWeek(Now());
     }
 
+    if (Connected == true && Form1->BidataReq == true)
+    {
+        Form1->BidataReq = false;
+        SendComAnsw(0x067D);
+    }
+
     if (Connected == true && Form1->Cmd09Req == true)
     {
         Form1->Cmd09Req = false;
@@ -429,12 +435,20 @@ void __fastcall TokenThread::SendComAnsw(int cmd)
             //^^ aggiustare qui: o yellow o aqua!    [done]
             n = Form1->DeviceComboBox->ItemIndex;
             n = UpdateStateMsg(n, 1);
-            s.sprintf("[06] Send Status; len = %d \n", n-3);
+            s.sprintf("[06 6D] Send Status; len = %d \n", n-3);
             if (Form1->SendAnswerPopMnu->Checked)
                 ris = -Ser->BIN_Write(Answ_014D01, n, LenReaden);
             if (ris)
                 ris++;
             s += Form1->FormatSendString(Answ_014D01, n);
+        break;
+
+        case 0x067D:    //BigData!
+            Form1->RichEdit1->SelAttributes->Color = clYellow;
+            //^^ aggiustare qui: o yellow o aqua!    [done]
+            n = Form1->DeviceComboBox->ItemIndex;
+            n = UpdateStateMsg(n, 1);
+            s.sprintf("[06 7D] Send Status; len = %d \n", n-3);
         break;
 
         case 0x05:

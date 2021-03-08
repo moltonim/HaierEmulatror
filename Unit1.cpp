@@ -76,6 +76,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
     Cmd6Req = false;
     Cmd09Req = false;
     Cmd7CReq = false;
+    BidataReq = false;
 }
 //---------------------------------------------------------------------------
 
@@ -393,6 +394,11 @@ void __fastcall TForm1::DeviceComboBoxChange(TObject *Sender)
     // Write something?
     memset(AlrmBuf.ErrBuff, 0, ERRBUFF_LEN);
     Form1->StatusBar1->Panels->Items[3]->Text = "ALARM: none";
+
+    if (DebugFlag && n <=1 )    //<= for test
+    {
+        BigDataBttn->Enabled = Device[n].bigdata_present;
+    }
 }
 //---------------------------------------------------------------------------
 
@@ -521,7 +527,7 @@ void __fastcall TForm1::StatusBar1DblClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button2Click(TObject *Sender)
+void __fastcall TForm1::ForceStatusBttnClick(TObject *Sender)
 {
     Cmd6Req = true;    
 }
@@ -632,7 +638,7 @@ void __fastcall TForm1::TypeIDreadBttnClick(TObject *Sender)
     RichEdit1->Lines->Add(s);
     RichEdit1->SelAttributes->Color = clWhite;
     s = FormatSendString(p, 32, false);
-    RichEdit1->Lines->Add(s);
+    RichEdit1->Lines->Add(s.LowerCase());
     RichEdit1->SelAttributes->Color = clLime;   //?    
 //    RichEdit1->SetFocus();
     //RichEdit1->Lines->Add();
@@ -653,6 +659,12 @@ void __fastcall TForm1::Predictive1Click(TObject *Sender)
 {
     //???
     Predictive1->Checked = !Predictive1->Checked; 
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::BigDataBttnClick(TObject *Sender)
+{
+    BidataReq = true;    
 }
 //---------------------------------------------------------------------------
 

@@ -25,15 +25,6 @@ typedef enum _devtype
 } DEV_TYPE;
 
 
-typedef struct _proprieties
-{
-    int startWord, startBit, length;
-	//"dataType":"int" o "bool"
-	bool readable;
-	bool writable;      //":true o false,
-	String eppCmd;  //"5D04",
-}   JSON_PROPS;
-
 typedef struct _alarm
 {
     //int tag;
@@ -71,6 +62,18 @@ typedef struct _globalalrm_struct
 
 }   ALARM_MESSAGE;
 
+
+typedef struct _data_container
+{
+    DEV_TYPE type;				//incrementale! 0, 1, 2 etc. é un campo fisso! 
+	unsigned char devName[50];
+    //unsigned char status[];   Answ_014D01
+    int status_len;     //StateMsgdim(x)
+    int bigdata_len;
+    char bigdata_present;
+    char bigdata_answ;      //1 o 2? (inteso come risposta: 06 7D 01 oppure 06 7D 02
+}   DEVICE_DATA;
+
 //Functions
 void StringInit(void);
 void TypeID_init(DEV_TYPE dev);
@@ -94,7 +97,8 @@ extern unsigned char EncriptionSign[3];
 extern unsigned char TYPEID[];
 extern unsigned char HW_SW_Version[];
 extern unsigned char QueryAttrStatus[];
-extern SERIAL_CMD serial_cmd[];
+extern SERIAL_CMD    serial_cmd[];
+extern DEVICE_DATA   Device[];
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
@@ -126,6 +130,8 @@ extern unsigned char Answ_73[];
 
 #define Answ_014D01_LEN     (40+1)
 extern unsigned char Answ_014D01[];
+
+extern unsigned char Answ_BigData[];
 
 #define Answ_FC_LEN     (17+1)
 extern unsigned char Answ_FC[];

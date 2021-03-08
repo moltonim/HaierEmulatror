@@ -15,6 +15,7 @@ ALARM_MESSAGE AlrmBuf;
 
 //#define Answ_014D01_LEN     (42+1)
 unsigned char Answ_014D01[200];
+unsigned char Answ_BigData[200];
 
 //#define Answ_62_LEN     (46+1)
 unsigned char Answ_62[50];
@@ -609,6 +610,33 @@ int UpdateStateMsg(int val, char mode)
     p = Answ_014D01 + len;
     *p = c;
 
+    return ++len;
+}
+
+// Esempio boiler bigData
+//ff ff 1a 00 00 00 00 00 00 06 7d 02 00 0c 00 14 17 00 00 00 14 00 00 00 00 00 00 00 ea
+//      26                             1  2                                        16
+// quindi i 16 +10 = 26 (0x1a) per la lunghezza.
+int BigdataMsg(DEV_TYPE dev)
+{
+    memset (Answ_BigData, 0, sizeof(Answ_BigData));
+    int len = Device[dev].bigdata_len;
+    char* p = Answ_BigData;
+    *p++ = 0xFF;
+    *p++ = 0xFF;
+    *p++ = len +10;
+    for(int n = 0; n < 6; n++)
+        *p++ = 0;
+    *p++ = 0x06;
+    *p++ = 0x7d;
+    *p++ = Device[dev].bigdata_answ;    //1 or 2?
+    for(int n = 0; n < len; n++)
+        *p++ = n+1;
+    // here checksum and you're done!
+    unsigned char c = CalcCKS2(Answ_BigData, &len);
+    len += 2;     //add 0xFF, 0xFF as header
+    p = Answ_BigData + len;
+    *p = c;
     return ++len;
 }
 

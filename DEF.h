@@ -338,6 +338,13 @@ ALARM_ARRAY JsonALRM[] = {
 	{NULL, 0, 0, ""}
 };
 
+DEVICE_DATA Device[] = {
+    { DEV_TYPE_WC, "Wine Cooler", 28, 11, false, 1},
+    { DEV_TYPE_WC, "Water heater", 28, 11, true, 2},
+    { DEV_TYPE_LAST, NULL, 0, 0, 0, 0},
+
+};
+
 
 //not used yet
 SERIAL_CMD Device_status[] = {
