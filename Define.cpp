@@ -142,7 +142,7 @@ void StringInit(void)
     memcpy(p, HW_SW_Version, 8);
     p += 8;
     *p++ = 0;   //1 byte reserved
-    memcpy(p, SoftApDeviceName_configMode_WC, 8);
+    memcpy(p, SoftApDeviceName_configMode, 8);
     p += 8;
     *p++ = CalcCKS(Answ_62);
 

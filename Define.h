@@ -91,7 +91,6 @@ extern ALARM_ARRAY   JsonALRM[];
 extern ALARM_MESSAGE AlrmBuf;
 extern unsigned char EncriptionSign[3];
 //SoftAp Device name when in configuration mode
-extern unsigned char SoftApDeviceName_configMode[];
 extern unsigned char TYPEID[];
 extern unsigned char HW_SW_Version[];
 extern unsigned char QueryAttrStatus[];

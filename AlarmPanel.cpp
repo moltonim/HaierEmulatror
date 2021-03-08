@@ -77,7 +77,6 @@ void __fastcall TForm3::EditClick(TObject *Sender)
 
 }
 
-extern JSON_ALARM ALARM_WC[];
 void __fastcall TForm3::FormShow(TObject *Sender)
 {   
 	device = Form1->DeviceComboBox->ItemIndex;
@@ -120,8 +119,7 @@ void __fastcall TForm3::FormShow(TObject *Sender)
 	AlrmComboBox->Items->Clear();
     //AlrmComboBox->Items->Add("Erase");
 	JSON_ALARM *ja = JsonALRM[device].alrm;
-    //JSON_ALARM *ja = ALARM_WC;
-	for (n = 0; n < JsonALRM[device].totAlarm; n++)
+    for (n = 0; n < JsonALRM[device].totAlarm; n++)
 	{
         s.sprintf("%s, %d", ja->name, ja->pos);
 		AlrmComboBox->Items->Add(/*ja->name*/s);
